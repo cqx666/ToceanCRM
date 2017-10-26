@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .mymetadata
 .checkstyle
 .classpath
@@ -14,3 +15,14 @@
 /src/main/webapp/WEB-INF/classes/*
 /src/main/webapp/userfiles/*
 /target/
+=======
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+>>>>>>> 155dc4ea040df8a650d031f02b4a1b1fdf4be491
