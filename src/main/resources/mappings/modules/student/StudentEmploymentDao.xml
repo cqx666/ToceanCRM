@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentEmploymentDao">
+    
+	<sql id="studentEmploymentColumns">
+		a.id AS "id",
+		a.stu_name AS "stuName",
+		a.stu_class AS "stuClass",
+		a.dire_id AS "direId",
+		a.loca_id AS "locaId",
+		a.emp_time AS "empTime",
+		a.reco_job AS "recoJob",
+		a.file_id AS "fileId"
+	</sql>
+	
+	<sql id="studentEmploymentJoins">
+	</sql>
+    
+	<select id="get" resultType="StudentEmployment">
+		SELECT 
+			<include refid="studentEmploymentColumns"/>
+		FROM student_employment a
+		<include refid="studentEmploymentJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentEmployment">
+		SELECT 
+			<include refid="studentEmploymentColumns"/>
+		FROM student_employment a
+		<include refid="studentEmploymentJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentEmployment">
+		SELECT 
+			<include refid="studentEmploymentColumns"/>
+		FROM student_employment a
+		<include refid="studentEmploymentJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_employment(
+			id,
+			stu_name,
+			stu_class,
+			dire_id,
+			loca_id,
+			emp_time,
+			reco_job,
+			file_id
+		) VALUES (
+			#{id},
+			#{stuName},
+			#{stuClass},
+			#{direId},
+			#{locaId},
+			#{empTime},
+			#{recoJob},
+			#{fileId}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_employment SET 	
+			stu_name = #{stuName},
+			stu_class = #{stuClass},
+			dire_id = #{direId},
+			loca_id = #{locaId},
+			emp_time = #{empTime},
+			reco_job = #{recoJob},
+			file_id = #{fileId}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM student_employment
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

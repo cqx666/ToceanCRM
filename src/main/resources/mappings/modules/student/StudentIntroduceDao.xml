@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentIntroduceDao">
+    
+	<sql id="studentIntroduceColumns">
+		a.id AS "id",
+		a.student AS "student",
+		a.introdate AS "introdate",
+		a.employee_id AS "employee.Id",
+		a.student_id AS "studentId"
+	</sql>
+	
+	<sql id="studentIntroduceJoins">
+	</sql>
+    
+	<select id="get" resultType="StudentIntroduce">
+		SELECT 
+			<include refid="studentIntroduceColumns"/>
+		FROM student_introduce a
+		<include refid="studentIntroduceJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentIntroduce">
+		SELECT 
+			<include refid="studentIntroduceColumns"/>
+		FROM student_introduce a
+		<include refid="studentIntroduceJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentIntroduce">
+		SELECT 
+			<include refid="studentIntroduceColumns"/>
+		FROM student_introduce a
+		<include refid="studentIntroduceJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_introduce(
+			id,
+			student,
+			introdate,
+			employee_id,
+			student_id
+		) VALUES (
+			#{id},
+			#{student},
+			#{introdate},
+			#{employee.Id},
+			#{studentId}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_introduce SET 	
+			student = #{student},
+			introdate = #{introdate},
+			employee_id = #{employee.Id},
+			student_id = #{studentId}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM student_introduce
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

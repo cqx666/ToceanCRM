@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentPraiseDao">
+    
+	<sql id="studentPraiseColumns">
+		a.id AS "id",
+		a.praisedate AS "praisedate",
+		a.praiseway AS "praiseway",
+		a.reason AS "reason",
+		a.score AS "score",
+		a.student_id AS "studentId",
+		a.booker AS "booker",
+		a.bookdate AS "bookdate",
+		a.confirmer AS "confirmer",
+		a.confirmdate AS "confirmdate",
+		a.approve AS "approve",
+		a.status AS "status",
+		a.headship AS "headship",
+		a.opinion AS "opinion"
+	</sql>
+	
+	<sql id="studentPraiseJoins">
+	</sql>
+    
+	<select id="get" resultType="StudentPraise">
+		SELECT 
+			<include refid="studentPraiseColumns"/>
+		FROM student_praise a
+		<include refid="studentPraiseJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentPraise">
+		SELECT 
+			<include refid="studentPraiseColumns"/>
+		FROM student_praise a
+		<include refid="studentPraiseJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentPraise">
+		SELECT 
+			<include refid="studentPraiseColumns"/>
+		FROM student_praise a
+		<include refid="studentPraiseJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_praise(
+			id,
+			praisedate,
+			praiseway,
+			reason,
+			score,
+			student_id,
+			booker,
+			bookdate,
+			confirmer,
+			confirmdate,
+			approve,
+			status,
+			headship,
+			opinion
+		) VALUES (
+			#{id},
+			#{praisedate},
+			#{praiseway},
+			#{reason},
+			#{score},
+			#{studentId},
+			#{booker},
+			#{bookdate},
+			#{confirmer},
+			#{confirmdate},
+			#{approve},
+			#{status},
+			#{headship},
+			#{opinion}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_praise SET 	
+			praisedate = #{praisedate},
+			praiseway = #{praiseway},
+			reason = #{reason},
+			score = #{score},
+			student_id = #{studentId},
+			booker = #{booker},
+			bookdate = #{bookdate},
+			confirmer = #{confirmer},
+			confirmdate = #{confirmdate},
+			approve = #{approve},
+			status = #{status},
+			headship = #{headship},
+			opinion = #{opinion}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM student_praise
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

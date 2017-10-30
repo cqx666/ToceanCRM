@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentAttendanceDao">
+    
+	<sql id="studentAttendanceColumns">
+		a.id AS "id",
+		a.startdate AS "startdate",
+		a.enddate AS "enddate",
+		a.status AS "status",
+		a.student_id AS "studentinfo.Id"
+	</sql>
+	
+	<sql id="studentAttendanceJoins">
+	</sql>
+    
+	<select id="get" resultType="StudentAttendance">
+		SELECT 
+			<include refid="studentAttendanceColumns"/>
+		FROM student_attendance a
+		<include refid="studentAttendanceJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentAttendance">
+		SELECT 
+			<include refid="studentAttendanceColumns"/>
+		FROM student_attendance a
+		<include refid="studentAttendanceJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentAttendance">
+		SELECT 
+			<include refid="studentAttendanceColumns"/>
+		FROM student_attendance a
+		<include refid="studentAttendanceJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_attendance(
+			id,
+			startdate,
+			enddate,
+			status,
+			student_id
+		) VALUES (
+			#{id},
+			#{startdate},
+			#{enddate},
+			#{status},
+			#{studentinfo.Id}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_attendance SET 	
+			startdate = #{startdate},
+			enddate = #{enddate},
+			status = #{status},
+			student_id = #{studentinfo.Id}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM student_attendance
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

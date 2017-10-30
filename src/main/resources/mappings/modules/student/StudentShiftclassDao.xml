@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentShiftclassDao">
+    
+	<sql id="studentShiftclassColumns">
+		a.id AS "id",
+		a.shiftdate AS "shiftdate",
+		a.reason AS "reason",
+		a.classto_id AS "classtoId",
+		a.classfrom_id AS "classfromId",
+		a.oldclass_userid AS "oldclassUserid",
+		a.newclass_userid AS "newclassUserid"
+	</sql>
+	
+	<sql id="studentShiftclassJoins">
+	</sql>
+    
+	<select id="get" resultType="StudentShiftclass">
+		SELECT 
+			<include refid="studentShiftclassColumns"/>
+		FROM student_shiftclass a
+		<include refid="studentShiftclassJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentShiftclass">
+		SELECT 
+			<include refid="studentShiftclassColumns"/>
+		FROM student_shiftclass a
+		<include refid="studentShiftclassJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentShiftclass">
+		SELECT 
+			<include refid="studentShiftclassColumns"/>
+		FROM student_shiftclass a
+		<include refid="studentShiftclassJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_shiftclass(
+			id,
+			shiftdate,
+			reason,
+			classto_id,
+			classfrom_id,
+			oldclass_userid,
+			newclass_userid
+		) VALUES (
+			#{id},
+			#{shiftdate},
+			#{reason},
+			#{classtoId},
+			#{classfromId},
+			#{oldclassUserid},
+			#{newclassUserid}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_shiftclass SET 	
+			shiftdate = #{shiftdate},
+			reason = #{reason},
+			classto_id = #{classtoId},
+			classfrom_id = #{classfromId},
+			oldclass_userid = #{oldclassUserid},
+			newclass_userid = #{newclassUserid}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		DELETE FROM student_shiftclass
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
