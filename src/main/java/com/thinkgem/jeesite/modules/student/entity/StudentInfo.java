@@ -18,7 +18,8 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class StudentInfo extends DataEntity<StudentInfo> {
 	
 	private static final long serialVersionUID = 1L;
-	private Long userid;		// userid
+	private Long studentid;// userid
+	private String name;
 	private String code;		// code
 	private String statuschange;		// statuschange
 	private String studenttype;		// studenttype
@@ -96,15 +97,22 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		super(id);
 	}
 
-	@NotNull(message="userid不能为空")
-	public Long getUserid() {
-		return userid;
+	public Long getStudentid() {
+		return studentid;
 	}
 
-	public void setUserid(Long userid) {
-		this.userid = userid;
+	public void setStudentid(Long studentid) {
+		this.studentid = studentid;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Length(min=0, max=20, message="code长度必须介于 0 和 20 之间")
 	public String getCode() {
 		return code;

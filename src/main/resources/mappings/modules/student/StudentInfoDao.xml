@@ -3,7 +3,8 @@
 <mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentInfoDao">
     
 	<sql id="studentInfoColumns">
-		a.userid AS "userid",
+		a.studentid AS "studentid",
+		a.name as "name",
 		a.code AS "code",
 		a.statuschange AS "statuschange",
 		a.studenttype AS "studenttype",
