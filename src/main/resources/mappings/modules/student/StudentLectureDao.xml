@@ -12,12 +12,11 @@
 		a.advice AS "advice",
 		a.pm_id AS "employee.Id",
 		a.student_id AS "studentId"
-		si.studentid AS "infostudent"
-		si.name AS "name"
+
 </sql>
 	
 	<sql id="studentLectureJoins">
-		LEFT JOIN student_info si ON si.studentid=a.student_id
+
 	</sql>
 	<select id="get" resultType="StudentLecture">
 		SELECT 
