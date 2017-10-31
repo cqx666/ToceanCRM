@@ -17,14 +17,15 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class StudentLecture extends DataEntity<StudentLecture> {
 	
 	private static final long serialVersionUID = 1L;
-	private Long createrid;		// createrid
-	private String content;		// content
-	private Date date;		// date
-	private String evaluation;		// evaluation
-	private String score;		// score
-	private String advice;		// advice
-	private Long employee;		// pm_id
-	private Long studentId;		// student_id
+	private Long createrid;		// 序号
+	private String content;		//演讲内容
+	private Date date;		// 演讲日期
+	private String evaluation;		// 评价
+	private String score;		// 评分
+	private String advice;		// 建议
+	private Long employee;		// 项目经理id
+	private Long studentId;		// 学员id
+	private String name;
 	
 	public StudentLecture() {
 		super();
@@ -99,5 +100,12 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

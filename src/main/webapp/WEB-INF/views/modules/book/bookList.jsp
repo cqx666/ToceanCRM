@@ -29,7 +29,7 @@
 			<li><label>名称：</label>
 				<form:input path="name" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
-			<li><label>名称：</label>
+			<li><label>价格：</label>
 				<form:input path="beginprice" htmlEscape="false" maxlength="100" class="input-medium"/>
 				~
 				<form:input path="endprice" htmlEscape="false" maxlength="100" class="input-medium"/>
@@ -44,6 +44,7 @@
 		<thead>
 			<tr>
 				<th>名称</th>
+				<th>价格</th>
 				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="book:book:edit"><th>操作</th></shiro:hasPermission>
@@ -55,6 +56,9 @@
 				<td><a href="${ctx}/book/book/form?id=${book.id}">
 					${book.name}
 				</a></td>
+				<td>
+						${book.price}
+				</td>
 				<td>
 					<fmt:formatDate value="${book.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>

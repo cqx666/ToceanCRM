@@ -14,5 +14,5 @@ import com.thinkgem.jeesite.modules.book.entity.Book;
  */
 @MyBatisDao
 public interface BookDao extends CrudDao<Book> {
-	
+
 }
