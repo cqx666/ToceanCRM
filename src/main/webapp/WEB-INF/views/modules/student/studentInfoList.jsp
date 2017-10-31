@@ -55,16 +55,16 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentInfo">
+		<c:forEach items="${page.list}" var="studentInfo" varStatus="stauts">
 			<tr>
-				<td></td>
+				<td>${stauts.count}</td>
 				<td>${studentInfo.name}</td>
 				<td>${studentInfo.studentid}</td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${studentInfo.sex}</td>
+				<td>${studentInfo.schoolrecord}</td>
+				<td>${studentInfo.telephone}</td>
+				<td>${studentInfo.guardianphone}</td>
 				<td></td>
 			</tr>
 		</c:forEach>

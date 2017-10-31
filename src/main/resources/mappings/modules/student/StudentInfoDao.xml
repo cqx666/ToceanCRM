@@ -72,7 +72,9 @@
 		a.firstpoll AS "firstpoll",
 		a.secondpoll AS "secondpoll",
 		a.thirdpoll AS "thirdpoll",
-		a.file_id AS "fileId"
+		a.file_id AS "fileId",
+		s.userid as "userid",
+		s.name as "name"
 	</sql>
 	
 	<sql id="studentInfoJoins">
@@ -81,7 +83,7 @@
 	<select id="get" resultType="StudentInfo">
 		SELECT 
 			<include refid="studentInfoColumns"/>
-		FROM student_info a
+		FROM student_info a LEFT  JOIN  sys_calsses s ON a.studentid=s.userid
 		<include refid="studentInfoJoins"/>
 		WHERE a.id = #{id}
 	</select>
