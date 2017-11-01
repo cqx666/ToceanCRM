@@ -24,20 +24,20 @@
 
 	</sql>
 
-	
+
 	<sql id="studentLectureJoins">
 
 	</sql>
 	<select id="get" resultType="StudentLecture">
-		SELECT 
+		SELECT
 			<include refid="studentLectureColumns"/>
 		FROM student_lecture a
 		<include refid="studentLectureJoins"/>
 		WHERE a.id = #{id}
 	</select>
-	
+
 	<select id="findList" resultType="StudentLecture">
-		SELECT 
+		SELECT
 			<include refid="studentLectureColumns"/>
 		FROM student_lecture a
 		<include refid="studentLectureJoins"/>
@@ -57,9 +57,9 @@
 			</otherwise>
 		</choose>
 	</select>
-	
+
 	<select id="findAllList" resultType="StudentLecture">
-		SELECT 
+		SELECT
 			<include refid="studentLectureColumns"/>
 		FROM student_lecture a
 		<include refid="studentLectureJoins"/>
@@ -67,7 +67,7 @@
 
 			a.del_flag = #{DEL_FLAG_NORMAL}
 
-		</where>		
+		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
@@ -79,7 +79,7 @@
 			</otherwise>
 		</choose>
 	</select>
-	
+
 	<insert id="insert">
 		INSERT INTO student_lecture(
 			id,
@@ -117,9 +117,9 @@
 
 		)
 	</insert>
-	
+
 	<update id="update">
-		UPDATE student_lecture SET 	
+		UPDATE student_lecture SET
 			createrid = #{createrid},
 			content = #{content},
 			date = #{date},
@@ -134,10 +134,10 @@
 
 		WHERE id = #{id}
 	</update>
-	
+
 	<update id="delete">
 
-		UPDATE student_lecture SET 
+		UPDATE student_lecture SET
 			del_flag = #{DEL_FLAG_DELETE}
 
 		WHERE id = #{id}
