@@ -3,15 +3,11 @@
 <mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentInfoDao">
     
 	<sql id="studentInfoColumns">
-<<<<<<< HEAD
+
 		a.id AS "id",
 		a.name AS "name",
 		a.studentnumber AS "studentnumber",
-=======
-		a.studentid AS "studentid",
-		a.name as "name",
-		a.code AS "code",
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		a.statuschange AS "statuschange",
 		a.studenttype AS "studenttype",
 		a.sex AS "sex",
@@ -83,6 +79,7 @@
 		a.secondpoll AS "secondpoll",
 		a.thirdpoll AS "thirdpoll",
 <<<<<<< HEAD
+<<<<<<< HEAD
 		a.file_id AS "fileId",
 		a.office_id AS "office.id",
 		a.area_id AS "area.id",
@@ -100,6 +97,11 @@
 		LEFT JOIN sys_area a72 ON a72.id = a.area_id
 =======
 		a.file_id AS "fileId"
+=======
+		a.file_id AS "fileId",
+		s.userid as "userid",
+		s.name as "name"
+>>>>>>> origin/dev
 	</sql>
 	
 	<sql id="studentInfoJoins">
@@ -109,7 +111,7 @@
 	<select id="get" resultType="StudentInfo">
 		SELECT 
 			<include refid="studentInfoColumns"/>
-		FROM student_info a
+		FROM student_info a LEFT  JOIN  sys_calsses s ON a.studentid=s.userid
 		<include refid="studentInfoJoins"/>
 		WHERE a.id = #{id}
 	</select>

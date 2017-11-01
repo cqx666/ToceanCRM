@@ -20,16 +20,19 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	
 	private static final long serialVersionUID = 1L;
 
+
 	private Long createrid;		// 学员
 	private String content;		// 演讲内容
+
 	private Date date;		// 演讲日期
 	private String evaluation;		// 评价
 	private String score;		// 评分
 	private String advice;		// 建议
+
 	private Long pmId;		// 项目经理
 	private Long studentId;		// 学员
 
-	
+
 	public StudentLecture() {
 		super();
 	}
@@ -106,5 +109,5 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
 	}
-	
+
 }

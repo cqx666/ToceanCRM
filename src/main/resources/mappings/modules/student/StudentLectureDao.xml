@@ -21,12 +21,17 @@
 =======
 		a.pm_id AS "employee.Id",
 		a.student_id AS "studentId"
+<<<<<<< HEAD
 >>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 	</sql>
+=======
+
+</sql>
+>>>>>>> origin/dev
 	
 	<sql id="studentLectureJoins">
+
 	</sql>
-    
 	<select id="get" resultType="StudentLecture">
 		SELECT 
 			<include refid="studentLectureColumns"/>

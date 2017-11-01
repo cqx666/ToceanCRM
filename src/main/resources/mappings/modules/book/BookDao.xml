@@ -9,6 +9,9 @@
 		a.area_id AS "area.id",
 		a.name AS "name",
 		a.price AS "price",
+		a.beginprice AS "beginprice",
+		a.endprice AS "endprice",
+		a.pagecount AS "pagecount",
 		a.in_date AS "inDate",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -47,6 +50,9 @@
 					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="beginprice != null and endprice != null and beginprice !='' and endprice != ''">
+				AND a.price BETWEEN  #{beginprice} AND #{endprice}
 			</if>
 		</where>
 		<choose>
@@ -89,6 +95,9 @@
 			area_id,
 			name,
 			price,
+			beginprice,
+			endprice,
+			pagecount,
 			in_date,
 			create_by,
 			create_date,
@@ -104,6 +113,9 @@
 			#{area.id},
 			#{name},
 			#{price},
+			#{beginprice},
+			#{endprice},
+			#{pagecount}
 			#{inDate},
 			#{createBy.id},
 			#{createDate},
@@ -122,11 +134,11 @@
 			area_id = #{area.id},
 			name = #{name},
 			price = #{price},
+			pagecount=#{pagecount},
 			in_date = #{inDate},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks},
-			page=#{pagecount}
+			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 	
