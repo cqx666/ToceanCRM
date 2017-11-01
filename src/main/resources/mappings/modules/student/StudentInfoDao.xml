@@ -60,9 +60,7 @@
 		a.headship AS "headship",
 		a.salary AS "salary",
 		a.returnvist AS "returnvist",
-
 		a.remarks AS "remarks",
-
 		a.classes_id AS "classesId",
 		a.subarea_id AS "subareaId",
 		a.attendanceno AS "attendanceno",
@@ -77,27 +75,29 @@
 		a.thirdpoll AS "thirdpoll",
 
 		a.file_id AS "fileId",
-		a.office_id AS "office.id",
-		a.area_id AS "area.id",
-		a.create_by AS "createby.id",
+		a.office_id AS "officeid",
+		a.area_id AS "areaid",
+		a.create_by AS "createbyid",
 		a.create_date AS "createdate",
-		a.update_by AS "updateby.id",
+		a.update_by AS "updatebyid",
 		a.update_date AS "updatedate",
 		a.del_flag AS "delflag",
-		o71.name AS "office.name",
-		a72.name AS "area.name"
+		o71.name AS "officename",
+		a72.name AS "areaname",
+		sc.id as "cid",
+		sc.name as "name"
 	</sql>
 	
 	<sql id="studentInfoJoins">
 		LEFT JOIN sys_office o71 ON o71.id = a.office_id
 		LEFT JOIN sys_area a72 ON a72.id = a.area_id
-
+		LEFT  JOIN sys_classes sc ON sc.id=a.classes_id
 	</sql>
     
 	<select id="get" resultType="StudentInfo">
 		SELECT 
 			<include refid="studentInfoColumns"/>
-		FROM student_info a LEFT  JOIN  sys_calsses s ON a.studentid=s.userid
+		FROM student_info a
 		<include refid="studentInfoJoins"/>
 		WHERE a.id = #{id}
 	</select>

@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.student.entity;
 
 
+
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -11,10 +12,7 @@ import com.thinkgem.jeesite.modules.sys.entity.Office;
 import com.thinkgem.jeesite.modules.sys.entity.Area;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
@@ -105,6 +103,15 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	private User updateby;		// 修改人
 	private Date updatedate;		// 修改时间
 	private String delflag;		// 删除标识
+	private Classes classes;//班级
+
+	public Classes getClasses() {
+		return classes;
+	}
+
+	public void setClasses(Classes classes) {
+		this.classes = classes;
+	}
 
 	public StudentInfo() {
 		super();
