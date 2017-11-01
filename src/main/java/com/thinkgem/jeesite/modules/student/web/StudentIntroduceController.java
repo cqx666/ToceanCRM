@@ -23,9 +23,15 @@ import com.thinkgem.jeesite.modules.student.entity.StudentIntroduce;
 import com.thinkgem.jeesite.modules.student.service.StudentIntroduceService;
 
 /**
+<<<<<<< HEAD
+ * 学员介绍Controller
+ * @author cqx
+ * @version 2017-11-01
+=======
  * 学员转介绍Controller
  * @author cqx
  * @version 2017-10-30
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentIntroduce")
@@ -68,7 +74,11 @@ public class StudentIntroduceController extends BaseController {
 			return form(studentIntroduce, model);
 		}
 		studentIntroduceService.save(studentIntroduce);
+<<<<<<< HEAD
+		addMessage(redirectAttributes, "保存介绍成功");
+=======
 		addMessage(redirectAttributes, "保存转介绍成功");
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
 	}
 	
@@ -76,7 +86,11 @@ public class StudentIntroduceController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(StudentIntroduce studentIntroduce, RedirectAttributes redirectAttributes) {
 		studentIntroduceService.delete(studentIntroduce);
+<<<<<<< HEAD
+		addMessage(redirectAttributes, "删除介绍成功");
+=======
 		addMessage(redirectAttributes, "删除转介绍成功");
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
 	}
 

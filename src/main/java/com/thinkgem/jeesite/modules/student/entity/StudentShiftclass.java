@@ -10,19 +10,22 @@ import org.hibernate.validator.constraints.Length;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
- * 学籍变更Entity
+
+ * 学员转班Entity
  * @author cqx
- * @version 2017-10-30
+ * @version 2017-11-01
  */
 public class StudentShiftclass extends DataEntity<StudentShiftclass> {
 	
 	private static final long serialVersionUID = 1L;
-	private Date shiftdate;		// shiftdate
-	private String reason;		// reason
-	private Long classtoId;		// classto_id
-	private Long classfromId;		// classfrom_id
-	private Long oldclassUserid;		// oldclass_userid
-	private Long newclassUserid;		// newclass_userid
+
+	private Date shiftdate;		// 转班时间
+	private String reason;		// 转班原因
+	private Long classtoId;		// 转到哪里去
+	private Long classfromId;		// 从哪里转
+	private Long oldclassUserid;		// 原班级
+	private Long newclassUserid;		// 转入班级
+
 	
 	public StudentShiftclass() {
 		super();
@@ -41,7 +44,8 @@ public class StudentShiftclass extends DataEntity<StudentShiftclass> {
 		this.shiftdate = shiftdate;
 	}
 	
-	@Length(min=0, max=255, message="reason长度必须介于 0 和 255 之间")
+
+	@Length(min=0, max=255, message="转班原因长度必须介于 0 和 255 之间")
 	public String getReason() {
 		return reason;
 	}

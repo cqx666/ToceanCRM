@@ -33,12 +33,20 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+
+				<th>修改时间</th>
+
 				<shiro:hasPermission name="student:studentAttendance:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentAttendance">
 			<tr>
+
+				<td><a href="${ctx}/student/studentAttendance/form?id=${studentAttendance.id}">
+					<fmt:formatDate value="${studentAttendance.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</a></td>
+
 				<shiro:hasPermission name="student:studentAttendance:edit"><td>
     				<a href="${ctx}/student/studentAttendance/form?id=${studentAttendance.id}">修改</a>
 					<a href="${ctx}/student/studentAttendance/delete?id=${studentAttendance.id}" onclick="return confirmx('确认要删除该考勤吗？', this.href)">删除</a>

@@ -12,20 +12,24 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 项目考核Entity
  * @author cqx
- * @version 2017-10-30
+
+ * @version 2017-11-01
+
  */
 public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 	
 	private static final long serialVersionUID = 1L;
-	private Date polldate;		// polldate
-	private String team;		// team
-	private String score;		// score
-	private String projectname;		// projectname
-	private String location;		// location
-	private String polltype;		// polltype
-	private Long classesId;		// classes_id
-	private String source;		// source
-	private String filename;		// filename
+
+	private Date polldate;		// 考核日期
+	private String team;		// 小组
+	private String score;		// 总分
+	private String projectname;		// 项目名称
+	private String location;		// 位置
+	private String polltype;		// 考核类型
+	private Long classesId;		// 班级
+	private String source;		// 源头
+	private String filename;		// 文件名
+
 	
 	public StudentProjectpoll() {
 		super();
@@ -44,7 +48,9 @@ public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 		this.polldate = polldate;
 	}
 	
-	@Length(min=0, max=10, message="team长度必须介于 0 和 10 之间")
+
+	@Length(min=0, max=10, message="小组长度必须介于 0 和 10 之间")
+
 	public String getTeam() {
 		return team;
 	}
@@ -53,7 +59,9 @@ public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 		this.team = team;
 	}
 	
-	@Length(min=1, max=11, message="score长度必须介于 1 和 11 之间")
+
+	@Length(min=1, max=11, message="总分长度必须介于 1 和 11 之间")
+
 	public String getScore() {
 		return score;
 	}
@@ -61,8 +69,9 @@ public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 	public void setScore(String score) {
 		this.score = score;
 	}
-	
-	@Length(min=0, max=50, message="projectname长度必须介于 0 和 50 之间")
+
+	@Length(min=0, max=50, message="项目名称长度必须介于 0 和 50 之间")
+
 	public String getProjectname() {
 		return projectname;
 	}
@@ -71,7 +80,8 @@ public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 		this.projectname = projectname;
 	}
 	
-	@Length(min=0, max=50, message="location长度必须介于 0 和 50 之间")
+
+	@Length(min=0, max=50, message="位置长度必须介于 0 和 50 之间")
 	public String getLocation() {
 		return location;
 	}
@@ -80,7 +90,8 @@ public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 		this.location = location;
 	}
 	
-	@Length(min=1, max=11, message="polltype长度必须介于 1 和 11 之间")
+
+	@Length(min=1, max=11, message="考核类型长度必须介于 1 和 11 之间")
 	public String getPolltype() {
 		return polltype;
 	}
@@ -105,7 +116,8 @@ public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 		this.source = source;
 	}
 	
-	@Length(min=0, max=50, message="filename长度必须介于 0 和 50 之间")
+
+	@Length(min=0, max=50, message="文件名长度必须介于 0 和 50 之间")
 	public String getFilename() {
 		return filename;
 	}

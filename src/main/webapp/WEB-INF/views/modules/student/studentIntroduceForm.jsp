@@ -2,7 +2,9 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>转介绍管理</title>
+
+	<title>介绍管理</title>
+
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,20 +29,26 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/student/studentIntroduce/">转介绍列表</a></li>
-		<li class="active"><a href="${ctx}/student/studentIntroduce/form?id=${studentIntroduce.id}">转介绍<shiro:hasPermission name="student:studentIntroduce:edit">${not empty studentIntroduce.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentIntroduce:edit">查看</shiro:lacksPermission></a></li>
+
+		<li><a href="${ctx}/student/studentIntroduce/">介绍列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentIntroduce/form?id=${studentIntroduce.id}">介绍<shiro:hasPermission name="student:studentIntroduce:edit">${not empty studentIntroduce.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentIntroduce:edit">查看</shiro:lacksPermission></a></li>
+
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="studentIntroduce" action="${ctx}/student/studentIntroduce/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">student：</label>
+
+			<label class="control-label">学员：</label>
+
 			<div class="controls">
 				<form:input path="student" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">introdate：</label>
+
+			<label class="control-label">介绍日期：</label>
+
 			<div class="controls">
 				<input name="introdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentIntroduce.introdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -48,13 +56,15 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">employee_id：</label>
+
+			<label class="control-label">经手人：</label>
 			<div class="controls">
-				<form:input path="employee.Id" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
+				<form:input path="employeeId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">student_id：</label>
+			<label class="control-label">学员外键：</label>
+
 			<div class="controls">
 				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>

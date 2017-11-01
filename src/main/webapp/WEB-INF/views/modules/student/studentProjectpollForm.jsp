@@ -2,7 +2,9 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>考核管理</title>
+
+	<title>项目考核管理</title>
+
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,14 +29,18 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/student/studentProjectpoll/">考核列表</a></li>
-		<li class="active"><a href="${ctx}/student/studentProjectpoll/form?id=${studentProjectpoll.id}">考核<shiro:hasPermission name="student:studentProjectpoll:edit">${not empty studentProjectpoll.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentProjectpoll:edit">查看</shiro:lacksPermission></a></li>
+
+		<li><a href="${ctx}/student/studentProjectpoll/">项目考核列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentProjectpoll/form?id=${studentProjectpoll.id}">项目考核<shiro:hasPermission name="student:studentProjectpoll:edit">${not empty studentProjectpoll.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentProjectpoll:edit">查看</shiro:lacksPermission></a></li>
+
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="studentProjectpoll" action="${ctx}/student/studentProjectpoll/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">polldate：</label>
+
+			<label class="control-label">考核日期：</label>
+
 			<div class="controls">
 				<input name="polldate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentProjectpoll.polldate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -42,51 +48,67 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">team：</label>
+
+			<label class="control-label">小组：</label>
+
 			<div class="controls">
 				<form:input path="team" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">score：</label>
+
+			<label class="control-label">总分：</label>
+
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">projectname：</label>
+
+			<label class="control-label">项目名称：</label>
+
 			<div class="controls">
 				<form:input path="projectname" htmlEscape="false" maxlength="50" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">location：</label>
+
+			<label class="control-label">位置：</label>
+
 			<div class="controls">
 				<form:input path="location" htmlEscape="false" maxlength="50" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">polltype：</label>
+
+			<label class="control-label">考核类型：</label>
+
 			<div class="controls">
 				<form:input path="polltype" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">classes_id：</label>
+
+			<label class="control-label">班级：</label>
+
 			<div class="controls">
 				<form:input path="classesId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">source：</label>
+
+			<label class="control-label">源头：</label>
+
 			<div class="controls">
 				<form:input path="source" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">filename：</label>
+
+			<label class="control-label">文件名：</label>
+
 			<div class="controls">
 				<form:input path="filename" htmlEscape="false" maxlength="50" class="input-xlarge "/>
 			</div>

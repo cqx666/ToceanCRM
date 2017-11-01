@@ -34,7 +34,9 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">praisedate：</label>
+
+			<label class="control-label">表扬时间：</label>
+
 			<div class="controls">
 				<input name="praisedate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentPraise.praisedate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -42,38 +44,50 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">praiseway：</label>
+
+			<label class="control-label">表扬方式：</label>
+
 			<div class="controls">
 				<form:input path="praiseway" htmlEscape="false" maxlength="20" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">reason：</label>
+
+			<label class="control-label">表扬原因：</label>
+
 			<div class="controls">
 				<form:input path="reason" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">score：</label>
+
+			<label class="control-label">表扬加分：</label>
+
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">student_id：</label>
+
+			<label class="control-label">学员：</label>
+
 			<div class="controls">
 				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">booker：</label>
+
+			<label class="control-label">登记人：</label>
+
 			<div class="controls">
 				<form:input path="booker" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">bookdate：</label>
+
+			<label class="control-label">登记时间：</label>
+
 			<div class="controls">
 				<input name="bookdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentPraise.bookdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -81,13 +95,17 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">confirmer：</label>
+
+			<label class="control-label">证实者：</label>
+
 			<div class="controls">
 				<form:input path="confirmer" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">confirmdate：</label>
+
+			<label class="control-label">证实时间：</label>
+
 			<div class="controls">
 				<input name="confirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentPraise.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -95,25 +113,33 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">approve：</label>
+
+			<label class="control-label">赞成：</label>
+
 			<div class="controls">
 				<form:input path="approve" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">status：</label>
+
+			<label class="control-label">状态：</label>
+
 			<div class="controls">
 				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">headship：</label>
+
+			<label class="control-label">职务：</label>
+
 			<div class="controls">
 				<form:input path="headship" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">opinion：</label>
+
+			<label class="control-label">意见：</label>
+
 			<div class="controls">
 				<form:input path="opinion" htmlEscape="false" class="input-xlarge "/>
 			</div>
