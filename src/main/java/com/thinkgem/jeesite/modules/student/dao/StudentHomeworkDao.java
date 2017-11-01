@@ -8,11 +8,9 @@ import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
 import com.thinkgem.jeesite.modules.student.entity.StudentHomework;
 
 /**
- * 学员作业DAO接口
+ * 学员作业布置DAO接口
  * @author cqx
-
  * @version 2017-11-01
-
  */
 @MyBatisDao
 public interface StudentHomeworkDao extends CrudDao<StudentHomework> {

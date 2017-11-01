@@ -23,11 +23,9 @@ import com.thinkgem.jeesite.modules.student.entity.StudentHomework;
 import com.thinkgem.jeesite.modules.student.service.StudentHomeworkService;
 
 /**
- * 学员作业Controller
+ * 学员作业布置Controller
  * @author cqx
-
  * @version 2017-11-01
-
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentHomework")
@@ -70,7 +68,7 @@ public class StudentHomeworkController extends BaseController {
 			return form(studentHomework, model);
 		}
 		studentHomeworkService.save(studentHomework);
-		addMessage(redirectAttributes, "保存作业成功");
+		addMessage(redirectAttributes, "保存作业布置成功");
 		return "redirect:"+Global.getAdminPath()+"/student/studentHomework/?repage";
 	}
 	
@@ -78,7 +76,7 @@ public class StudentHomeworkController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(StudentHomework studentHomework, RedirectAttributes redirectAttributes) {
 		studentHomeworkService.delete(studentHomework);
-		addMessage(redirectAttributes, "删除作业成功");
+		addMessage(redirectAttributes, "删除作业布置成功");
 		return "redirect:"+Global.getAdminPath()+"/student/studentHomework/?repage";
 	}
 

@@ -16,9 +16,7 @@ import com.thinkgem.jeesite.modules.student.dao.StudentProjectpollDao;
 /**
  * 项目考核Service
  * @author cqx
-
  * @version 2017-11-01
-
  */
 @Service
 @Transactional(readOnly = true)
