@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentPraiseDao">
+    
+	<sql id="studentPraiseColumns">
+		a.id AS "id",
+		a.praisedate AS "praisedate",
+		a.praiseway AS "praiseway",
+		a.reason AS "reason",
+		a.score AS "score",
+		a.student_id AS "studentId",
+		a.booker AS "booker",
+		a.bookdate AS "bookdate",
+		a.confirmer AS "confirmer",
+		a.confirmdate AS "confirmdate",
+		a.approve AS "approve",
+		a.status AS "status",
+		a.headship AS "headship",
+		a.opinion AS "opinion",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="studentPraiseJoins">
+	</sql>
+    
+	<select id="get" resultType="StudentPraise">
+		SELECT 
+			<include refid="studentPraiseColumns"/>
+		FROM student_praise a
+		<include refid="studentPraiseJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentPraise">
+		SELECT 
+			<include refid="studentPraiseColumns"/>
+		FROM student_praise a
+		<include refid="studentPraiseJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentPraise">
+		SELECT 
+			<include refid="studentPraiseColumns"/>
+		FROM student_praise a
+		<include refid="studentPraiseJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_praise(
+			id,
+			praisedate,
+			praiseway,
+			reason,
+			score,
+			student_id,
+			booker,
+			bookdate,
+			confirmer,
+			confirmdate,
+			approve,
+			status,
+			headship,
+			opinion,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			del_flag
+		) VALUES (
+			#{id},
+			#{praisedate},
+			#{praiseway},
+			#{reason},
+			#{score},
+			#{studentId},
+			#{booker},
+			#{bookdate},
+			#{confirmer},
+			#{confirmdate},
+			#{approve},
+			#{status},
+			#{headship},
+			#{opinion},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_praise SET 	
+			praisedate = #{praisedate},
+			praiseway = #{praiseway},
+			reason = #{reason},
+			score = #{score},
+			student_id = #{studentId},
+			booker = #{booker},
+			bookdate = #{bookdate},
+			confirmer = #{confirmer},
+			confirmdate = #{confirmdate},
+			approve = #{approve},
+			status = #{status},
+			headship = #{headship},
+			opinion = #{opinion},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE student_praise SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
