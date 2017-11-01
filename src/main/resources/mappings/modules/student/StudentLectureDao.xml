@@ -10,7 +10,7 @@
 		a.evaluation AS "evaluation",
 		a.score AS "score",
 		a.advice AS "advice",
-<<<<<<< HEAD
+
 		a.pm_id AS "pmId",
 		a.student_id AS "studentId",
 		a.create_by AS "createBy.id",
@@ -18,16 +18,12 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
-=======
+
 		a.pm_id AS "employee.Id",
 		a.student_id AS "studentId"
-<<<<<<< HEAD
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
-	</sql>
-=======
 
-</sql>
->>>>>>> origin/dev
+	</sql>
+
 	
 	<sql id="studentLectureJoins">
 
@@ -46,21 +42,18 @@
 		FROM student_lecture a
 		<include refid="studentLectureJoins"/>
 		<where>
-<<<<<<< HEAD
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
-=======
-			
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-<<<<<<< HEAD
+
 				ORDER BY a.update_date DESC
-=======
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			</otherwise>
 		</choose>
 	</select>
@@ -71,21 +64,18 @@
 		FROM student_lecture a
 		<include refid="studentLectureJoins"/>
 		<where>
-<<<<<<< HEAD
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
-=======
-			
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-<<<<<<< HEAD
+
 				ORDER BY a.update_date DESC
-=======
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			</otherwise>
 		</choose>
 	</select>
@@ -100,16 +90,14 @@
 			score,
 			advice,
 			pm_id,
-<<<<<<< HEAD
+
 			student_id,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
-=======
-			student_id
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		) VALUES (
 			#{id},
 			#{createrid},
@@ -118,7 +106,7 @@
 			#{evaluation},
 			#{score},
 			#{advice},
-<<<<<<< HEAD
+
 			#{pmId},
 			#{studentId},
 			#{createBy.id},
@@ -126,10 +114,7 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
-=======
-			#{employee.Id},
-			#{studentId}
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		)
 	</insert>
 	
@@ -141,25 +126,20 @@
 			evaluation = #{evaluation},
 			score = #{score},
 			advice = #{advice},
-<<<<<<< HEAD
+
 			pm_id = #{pmId},
 			student_id = #{studentId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
-=======
-			pm_id = #{employee.Id},
-			student_id = #{studentId}
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
-<<<<<<< HEAD
+
 		UPDATE student_lecture SET 
 			del_flag = #{DEL_FLAG_DELETE}
-=======
-		DELETE FROM student_lecture
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		WHERE id = #{id}
 	</update>
 	

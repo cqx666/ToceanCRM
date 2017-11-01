@@ -23,15 +23,11 @@ import com.thinkgem.jeesite.modules.student.entity.StudentInfo;
 import com.thinkgem.jeesite.modules.student.service.StudentInfoService;
 
 /**
-<<<<<<< HEAD
+
  * 学生信息Controller
  * @author cqx
  * @version 2017-11-01
-=======
- * 学员档案Controller
- * @author cqx
- * @version 2017-10-30
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentInfo")
@@ -74,11 +70,9 @@ public class StudentInfoController extends BaseController {
 			return form(studentInfo, model);
 		}
 		studentInfoService.save(studentInfo);
-<<<<<<< HEAD
+
 		addMessage(redirectAttributes, "保存学生成功");
-=======
-		addMessage(redirectAttributes, "保存档案成功");
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		return "redirect:"+Global.getAdminPath()+"/student/studentInfo/?repage";
 	}
 	
@@ -86,11 +80,9 @@ public class StudentInfoController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(StudentInfo studentInfo, RedirectAttributes redirectAttributes) {
 		studentInfoService.delete(studentInfo);
-<<<<<<< HEAD
+
 		addMessage(redirectAttributes, "删除学生成功");
-=======
-		addMessage(redirectAttributes, "删除档案成功");
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		return "redirect:"+Global.getAdminPath()+"/student/studentInfo/?repage";
 	}
 
