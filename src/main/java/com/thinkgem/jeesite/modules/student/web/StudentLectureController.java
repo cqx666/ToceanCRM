@@ -25,7 +25,11 @@ import com.thinkgem.jeesite.modules.student.service.StudentLectureService;
 /**
  * 学员演讲Controller
  * @author cqx
+<<<<<<< HEAD
  * @version 2017-11-01
+=======
+ * @version 2017-10-30
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentLecture")

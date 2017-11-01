@@ -12,11 +12,14 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 学员演讲Entity
  * @author cqx
+
  * @version 2017-11-01
+
  */
 public class StudentLecture extends DataEntity<StudentLecture> {
 	
 	private static final long serialVersionUID = 1L;
+
 	private Long createrid;		// 学员
 	private String content;		// 演讲内容
 	private Date date;		// 演讲日期
@@ -25,6 +28,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	private String advice;		// 建议
 	private Long pmId;		// 项目经理
 	private Long studentId;		// 学员
+
 	
 	public StudentLecture() {
 		super();
@@ -67,6 +71,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 		this.evaluation = evaluation;
 	}
 	
+
 	@Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
 	public String getScore() {
 		return score;
@@ -84,12 +89,14 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 		this.advice = advice;
 	}
 	
+
 	public Long getPmId() {
 		return pmId;
 	}
 
 	public void setPmId(Long pmId) {
 		this.pmId = pmId;
+
 	}
 	
 	public Long getStudentId() {

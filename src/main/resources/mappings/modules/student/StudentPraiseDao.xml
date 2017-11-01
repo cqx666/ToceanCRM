@@ -16,12 +16,16 @@
 		a.approve AS "approve",
 		a.status AS "status",
 		a.headship AS "headship",
+<<<<<<< HEAD
 		a.opinion AS "opinion",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
+=======
+		a.opinion AS "opinion"
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 	</sql>
 	
 	<sql id="studentPraiseJoins">
@@ -41,14 +45,21 @@
 		FROM student_praise a
 		<include refid="studentPraiseJoins"/>
 		<where>
+<<<<<<< HEAD
 			a.del_flag = #{DEL_FLAG_NORMAL}
+=======
+			
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+<<<<<<< HEAD
 				ORDER BY a.update_date DESC
+=======
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 			</otherwise>
 		</choose>
 	</select>
@@ -59,14 +70,21 @@
 		FROM student_praise a
 		<include refid="studentPraiseJoins"/>
 		<where>
+<<<<<<< HEAD
 			a.del_flag = #{DEL_FLAG_NORMAL}
+=======
+			
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+<<<<<<< HEAD
 				ORDER BY a.update_date DESC
+=======
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 			</otherwise>
 		</choose>
 	</select>
@@ -86,12 +104,16 @@
 			approve,
 			status,
 			headship,
+<<<<<<< HEAD
 			opinion,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
+=======
+			opinion
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		) VALUES (
 			#{id},
 			#{praisedate},
@@ -106,12 +128,16 @@
 			#{approve},
 			#{status},
 			#{headship},
+<<<<<<< HEAD
 			#{opinion},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
+=======
+			#{opinion}
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		)
 	</insert>
 	
@@ -129,15 +155,23 @@
 			approve = #{approve},
 			status = #{status},
 			headship = #{headship},
+<<<<<<< HEAD
 			opinion = #{opinion},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
+=======
+			opinion = #{opinion}
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
+<<<<<<< HEAD
 		UPDATE student_praise SET 
 			del_flag = #{DEL_FLAG_DELETE}
+=======
+		DELETE FROM student_praise
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		WHERE id = #{id}
 	</update>
 	

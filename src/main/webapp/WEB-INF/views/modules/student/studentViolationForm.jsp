@@ -34,19 +34,25 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
+
 			<label class="control-label">违纪细节：</label>
+
 			<div class="controls">
 				<form:input path="violationdesc" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">处理方式：</label>
+
 			<div class="controls">
 				<form:input path="handleway" htmlEscape="false" maxlength="20" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">违纪时间：</label>
+
 			<div class="controls">
 				<input name="viloationdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentViolation.viloationdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -54,19 +60,25 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">学员态度：</label>
+
 			<div class="controls">
 				<form:input path="studentattitude" htmlEscape="false" maxlength="20" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">登记人：</label>
+
 			<div class="controls">
 				<form:input path="booker" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">登记时间：</label>
+
 			<div class="controls">
 				<input name="bookdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentViolation.bookdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -74,13 +86,17 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">证实人：</label>
+
 			<div class="controls">
 				<form:input path="confirmer" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">证实时间：</label>
+
 			<div class="controls">
 				<input name="confirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentViolation.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -88,14 +104,18 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">状态：</label>
+
 			<div class="controls">
 				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">分数：</label>
+
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
@@ -108,25 +128,33 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">学生：</label>
+
 			<div class="controls">
 				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">表扬：</label>
+
 			<div class="controls">
 				<form:input path="approve" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">职位：</label>
+
 			<div class="controls">
 				<form:input path="headship" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">意见：</label>
+
 			<div class="controls">
 				<form:input path="opinion" htmlEscape="false" class="input-xlarge "/>
 			</div>

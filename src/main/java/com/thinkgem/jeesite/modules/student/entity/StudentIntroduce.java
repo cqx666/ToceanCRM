@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
+
  * 学员介绍Entity
  * @author cqx
  * @version 2017-11-01
@@ -17,10 +18,12 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class StudentIntroduce extends DataEntity<StudentIntroduce> {
 	
 	private static final long serialVersionUID = 1L;
+
 	private String student;		// 学员
 	private Date introdate;		// 介绍日期
 	private Long employeeId;		// 经手人
 	private Long studentId;		// 学员外键
+
 	
 	public StudentIntroduce() {
 		super();
@@ -29,6 +32,7 @@ public class StudentIntroduce extends DataEntity<StudentIntroduce> {
 	public StudentIntroduce(String id){
 		super(id);
 	}
+
 
 	@Length(min=0, max=10, message="学员长度必须介于 0 和 10 之间")
 	public String getStudent() {
@@ -48,6 +52,7 @@ public class StudentIntroduce extends DataEntity<StudentIntroduce> {
 		this.introdate = introdate;
 	}
 	
+
 	public Long getEmployeeId() {
 		return employeeId;
 	}

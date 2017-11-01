@@ -34,13 +34,17 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
+
 			<label class="control-label">作业标题：</label>
+
 			<div class="controls">
 				<form:input path="title" htmlEscape="false" maxlength="50" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">布置日期：</label>
+
 			<div class="controls">
 				<input name="makedate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentHomework.makedate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -48,15 +52,19 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">老师：</label>
+
 			<div class="controls">
 				<form:input path="teacher" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">状态：</label>
 			<div class="controls">
 				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge "/>
+
 			</div>
 		</div>
 		<div class="control-group">
@@ -66,9 +74,11 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">课程：</label>
 			<div class="controls">
 				<form:input path="courseId" htmlEscape="false" maxlength="20" class="input-xlarge "/>
+
 			</div>
 		</div>
 		<div class="form-actions">

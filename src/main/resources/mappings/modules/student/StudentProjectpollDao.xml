@@ -12,12 +12,16 @@
 		a.polltype AS "polltype",
 		a.classes_id AS "classesId",
 		a.source AS "source",
+<<<<<<< HEAD
 		a.filename AS "filename",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
+=======
+		a.filename AS "filename"
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 	</sql>
 	
 	<sql id="studentProjectpollJoins">
@@ -37,14 +41,21 @@
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		<where>
+<<<<<<< HEAD
 			a.del_flag = #{DEL_FLAG_NORMAL}
+=======
+			
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+<<<<<<< HEAD
 				ORDER BY a.update_date DESC
+=======
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 			</otherwise>
 		</choose>
 	</select>
@@ -55,14 +66,21 @@
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		<where>
+<<<<<<< HEAD
 			a.del_flag = #{DEL_FLAG_NORMAL}
+=======
+			
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+<<<<<<< HEAD
 				ORDER BY a.update_date DESC
+=======
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 			</otherwise>
 		</choose>
 	</select>
@@ -78,12 +96,16 @@
 			polltype,
 			classes_id,
 			source,
+<<<<<<< HEAD
 			filename,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
+=======
+			filename
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		) VALUES (
 			#{id},
 			#{polldate},
@@ -94,12 +116,16 @@
 			#{polltype},
 			#{classesId},
 			#{source},
+<<<<<<< HEAD
 			#{filename},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
+=======
+			#{filename}
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		)
 	</insert>
 	
@@ -113,15 +139,23 @@
 			polltype = #{polltype},
 			classes_id = #{classesId},
 			source = #{source},
+<<<<<<< HEAD
 			filename = #{filename},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
+=======
+			filename = #{filename}
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
+<<<<<<< HEAD
 		UPDATE student_projectpoll SET 
 			del_flag = #{DEL_FLAG_DELETE}
+=======
+		DELETE FROM student_projectpoll
+>>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
 		WHERE id = #{id}
 	</update>
 	

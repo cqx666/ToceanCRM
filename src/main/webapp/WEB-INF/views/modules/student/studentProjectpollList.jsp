@@ -2,7 +2,9 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
+
 	<title>项目考核管理</title>
+
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,8 +20,10 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
+
 		<li class="active"><a href="${ctx}/student/studentProjectpoll/">项目考核列表</a></li>
 		<shiro:hasPermission name="student:studentProjectpoll:edit"><li><a href="${ctx}/student/studentProjectpoll/form">项目考核添加</a></li></shiro:hasPermission>
+
 	</ul>
 	<form:form id="searchForm" modelAttribute="studentProjectpoll" action="${ctx}/student/studentProjectpoll/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -33,19 +37,23 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+
 				<th>修改时间</th>
+
 				<shiro:hasPermission name="student:studentProjectpoll:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentProjectpoll">
 			<tr>
+
 				<td><a href="${ctx}/student/studentProjectpoll/form?id=${studentProjectpoll.id}">
 					<fmt:formatDate value="${studentProjectpoll.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</a></td>
 				<shiro:hasPermission name="student:studentProjectpoll:edit"><td>
     				<a href="${ctx}/student/studentProjectpoll/form?id=${studentProjectpoll.id}">修改</a>
 					<a href="${ctx}/student/studentProjectpoll/delete?id=${studentProjectpoll.id}" onclick="return confirmx('确认要删除该项目考核吗？', this.href)">删除</a>
+
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

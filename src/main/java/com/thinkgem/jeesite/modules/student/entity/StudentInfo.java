@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.student.entity;
 
+
 import org.hibernate.validator.constraints.Length;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -10,16 +11,25 @@ import com.thinkgem.jeesite.modules.sys.entity.Office;
 import com.thinkgem.jeesite.modules.sys.entity.Area;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
+
  * 学生信息Entity
  * @author cqx
  * @version 2017-11-01
+
  */
 public class StudentInfo extends DataEntity<StudentInfo> {
 	
 	private static final long serialVersionUID = 1L;
+
 	private String name;		// 学生名字
 	private String studentnumber;		// 学号
 	private String statuschange;		// 学业状态
@@ -95,7 +105,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	private User updateby;		// 修改人
 	private Date updatedate;		// 修改时间
 	private String delflag;		// 删除标识
-	
+
 	public StudentInfo() {
 		super();
 	}
@@ -104,7 +114,8 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		super(id);
 	}
 
-	@Length(min=1, max=25, message="学生名字长度必须介于 1 和 25 之间")
+
+
 	public String getName() {
 		return name;
 	}
@@ -112,6 +123,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	
 	@Length(min=0, max=20, message="学号长度必须介于 0 和 20 之间")
 	public String getStudentnumber() {
@@ -122,7 +134,9 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.studentnumber = studentnumber;
 	}
 	
-	@Length(min=0, max=500, message="学业状态长度必须介于 0 和 500 之间")
+
+	@Length(min=0, max=500, message="statuschange长度必须介于 0 和 500 之间")
+
 	public String getStatuschange() {
 		return statuschange;
 	}
@@ -131,6 +145,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.statuschange = statuschange;
 	}
 	
+
 	@Length(min=0, max=20, message="学生类型长度必须介于 0 和 20 之间")
 	public String getStudenttype() {
 		return studenttype;
@@ -140,6 +155,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.studenttype = studenttype;
 	}
 	
+
 	@Length(min=0, max=10, message="性别长度必须介于 0 和 10 之间")
 	public String getSex() {
 		return sex;
@@ -149,6 +165,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.sex = sex;
 	}
 	
+
 	@Length(min=0, max=100, message="出生地点长度必须介于 0 和 100 之间")
 	public String getBirthplace() {
 		return birthplace;
@@ -166,7 +183,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	
+
 	@Length(min=0, max=10, message="婚姻状态长度必须介于 0 和 10 之间")
 	public String getMarried() {
 		return married;
@@ -175,7 +192,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setMarried(String married) {
 		this.married = married;
 	}
-	
+
 	@Length(min=0, max=50, message="学校长度必须介于 0 和 50 之间")
 	public String getSchool() {
 		return school;
@@ -185,6 +202,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.school = school;
 	}
 	
+
 	@Length(min=0, max=20, message="学院长度必须介于 0 和 20 之间")
 	public String getAcademy() {
 		return academy;
@@ -194,6 +212,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.academy = academy;
 	}
 	
+
 	@Length(min=0, max=20, message="系部长度必须介于 0 和 20 之间")
 	public String getDepartment() {
 		return department;
@@ -203,6 +222,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.department = department;
 	}
 	
+
 	@Length(min=0, max=20, message="主修课长度必须介于 0 和 20 之间")
 	public String getCollegemajor() {
 		return collegemajor;
@@ -212,6 +232,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.collegemajor = collegemajor;
 	}
 	
+
 	@Length(min=0, max=10, message="学历长度必须介于 0 和 10 之间")
 	public String getSchoolrecord() {
 		return schoolrecord;
@@ -220,7 +241,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setSchoolrecord(String schoolrecord) {
 		this.schoolrecord = schoolrecord;
 	}
-	
+
 	@Length(min=0, max=10, message="毕业时间长度必须介于 0 和 10 之间")
 	public String getGraduatedate() {
 		return graduatedate;
@@ -230,6 +251,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.graduatedate = graduatedate;
 	}
 	
+
 	@Length(min=1, max=1, message="注销长度必须介于 1 和 1 之间")
 	public String getCancel() {
 		return cancel;
@@ -239,6 +261,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.cancel = cancel;
 	}
 	
+
 	@Length(min=0, max=50, message="入学时联系电话长度必须介于 0 和 50 之间")
 	public String getTelephone() {
 		return telephone;
@@ -248,6 +271,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.telephone = telephone;
 	}
 	
+
 	@Length(min=0, max=50, message="毕业时联系电话长度必须介于 0 和 50 之间")
 	public String getGtelephone() {
 		return gtelephone;
@@ -257,6 +281,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.gtelephone = gtelephone;
 	}
 	
+
 	@Length(min=0, max=50, message="邮箱长度必须介于 0 和 50 之间")
 	public String getEmail() {
 		return email;
@@ -266,6 +291,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.email = email;
 	}
 	
+
 	@Length(min=0, max=50, message="QQ长度必须介于 0 和 50 之间")
 	public String getQq() {
 		return qq;
@@ -275,6 +301,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.qq = qq;
 	}
 	
+
 	@Length(min=0, max=50, message="MSN长度必须介于 0 和 50 之间")
 	public String getMsn() {
 		return msn;
@@ -284,6 +311,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.msn = msn;
 	}
 	
+
 	@Length(min=0, max=50, message="家庭电话长度必须介于 0 和 50 之间")
 	public String getHomephone() {
 		return homephone;
@@ -293,6 +321,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.homephone = homephone;
 	}
 	
+
 	@Length(min=0, max=50, message="家庭地址长度必须介于 0 和 50 之间")
 	public String getHomeaddress() {
 		return homeaddress;
@@ -302,6 +331,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.homeaddress = homeaddress;
 	}
 	
+
 	@Length(min=0, max=100, message="通讯地址长度必须介于 0 和 100 之间")
 	public String getComminucationaddress() {
 		return comminucationaddress;
@@ -311,6 +341,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.comminucationaddress = comminucationaddress;
 	}
 	
+
 	@Length(min=0, max=50, message="证件号码长度必须介于 0 和 50 之间")
 	public String getCredentialno() {
 		return credentialno;
@@ -320,6 +351,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.credentialno = credentialno;
 	}
 	
+
 	@Length(min=0, max=10, message="监护人长度必须介于 0 和 10 之间")
 	public String getGuardian() {
 		return guardian;
@@ -329,6 +361,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.guardian = guardian;
 	}
 	
+
 	@Length(min=0, max=50, message="监护人电话长度必须介于 0 和 50 之间")
 	public String getGuardianphone() {
 		return guardianphone;
@@ -338,6 +371,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.guardianphone = guardianphone;
 	}
 	
+
 	@Length(min=0, max=10, message="与本人关系长度必须介于 0 和 10 之间")
 	public String getRelation() {
 		return relation;
@@ -347,6 +381,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.relation = relation;
 	}
 	
+
 	@Length(min=0, max=20, message="紧急联系人长度必须介于 0 和 20 之间")
 	public String getUrgencyperson() {
 		return urgencyperson;
@@ -356,6 +391,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.urgencyperson = urgencyperson;
 	}
 	
+
 	@Length(min=0, max=20, message="紧急联系人长度必须介于 0 和 20 之间")
 	public String getUrgencyphone() {
 		return urgencyphone;
@@ -365,6 +401,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.urgencyphone = urgencyphone;
 	}
 	
+
 	@Length(min=0, max=50, message="原参加培训的公司长度必须介于 0 和 50 之间")
 	public String getTraincompany() {
 		return traincompany;
@@ -374,6 +411,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.traincompany = traincompany;
 	}
 	
+
 	@Length(min=0, max=255, message="培训时间长度必须介于 0 和 255 之间")
 	public String getTraintime() {
 		return traintime;
@@ -383,6 +421,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.traintime = traintime;
 	}
 	
+
 	@Length(min=0, max=50, message="培训内容长度必须介于 0 和 50 之间")
 	public String getTraincontext() {
 		return traincontext;
@@ -392,6 +431,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.traincontext = traincontext;
 	}
 	
+
 	@Length(min=0, max=50, message="原工作单位长度必须介于 0 和 50 之间")
 	public String getOldcompany() {
 		return oldcompany;
@@ -401,6 +441,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.oldcompany = oldcompany;
 	}
 	
+
 	@Length(min=0, max=20, message="原单位职位长度必须介于 0 和 20 之间")
 	public String getOldheadship() {
 		return oldheadship;
@@ -410,6 +451,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.oldheadship = oldheadship;
 	}
 	
+
 	@Length(min=0, max=11, message="原单位薪水长度必须介于 0 和 11 之间")
 	public String getOldsalary() {
 		return oldsalary;
@@ -419,6 +461,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.oldsalary = oldsalary;
 	}
 	
+
 	@Length(min=0, max=255, message="家庭背景长度必须介于 0 和 255 之间")
 	public String getFamilybackgroud() {
 		return familybackgroud;
@@ -428,6 +471,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.familybackgroud = familybackgroud;
 	}
 	
+
 	@Length(min=0, max=255, message="父母状况长度必须介于 0 和 255 之间")
 	public String getParentstatus() {
 		return parentstatus;
@@ -437,6 +481,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.parentstatus = parentstatus;
 	}
 	
+
 	@Length(min=0, max=255, message="职业规划长度必须介于 0 和 255 之间")
 	public String getJobdesign() {
 		return jobdesign;
@@ -446,6 +491,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.jobdesign = jobdesign;
 	}
 	
+
 	@Length(min=0, max=255, message="期望目标长度必须介于 0 和 255 之间")
 	public String getTarget() {
 		return target;
@@ -455,6 +501,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.target = target;
 	}
 	
+
 	@Length(min=0, max=255, message="爱好长度必须介于 0 和 255 之间")
 	public String getHobby() {
 		return hobby;
@@ -464,6 +511,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.hobby = hobby;
 	}
 	
+
 	@Length(min=0, max=50, message="经济能力长度必须介于 0 和 50 之间")
 	public String getEconomy() {
 		return economy;
@@ -489,6 +537,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.skillscore = skillscore;
 	}
 	
+
 	@Length(min=0, max=20, message="职位长度必须介于 0 和 20 之间")
 	public String getInnerheadship() {
 		return innerheadship;
@@ -515,6 +564,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.pic = pic;
 	}
 	
+
 	@Length(min=0, max=255, message="照片文件名长度必须介于 0 和 255 之间")
 	public String getPicfilename() {
 		return picfilename;
@@ -532,6 +582,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.resume = resume;
 	}
 	
+
 	@Length(min=0, max=255, message="简历文件名长度必须介于 0 和 255 之间")
 	public String getResumefilename() {
 		return resumefilename;
@@ -541,6 +592,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.resumefilename = resumefilename;
 	}
 	
+
 	@Length(min=1, max=1, message="是否还清贷款长度必须介于 1 和 1 之间")
 	public String getRepayedcredit() {
 		return repayedcredit;
@@ -558,6 +610,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.careerexclamation = careerexclamation;
 	}
 	
+
 	@Length(min=0, max=20, message="就业公司长度必须介于 0 和 20 之间")
 	public String getCompany() {
 		return company;
@@ -566,7 +619,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	
+
 	@Length(min=0, max=20, message="就业职位长度必须介于 0 和 20 之间")
 	public String getHeadship() {
 		return headship;
@@ -576,6 +629,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.headship = headship;
 	}
 	
+
 	@Length(min=0, max=11, message="就业薪水长度必须介于 0 和 11 之间")
 	public String getSalary() {
 		return salary;
@@ -593,6 +647,9 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.returnvist = returnvist;
 	}
 	
+
+	
+
 	public Long getClassesId() {
 		return classesId;
 	}
@@ -609,6 +666,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.subareaId = subareaId;
 	}
 	
+
 	@Length(min=0, max=10, message="考勤号长度必须介于 0 和 10 之间")
 	public String getAttendanceno() {
 		return attendanceno;
@@ -698,6 +756,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.fileId = fileId;
 	}
 	
+
 	public Office getOffice() {
 		return office;
 	}
@@ -757,4 +816,5 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		this.delflag = delflag;
 	}
 	
+
 }
