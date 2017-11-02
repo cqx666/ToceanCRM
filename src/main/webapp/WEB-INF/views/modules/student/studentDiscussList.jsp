@@ -26,7 +26,11 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns">
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input id="btnadd" class="btn btn-primary" type="submit" value="新增"/>
+				<input id="btndelete" class="btn btn-primary" type="submit" value="删除"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -44,16 +48,39 @@
 				<td>项目经理</td>
 				<td>评价</td>
 				<td>评分</td>
-				<shiro:hasPermission name="student:studentDiscuss:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentDiscuss">
 			<tr>
-				<shiro:hasPermission name="student:studentDiscuss:edit"><td>
-    				<a href="${ctx}/student/studentDiscuss/form?id=${studentDiscuss.id}">修改</a>
-					<a href="${ctx}/student/studentDiscuss/delete?id=${studentDiscuss.id}" onclick="return confirmx('确认要删除该讨论吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				<td>
+					<input type="checkbox"/>
+				</td>
+				<td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"></c:out>
+				</td>
+				<td>
+					...
+				</td>
+				<td>
+					...
+				</td>
+				<td>
+					${studentDiscuss.date}
+				</td>
+				<td>
+					${studentDiscuss.content}
+				</td>
+				<td>
+					...
+				</td>
+				<td>
+					${studentDiscuss.evaluation}
+				</td>
+				<td>
+					${studentDiscuss.score}
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

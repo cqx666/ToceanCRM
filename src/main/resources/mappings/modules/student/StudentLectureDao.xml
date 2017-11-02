@@ -19,12 +19,17 @@
         a.del_flag AS "delFlag",
         si.id AS "infoid",
         si.name AS "studentname",
+        su.id AS "systemid",
+        su.name AS "systemname",
+        sc.name AS "classname",
         sc.pm_id AS "classid",
-        sc.name AS "classname"
+        sc.openDate AS "classopen",
+        sc.closeDate AS "classclose"
     </sql>
     <sql id="studentLectureJoins">
         LEFT JOIN student_info si ON si.id=a.student_id
-        INNER JOIN sys_classes sc ON sc.pm_id=a.pm_id
+        INNER JOIN sys_classes sc ON a.createrid=sc.pm_id AND a.date  BETWEEN sc.openDate AND sc.closeDate
+        LEFT  JOIN  sys_user su ON su.id=a.pm_id
     </sql>
     <select id="get" resultType="StudentLecture">
         SELECT
@@ -40,37 +45,36 @@
         <include refid="studentLectureJoins"/>
         <where>
             a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="content != null and content != ''">
+                AND a.content LIKE
+                <if test="dbName == 'oracle'">'%'||#{content}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{content}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{content},'%')</if>
+            </if>
         </where>
         <choose>
             <when test="page !=null and page.orderBy != null and page.orderBy != ''">
                 ORDER BY ${page.orderBy}
             </when>
             <otherwise>
-
                 ORDER BY a.update_date DESC
-
             </otherwise>
         </choose>
     </select>
-
     <select id="findAllList" resultType="StudentLecture">
         SELECT
         <include refid="studentLectureColumns"/>
         FROM student_lecture a
         <include refid="studentLectureJoins"/>
         <where>
-
             a.del_flag = #{DEL_FLAG_NORMAL}
-
         </where>
         <choose>
             <when test="page !=null and page.orderBy != null and page.orderBy != ''">
                 ORDER BY ${page.orderBy}
             </when>
             <otherwise>
-
                 ORDER BY a.update_date DESC
-
             </otherwise>
         </choose>
     </select>
@@ -88,9 +92,7 @@
                 ORDER BY ${page.orderBy}
             </when>
             <otherwise>
-
                 ORDER BY a.update_date DESC
-
             </otherwise>
         </choose>
     </select>
@@ -142,21 +144,15 @@
         evaluation = #{evaluation},
         score = #{score},
         advice = #{advice},
-
         pm_id = #{pmId},
         student_id = #{studentId},
         update_by = #{updateBy.id},
         update_date = #{updateDate}
-
         WHERE id = #{id}
     </update>
-
     <update id="delete">
-
         UPDATE student_lecture SET
         del_flag = #{DEL_FLAG_DELETE}
                 WHERE id = #{id}
     </update>
-
-
         </mapper>

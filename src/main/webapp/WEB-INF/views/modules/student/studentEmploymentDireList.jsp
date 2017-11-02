@@ -35,24 +35,29 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>修改时间</th>
-				<shiro:hasPermission name="student:studentEmploymentDire:edit"><th>操作</th></shiro:hasPermission>
+				<td colspan="4">就业推荐方向列表</td>
+			</tr>
+			<tr>
+				<th><input type="checkbox"></th>
+				<th>序号</th>
+				<th>就业推荐方向</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentEmploymentDire">
 			<tr>
-				<td><a href="${ctx}/student/studentEmploymentDire/form?id=${studentEmploymentDire.id}">
-					<fmt:formatDate value="${studentEmploymentDire.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
-				<shiro:hasPermission name="student:studentEmploymentDire:edit"><td>
-    				<a href="${ctx}/student/studentEmploymentDire/form?id=${studentEmploymentDire.id}">修改</a>
-					<a href="${ctx}/student/studentEmploymentDire/delete?id=${studentEmploymentDire.id}" onclick="return confirmx('确认要删除该就业吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				<td><input type="checkbox" value="${studentEmploymentDire.id}"/></td>
+				<td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"/>
+				</td>
+				<td>${studentEmploymentDire.direName}</td>
 			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination">
+			${page}<input id="btnsubmit" class="btn btn-primary" type="button" value="提交"/>
+	</div>
 </body>
 </html>

@@ -11,7 +11,7 @@
 		a.score AS "score",
 		a.advice AS "advice",
 		a.pm_id AS "pmId",
-		a.group_id AS "group.Id"
+		a.group_id AS "group.Id",
 	</sql>
 	
 	<sql id="studentDiscussJoins">
