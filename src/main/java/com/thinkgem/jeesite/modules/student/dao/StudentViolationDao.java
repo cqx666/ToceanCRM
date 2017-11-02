@@ -10,9 +10,7 @@ import com.thinkgem.jeesite.modules.student.entity.StudentViolation;
 /**
  * 学员违纪DAO接口
  * @author cqx
-
- * @version 2017-11-01
-
+ * @version 2017-11-02
  */
 @MyBatisDao
 public interface StudentViolationDao extends CrudDao<StudentViolation> {
