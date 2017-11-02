@@ -17,20 +17,20 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 
  */
 public class StudentLecture extends DataEntity<StudentLecture> {
-	
+
 	private static final long serialVersionUID = 1L;
-
-
-	private Long createrid;		// 学员
-	private String content;		// 演讲内容
+	private Long createrid;		// 序号
+	private String content;		//演讲内容
 
 	private Date date;		// 演讲日期
 	private String evaluation;		// 评价
 	private String score;		// 评分
 	private String advice;		// 建议
 
-	private Long pmId;		// 项目经理
-	private Long studentId;		// 学员
+	private Long employee;		// 项目经理id
+	private Long studentId;		// 学员id
+	private String studentname; //学员名字
+	private String classname; //班级
 
 
 	public StudentLecture() {
@@ -48,7 +48,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setCreaterid(Long createrid) {
 		this.createrid = createrid;
 	}
-	
+
 	public String getContent() {
 		return content;
 	}
@@ -56,7 +56,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getDate() {
 		return date;
@@ -65,7 +65,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	public String getEvaluation() {
 		return evaluation;
 	}
@@ -73,7 +73,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setEvaluation(String evaluation) {
 		this.evaluation = evaluation;
 	}
-	
+
 
 	@Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
 	public String getScore() {
@@ -83,7 +83,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setScore(String score) {
 		this.score = score;
 	}
-	
+
 	public String getAdvice() {
 		return advice;
 	}
@@ -91,17 +91,10 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	public void setAdvice(String advice) {
 		this.advice = advice;
 	}
-	
 
-	public Long getPmId() {
-		return pmId;
-	}
 
-	public void setPmId(Long pmId) {
-		this.pmId = pmId;
 
-	}
-	
+
 	public Long getStudentId() {
 		return studentId;
 	}
@@ -110,4 +103,19 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 		this.studentId = studentId;
 	}
 
+	public String getStudentname() {
+		return studentname;
+	}
+
+	public void setStudentname(String studentname) {
+		this.studentname = studentname;
+	}
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
 }

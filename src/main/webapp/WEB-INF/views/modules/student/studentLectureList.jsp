@@ -6,7 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -36,11 +36,6 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-
-
-				<th>修改时间</th>
-
-
 				<th><input type="checkbox"/></th>
 				<th>序号</th>
 				<th>班级</th>
@@ -48,34 +43,26 @@
 				<th>演讲日期</th>
 				<th>演讲内容</th>
 				<th>项目经理</th>
-				<th>评价</th>
+                <th>评价</th>
 				<th>评分</th>
-
-				<shiro:hasPermission name="student:studentLecture:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentLecture">
+
+        <c:forEach items="${page.list}" var="studentLecture">
 			<tr>
-
-
-				<td><a href="${ctx}/student/studentLecture/form?id=${studentLecture.id}">
-					<fmt:formatDate value="${studentLecture.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
-
-=
-				<td>
-					<input type="checkbox" value="${studentLecture.id}"/>
+                <td>
+                   <input type="checkbox" value="${studentLecture.id}"/>
+                </td>
+                <td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"></c:out>
 				</td>
 				<td>
-					${studentLecture.id}
+					${studentLecture.classname}
 				</td>
 				<td>
-					...
-				</td>
-				<td>
-
-
+					${studentLecture.studentname}
 				</td>
 				<td>
 					<fmt:formatDate value="${studentLecture.date}" pattern="yyyy-MM-dd"/>
@@ -84,20 +71,16 @@
 					${studentLecture.content}
 				</td>
 				<td>
-					${studentLecture.employee.Id}
+					...
 				</td>
 				<td>
-					${studentLecture.evaluation}
+					${studentLecture.advice}
 				</td>
 				<td>
 					${studentLecture.score}
 				</td>
-
-				<shiro:hasPermission name="student:studentLecture:edit"><td>
-					<a href="${ctx}/student/studentLecture/delete?id=${studentLecture.id}" onclick="return confirmx('确认要删除该演讲吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
 			</tr>
-		</c:forEach>
+        </c:forEach>
 		</tbody>
 	</table>
 	<div class="pagination">${page}</div>

@@ -34,25 +34,19 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-
 			<label class="control-label">学员：</label>
-
 			<div class="controls">
 				<form:input path="createrid" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
-
 			<label class="control-label">演讲内容：</label>
-
 			<div class="controls">
 				<form:textarea path="content" htmlEscape="false" rows="4" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-
 			<label class="control-label">演讲日期：</label>
-
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentLecture.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -60,32 +54,25 @@
 			</div>
 		</div>
 		<div class="control-group">
-
 			<label class="control-label">评价：</label>
-
 			<div class="controls">
 				<form:input path="evaluation" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-
 			<label class="control-label">评分：</label>
-
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-
 			<label class="control-label">建议：</label>
-
 			<div class="controls">
 				<form:input path="advice" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-
 			<label class="control-label">项目经理：</label>
 			<div class="controls">
 				<form:input path="pmId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
@@ -93,7 +80,6 @@
 		</div>
 		<div class="control-group">
 			<label class="control-label">学员：</label>
-
 			<div class="controls">
 				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>

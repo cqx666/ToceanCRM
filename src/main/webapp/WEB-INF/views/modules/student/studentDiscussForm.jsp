@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>讨论管理</title>
+	<title>分组讨论添加</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -30,6 +30,7 @@
 		<li><a href="${ctx}/student/studentDiscuss/">讨论列表</a></li>
 		<li class="active"><a href="${ctx}/student/studentDiscuss/form?id=${studentDiscuss.id}">讨论<shiro:hasPermission name="student:studentDiscuss:edit">${not empty studentDiscuss.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentDiscuss:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
+	<%--@elvariable id="studentDiscuss" type="act"--%>
 	<form:form id="inputForm" modelAttribute="studentDiscuss" action="${ctx}/student/studentDiscuss/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		

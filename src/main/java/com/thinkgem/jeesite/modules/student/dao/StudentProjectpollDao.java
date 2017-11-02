@@ -10,7 +10,6 @@ import com.thinkgem.jeesite.modules.student.entity.StudentProjectpoll;
 /**
  * 项目考核DAO接口
  * @author cqx
-
  * @version 2017-11-01
 
  */

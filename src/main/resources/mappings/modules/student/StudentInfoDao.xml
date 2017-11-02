@@ -7,6 +7,7 @@
 		a.id AS "id",
 		a.name AS "name",
 		a.studentnumber AS "studentnumber",
+
 		a.statuschange AS "statuschange",
 		a.studenttype AS "studenttype",
 		a.sex AS "sex",
@@ -73,25 +74,21 @@
 		a.firstpoll AS "firstpoll",
 		a.secondpoll AS "secondpoll",
 		a.thirdpoll AS "thirdpoll",
-
 		a.file_id AS "fileId",
-		a.office_id AS "officeid",
-		a.area_id AS "areaid",
-		a.create_by AS "createbyid",
+		a.office_id AS "office.id",
+		a.area_id AS "area.id",
+		a.create_by AS "createby.id",
 		a.create_date AS "createdate",
-		a.update_by AS "updatebyid",
+		a.update_by AS "updateby.id",
 		a.update_date AS "updatedate",
 		a.del_flag AS "delflag",
-		o71.name AS "officename",
-		a72.name AS "areaname",
-		sc.id as "cid",
-		sc.name as "name"
+		o71.name AS "office.name",
+		a72.name AS "area.name"
 	</sql>
 	
 	<sql id="studentInfoJoins">
 		LEFT JOIN sys_office o71 ON o71.id = a.office_id
 		LEFT JOIN sys_area a72 ON a72.id = a.area_id
-		LEFT  JOIN sys_classes sc ON sc.id=a.classes_id
 	</sql>
     
 	<select id="get" resultType="StudentInfo">
@@ -108,7 +105,6 @@
 		FROM student_info a
 		<include refid="studentInfoJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
@@ -154,11 +150,9 @@
 	
 	<insert id="insert">
 		INSERT INTO student_info(
-
 			id,
 			name,
 			studentnumber,
-
 			statuschange,
 			studenttype,
 			sex,
@@ -227,7 +221,6 @@
 			firstpoll,
 			secondpoll,
 			thirdpoll,
-
 			file_id,
 			office_id,
 			area_id,
@@ -240,7 +233,6 @@
 			#{id},
 			#{name},
 			#{studentnumber},
-
 			#{statuschange},
 			#{studenttype},
 			#{sex},
@@ -294,9 +286,7 @@
 			#{headship},
 			#{salary},
 			#{returnvist},
-
 			#{remarks},
-
 			#{classesId},
 			#{subareaId},
 			#{attendanceno},
@@ -309,7 +299,6 @@
 			#{firstpoll},
 			#{secondpoll},
 			#{thirdpoll},
-
 			#{fileId},
 			#{office.id},
 			#{area.id},
@@ -318,16 +307,13 @@
 			#{updateby.id},
 			#{updatedate},
 			#{delflag}
-
 		)
 	</insert>
 	
 	<update id="update">
-		UPDATE student_info SET 	
-
+		UPDATE student_info SET
 			name = #{name},
 			studentnumber = #{studentnumber},
-
 			statuschange = #{statuschange},
 			studenttype = #{studenttype},
 			sex = #{sex},
@@ -381,9 +367,7 @@
 			headship = #{headship},
 			salary = #{salary},
 			returnvist = #{returnvist},
-
 			remarks = #{remarks},
-
 			classes_id = #{classesId},
 			subarea_id = #{subareaId},
 			attendanceno = #{attendanceno},
@@ -396,7 +380,6 @@
 			firstpoll = #{firstpoll},
 			secondpoll = #{secondpoll},
 			thirdpoll = #{thirdpoll},
-
 			file_id = #{fileId},
 			office_id = #{office.id},
 			area_id = #{area.id},

@@ -121,7 +121,6 @@
 			teacher = #{teacher},
 			status = #{status},
 			other = #{other},
-
 			course_id = #{courseId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}

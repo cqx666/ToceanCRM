@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentProjectpollDao">
-    
+
 	<sql id="studentProjectpollColumns">
 		a.id AS "id",
 		a.polldate AS "polldate",
@@ -21,20 +21,20 @@
 		a.del_flag AS "delFlag"
 
 	</sql>
-	
+
 	<sql id="studentProjectpollJoins">
 	</sql>
-    
+
 	<select id="get" resultType="StudentProjectpoll">
-		SELECT 
+		SELECT
 			<include refid="studentProjectpollColumns"/>
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		WHERE a.id = #{id}
 	</select>
-	
+
 	<select id="findList" resultType="StudentProjectpoll">
-		SELECT 
+		SELECT
 			<include refid="studentProjectpollColumns"/>
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
@@ -48,35 +48,32 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-
 				ORDER BY a.update_date DESC
 
 			</otherwise>
 		</choose>
 	</select>
-	
+
 	<select id="findAllList" resultType="StudentProjectpoll">
-		SELECT 
+		SELECT
 			<include refid="studentProjectpollColumns"/>
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
 
-		</where>		
+		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-
 				ORDER BY a.update_date DESC
 
 			</otherwise>
 		</choose>
 	</select>
-	
+
 	<insert id="insert">
 		INSERT INTO student_projectpoll(
 			id,
@@ -88,7 +85,6 @@
 			polltype,
 			classes_id,
 			source,
-
 			filename,
 			create_by,
 			create_date,
@@ -113,12 +109,11 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
-
 		)
 	</insert>
-	
+
 	<update id="update">
-		UPDATE student_projectpoll SET 	
+		UPDATE student_projectpoll SET
 			polldate = #{polldate},
 			team = #{team},
 			score = #{score},
@@ -127,20 +122,18 @@
 			polltype = #{polltype},
 			classes_id = #{classesId},
 			source = #{source},
-
 			filename = #{filename},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 
 		WHERE id = #{id}
 	</update>
-	
-	<update id="delete">
 
-		UPDATE student_projectpoll SET 
+	<update id="delete">
+		UPDATE student_projectpoll SET
 			del_flag = #{DEL_FLAG_DELETE}
 
 		WHERE id = #{id}
 	</update>
-	
+
 </mapper>
