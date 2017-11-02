@@ -23,15 +23,11 @@ import com.thinkgem.jeesite.modules.student.entity.StudentShiftclass;
 import com.thinkgem.jeesite.modules.student.service.StudentShiftclassService;
 
 /**
-<<<<<<< HEAD
+
  * 学员转班Controller
  * @author cqx
  * @version 2017-11-01
-=======
- * 学籍变更Controller
- * @author cqx
- * @version 2017-10-30
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentShiftclass")
@@ -74,11 +70,8 @@ public class StudentShiftclassController extends BaseController {
 			return form(studentShiftclass, model);
 		}
 		studentShiftclassService.save(studentShiftclass);
-<<<<<<< HEAD
 		addMessage(redirectAttributes, "保存转班成功");
-=======
-		addMessage(redirectAttributes, "保存变更成功");
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
 	}
 	
@@ -86,11 +79,9 @@ public class StudentShiftclassController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(StudentShiftclass studentShiftclass, RedirectAttributes redirectAttributes) {
 		studentShiftclassService.delete(studentShiftclass);
-<<<<<<< HEAD
+
 		addMessage(redirectAttributes, "删除转班成功");
-=======
-		addMessage(redirectAttributes, "删除变更成功");
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
 	}
 

@@ -61,11 +61,9 @@
 		a.headship AS "headship",
 		a.salary AS "salary",
 		a.returnvist AS "returnvist",
-<<<<<<< HEAD
+
 		a.remarks AS "remarks",
-=======
-		a.other AS "other",
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		a.classes_id AS "classesId",
 		a.subarea_id AS "subareaId",
 		a.attendanceno AS "attendanceno",
@@ -78,8 +76,7 @@
 		a.firstpoll AS "firstpoll",
 		a.secondpoll AS "secondpoll",
 		a.thirdpoll AS "thirdpoll",
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		a.file_id AS "fileId",
 		a.office_id AS "office.id",
 		a.area_id AS "area.id",
@@ -95,17 +92,7 @@
 	<sql id="studentInfoJoins">
 		LEFT JOIN sys_office o71 ON o71.id = a.office_id
 		LEFT JOIN sys_area a72 ON a72.id = a.area_id
-=======
-		a.file_id AS "fileId"
-=======
-		a.file_id AS "fileId",
-		s.userid as "userid",
-		s.name as "name"
->>>>>>> origin/dev
-	</sql>
-	
-	<sql id="studentInfoJoins">
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 	</sql>
     
 	<select id="get" resultType="StudentInfo">
@@ -122,7 +109,7 @@
 		FROM student_info a
 		<include refid="studentInfoJoins"/>
 		<where>
-<<<<<<< HEAD
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
@@ -130,19 +117,16 @@
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
 			</if>
-=======
-			
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-<<<<<<< HEAD
+
 				ORDER BY a.update_date DESC
-=======
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			</otherwise>
 		</choose>
 	</select>
@@ -153,35 +137,29 @@
 		FROM student_info a
 		<include refid="studentInfoJoins"/>
 		<where>
-<<<<<<< HEAD
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
-=======
-			
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-<<<<<<< HEAD
+
 				ORDER BY a.update_date DESC
-=======
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			</otherwise>
 		</choose>
 	</select>
 	
 	<insert id="insert">
 		INSERT INTO student_info(
-<<<<<<< HEAD
+
 			id,
 			name,
 			studentnumber,
-=======
-			userid,
-			code,
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			statuschange,
 			studenttype,
 			sex,
@@ -235,11 +213,9 @@
 			headship,
 			salary,
 			returnvist,
-<<<<<<< HEAD
+
 			remarks,
-=======
-			other,
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			classes_id,
 			subarea_id,
 			attendanceno,
@@ -252,7 +228,7 @@
 			firstpoll,
 			secondpoll,
 			thirdpoll,
-<<<<<<< HEAD
+
 			file_id,
 			office_id,
 			area_id,
@@ -265,12 +241,7 @@
 			#{id},
 			#{name},
 			#{studentnumber},
-=======
-			file_id
-		) VALUES (
-			#{userid},
-			#{code},
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			#{statuschange},
 			#{studenttype},
 			#{sex},
@@ -324,11 +295,9 @@
 			#{headship},
 			#{salary},
 			#{returnvist},
-<<<<<<< HEAD
+
 			#{remarks},
-=======
-			#{other},
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			#{classesId},
 			#{subareaId},
 			#{attendanceno},
@@ -341,7 +310,7 @@
 			#{firstpoll},
 			#{secondpoll},
 			#{thirdpoll},
-<<<<<<< HEAD
+
 			#{fileId},
 			#{office.id},
 			#{area.id},
@@ -350,21 +319,16 @@
 			#{updateby.id},
 			#{updatedate},
 			#{delflag}
-=======
-			#{fileId}
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE student_info SET 	
-<<<<<<< HEAD
+
 			name = #{name},
 			studentnumber = #{studentnumber},
-=======
-			userid = #{userid},
-			code = #{code},
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			statuschange = #{statuschange},
 			studenttype = #{studenttype},
 			sex = #{sex},
@@ -418,11 +382,9 @@
 			headship = #{headship},
 			salary = #{salary},
 			returnvist = #{returnvist},
-<<<<<<< HEAD
+
 			remarks = #{remarks},
-=======
-			other = #{other},
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 			classes_id = #{classesId},
 			subarea_id = #{subareaId},
 			attendanceno = #{attendanceno},
@@ -435,25 +397,21 @@
 			firstpoll = #{firstpoll},
 			secondpoll = #{secondpoll},
 			thirdpoll = #{thirdpoll},
-<<<<<<< HEAD
+
 			file_id = #{fileId},
 			office_id = #{office.id},
 			area_id = #{area.id},
 			update_by = #{updateby.id},
 			update_date = #{updatedate}
-=======
-			file_id = #{fileId}
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
-<<<<<<< HEAD
+
 		UPDATE student_info SET 
 			del_flag = #{DEL_FLAG_DELETE}
-=======
-		DELETE FROM student_info
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		WHERE id = #{id}
 	</update>
 	

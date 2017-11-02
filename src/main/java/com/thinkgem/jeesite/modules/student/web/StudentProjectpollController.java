@@ -25,11 +25,8 @@ import com.thinkgem.jeesite.modules.student.service.StudentProjectpollService;
 /**
  * 项目考核Controller
  * @author cqx
-<<<<<<< HEAD
  * @version 2017-11-01
-=======
- * @version 2017-10-30
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentProjectpoll")
@@ -72,11 +69,10 @@ public class StudentProjectpollController extends BaseController {
 			return form(studentProjectpoll, model);
 		}
 		studentProjectpollService.save(studentProjectpoll);
-<<<<<<< HEAD
+
 		addMessage(redirectAttributes, "保存项目考核成功");
-=======
-		addMessage(redirectAttributes, "保存考核成功");
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
+
 		return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
 	}
 	
@@ -84,11 +80,9 @@ public class StudentProjectpollController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(StudentProjectpoll studentProjectpoll, RedirectAttributes redirectAttributes) {
 		studentProjectpollService.delete(studentProjectpoll);
-<<<<<<< HEAD
+
 		addMessage(redirectAttributes, "删除项目考核成功");
-=======
-		addMessage(redirectAttributes, "删除考核成功");
->>>>>>> 559c3f57f8a7d5bcf0cdbb7825cddc92d60258a4
+
 		return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
 	}
 
