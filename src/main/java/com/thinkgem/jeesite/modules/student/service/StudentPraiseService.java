@@ -16,9 +16,7 @@ import com.thinkgem.jeesite.modules.student.dao.StudentPraiseDao;
 /**
  * 学员表扬Service
  * @author cqx
-
- * @version 2017-11-01
-
+ * @version 2017-11-02
  */
 @Service
 @Transactional(readOnly = true)
