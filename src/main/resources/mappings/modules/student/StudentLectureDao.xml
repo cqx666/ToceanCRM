@@ -10,7 +10,6 @@
         a.evaluation AS "evaluation",
         a.score AS "score",
         a.advice AS "advice",
-
         a.pm_id AS "pmId",
         a.student_id AS "studentId",
         a.create_by AS "createBy.id",
@@ -34,16 +33,13 @@
         <include refid="studentLectureJoins"/>
         WHERE a.id = #{id}
     </select>
-
     <select id="findList" resultType="StudentLecture">
         SELECT
         <include refid="studentLectureColumns"/>
         FROM student_lecture a
         <include refid="studentLectureJoins"/>
         <where>
-
             a.del_flag = #{DEL_FLAG_NORMAL}
-
         </where>
         <choose>
             <when test="page !=null and page.orderBy != null and page.orderBy != ''">
