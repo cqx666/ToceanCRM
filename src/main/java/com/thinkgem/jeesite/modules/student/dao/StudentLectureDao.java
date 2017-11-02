@@ -10,9 +10,7 @@ import com.thinkgem.jeesite.modules.student.entity.StudentLecture;
 /**
  * 学员演讲DAO接口
  * @author cqx
-
  * @version 2017-11-01
-
  */
 @MyBatisDao
 public interface StudentLectureDao extends CrudDao<StudentLecture> {
