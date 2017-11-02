@@ -49,10 +49,10 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentViolation">
+		<c:forEach items="${page.list}" var="studentViolation" varStatus="status">
 			<tr>
-				<td><a href="${ctx}/student/studentViolation/form?id=${studentViolation.id}">
-					${studentViolation.id}
+				<td>
+						${status.index+1}
 				</a></td>
 				<td>
 						${studentViolation.student}
