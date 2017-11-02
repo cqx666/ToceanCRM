@@ -21,11 +21,16 @@
 		<li class="active"><a href="${ctx}/student/studentEmploymentLoca/">就业地点列表</a></li>
 		<shiro:hasPermission name="student:studentEmploymentLoca:edit"><li><a href="${ctx}/student/studentEmploymentLoca/form">就业地点添加</a></li></shiro:hasPermission>
 	</ul>
+	<%--@elvariable id="studentEmploymentLoca" type="act"--%>
 	<form:form id="searchForm" modelAttribute="studentEmploymentLoca" action="${ctx}/student/studentEmploymentLoca/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns">
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<input id="btnadd" class="btn btn-primary" type="submit" value="新增"/>
+				<input id="btndelete" class="btn btn-primary" type="submit" value="删除"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -33,20 +38,25 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>修改时间</th>
-				<shiro:hasPermission name="student:studentEmploymentLoca:edit"><th>操作</th></shiro:hasPermission>
+				<th colspan="3">就业推荐地点信息列表</th>
+			</tr>
+			<tr>
+				<th><input type="checkbox"></th>
+				<th>序号</th>
+				<th>就业推荐地点</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentEmploymentLoca">
 			<tr>
-				<td><a href="${ctx}/student/studentEmploymentLoca/form?id=${studentEmploymentLoca.id}">
-					<fmt:formatDate value="${studentEmploymentLoca.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
-				<shiro:hasPermission name="student:studentEmploymentLoca:edit"><td>
-    				<a href="${ctx}/student/studentEmploymentLoca/form?id=${studentEmploymentLoca.id}">修改</a>
-					<a href="${ctx}/student/studentEmploymentLoca/delete?id=${studentEmploymentLoca.id}" onclick="return confirmx('确认要删除该就业地点吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				<td><input type="checkbox" value="${studentEmploymentLoca.id}"/></td>
+				<td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"></c:out>
+				</td>
+				<td>
+					${studentEmploymentLoca.locaName}
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

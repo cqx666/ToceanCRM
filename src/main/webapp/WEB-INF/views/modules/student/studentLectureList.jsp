@@ -19,7 +19,6 @@
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/student/studentLecture/">当前功能 >> 演讲列表</a></li>
-		<shiro:hasPermission name="student:studentLecture:edit"><li><a href="${ctx}/student/studentLecture/form">新增</a></li></shiro:hasPermission>
 	</ul>
 	<%--@elvariable id="studentLecture" type="act"--%>
 	<form:form id="searchForm" modelAttribute="studentLecture" action="${ctx}/student/studentLecture/" method="post" class="breadcrumb form-search">
@@ -27,14 +26,24 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li class="btns">
+				<label>内容:</label>
 				<form:input path="content" htmlEscape="false" maxlength="100" class="input-medium"/>
-				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+				<shiro:hasPermission name="student:studentLecture:edit">
+					<a href="${ctx}/student/studentLecture/form">
+						<input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
+					</a></shiro:hasPermission>
+				<input id="btndelete" class="btn btn-primary" type="submit" value="删除"/></li>
 			<li class="clearfix"></li>
+
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
+			<tr>
+				<th colspan="9">学员演讲信息列表</th>
+			</tr>
 			<tr>
 				<th><input type="checkbox"/></th>
 				<th>序号</th>
@@ -71,7 +80,7 @@
 					${studentLecture.content}
 				</td>
 				<td>
-					...
+					${studentLecture.systemname}
 				</td>
 				<td>
 					${studentLecture.advice}

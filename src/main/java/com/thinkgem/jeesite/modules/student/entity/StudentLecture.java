@@ -31,6 +31,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	private Long studentId;		// 学员id
 	private String studentname; //学员名字
 	private String classname; //班级
+	private String systemname;//项目经理
 
 
 	public StudentLecture() {
@@ -117,5 +118,13 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 
 	public void setClassname(String classname) {
 		this.classname = classname;
+	}
+
+	public String getSystemname() {
+		return systemname;
+	}
+
+	public void setSystemname(String systemname) {
+		this.systemname = systemname;
 	}
 }

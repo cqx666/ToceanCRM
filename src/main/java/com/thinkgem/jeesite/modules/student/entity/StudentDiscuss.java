@@ -17,14 +17,14 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class StudentDiscuss extends DataEntity<StudentDiscuss> {
 	
 	private static final long serialVersionUID = 1L;
-	private Long createrid;		// createrid
-	private String content;		// content
-	private Date date;		// date
-	private String evaluation;		// evaluation
-	private String score;		// score
-	private String advice;		// advice
-	private Long pmId;		// pm_id
-	private Long group;		// group_id
+	private Long createrid;		// 创建时间
+	private String content;		// 讨论内容
+	private Date date;		// 讨论日期
+	private String evaluation;		// 评价
+	private String score;		// 评分
+	private String advice;		// 建议
+	private Long pmId;		// 项目经理id
+	private Long group;		// 小组id
 	
 	public StudentDiscuss() {
 		super();
