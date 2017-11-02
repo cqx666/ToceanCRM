@@ -54,11 +54,12 @@
 		<c:forEach items="${page.list}" var="studentDiscuss">
 			<tr>
 				<td>
-					<input type="checkbox"/>
+
 				</td>
 				<td>
-					<c:set var="i" value="${i+1}"></c:set>
-					<c:out value="${i}"></c:out>
+				</td>
+				<td>
+					...
 				</td>
 				<td>
 					...
@@ -67,19 +68,16 @@
 					...
 				</td>
 				<td>
-					${studentDiscuss.date}
-				</td>
-				<td>
-					${studentDiscuss.content}
+					...
 				</td>
 				<td>
 					...
 				</td>
 				<td>
-					${studentDiscuss.evaluation}
+					...
 				</td>
 				<td>
-					${studentDiscuss.score}
+					...
 				</td>
 			</tr>
 		</c:forEach>

@@ -96,8 +96,6 @@
             </otherwise>
         </choose>
     </select>
-
-
     <insert id="insert">
         INSERT INTO student_lecture(
         id,
@@ -108,14 +106,12 @@
         score,
         advice,
         pm_id,
-
         student_id,
         create_by,
         create_date,
         update_by,
         update_date,
         del_flag
-
         ) VALUES (
         #{id},
         #{createrid},
@@ -124,7 +120,6 @@
         #{evaluation},
         #{score},
         #{advice},
-
         #{pmId},
         #{studentId},
         #{createBy.id},

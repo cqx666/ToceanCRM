@@ -1,104 +1,105 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentDiscussDao">
-    
-	<sql id="studentDiscussColumns">
-		a.id AS "id",
-		a.createrid AS "createrid",
-		a.content AS "content",
-		a.date AS "date",
-		a.evaluation AS "evaluation",
-		a.score AS "score",
-		a.advice AS "advice",
-		a.pm_id AS "pmId",
-		a.group_id AS "group.Id",
-	</sql>
-	
-	<sql id="studentDiscussJoins">
-	</sql>
-    
-	<select id="get" resultType="StudentDiscuss">
-		SELECT 
-			<include refid="studentDiscussColumns"/>
-		FROM student_discuss a
-		<include refid="studentDiscussJoins"/>
-		WHERE a.id = #{id}
-	</select>
-	
-	<select id="findList" resultType="StudentDiscuss">
-		SELECT 
-			<include refid="studentDiscussColumns"/>
-		FROM student_discuss a
-		<include refid="studentDiscussJoins"/>
-		<where>
-			
-		</where>
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-	</select>
-	
-	<select id="findAllList" resultType="StudentDiscuss">
-		SELECT 
-			<include refid="studentDiscussColumns"/>
-		FROM student_discuss a
-		<include refid="studentDiscussJoins"/>
-		<where>
-			
-		</where>		
-		<choose>
-			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
-				ORDER BY ${page.orderBy}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-	</select>
-	
-	<insert id="insert">
-		INSERT INTO student_discuss(
-			id,
-			createrid,
-			content,
-			date,
-			evaluation,
-			score,
-			advice,
-			pm_id,
-			group_id
-		) VALUES (
-			#{id},
-			#{createrid},
-			#{content},
-			#{date},
-			#{evaluation},
-			#{score},
-			#{advice},
-			#{pmId},
-			#{group.Id}
-		)
-	</insert>
-	
-	<update id="update">
-		UPDATE student_discuss SET 	
-			createrid = #{createrid},
-			content = #{content},
-			date = #{date},
-			evaluation = #{evaluation},
-			score = #{score},
-			advice = #{advice},
-			pm_id = #{pmId},
-			group_id = #{group.Id}
-		WHERE id = #{id}
-	</update>
-	
-	<update id="delete">
-		DELETE FROM student_discuss
-		WHERE id = #{id}
-	</update>
-	
+
+    <sql id="studentDiscussColumns">
+        a.id AS "id",
+        a.createrid AS "createrid",
+        a.content AS "content",
+        a.date AS "date",
+        a.evaluation AS "evaluation",
+        a.score AS "score",
+        a.advice AS "advice",
+        a.pm_id AS "pmId",
+        a.group_id AS "group.Id"
+    </sql>
+
+    <sql id="studentDiscussJoins">
+
+    </sql>
+
+    <select id="get" resultType="StudentDiscuss">
+        SELECT
+        <include refid="studentDiscussColumns"/>
+        FROM student_discuss a
+        <include refid="studentDiscussJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="StudentDiscuss">
+        SELECT
+        <include refid="studentDiscussColumns"/>
+        FROM student_discuss a
+        <include refid="studentDiscussJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="StudentDiscuss">
+        SELECT
+        <include refid="studentDiscussColumns"/>
+        FROM student_discuss a
+        <include refid="studentDiscussJoins"/>
+        <where>
+
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
+        INSERT INTO student_discuss(
+        id,
+        createrid,
+        content,
+        date,
+        evaluation,
+        score,
+        advice,
+        pm_id,
+        group_id
+        ) VALUES (
+        #{id},
+        #{createrid},
+        #{content},
+        #{date},
+        #{evaluation},
+        #{score},
+        #{advice},
+        #{pmId},
+        #{group.Id}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE student_discuss SET
+        createrid = #{createrid},
+        content = #{content},
+        date = #{date},
+        evaluation = #{evaluation},
+        score = #{score},
+        advice = #{advice},
+        pm_id = #{pmId},
+        group_id = #{group.Id}
+        WHERE id = #{id}
+    </update>
+
+    <update id="delete">
+        DELETE FROM student_discuss
+        WHERE id = #{id}
+    </update>
+
 </mapper>
