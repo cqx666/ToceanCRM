@@ -18,14 +18,16 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/student/studentEmploymentDire/">就业列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentEmploymentDire/">当前功能>>>就业列表</a></li>
 		<shiro:hasPermission name="student:studentEmploymentDire:edit"><li><a href="${ctx}/student/studentEmploymentDire/form">就业添加</a></li></shiro:hasPermission>
 	</ul>
+	<%--@elvariable id="studentEmploymentDire" type="act"--%>
 	<form:form id="searchForm" modelAttribute="studentEmploymentDire" action="${ctx}/student/studentEmploymentDire/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnadd" class="btn btn-primary" type="submit" value="新增"/></li>
+			<li class="btns"><input id="btndelete" class="btn btn-primary" type="submit" value="删除"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
