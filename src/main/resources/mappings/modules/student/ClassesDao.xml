@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.student.dao.ClassesDao">
+    
+	<sql id="classesColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.opendate AS "opendate",
+		a.closedate AS "closedate",
+		a.monitor AS "monitor",
+		a.studentamount AS "studentamount",
+		a.other AS "other",
+		a.type_id AS "typeId",
+		a.classroom_id AS "classroomId",
+		a.teacher_id AS "teacherId",
+		a.pm_id AS "pmId",
+		a.subarea_id AS "subareaId",
+		a.qq AS "qq",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="classesJoins">
+	</sql>
+    
+	<select id="get" resultType="Classes">
+		SELECT 
+			<include refid="classesColumns"/>
+		FROM sys_classes a
+		<include refid="classesJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="Classes">
+		SELECT 
+			<include refid="classesColumns"/>
+		FROM sys_classes a
+		<include refid="classesJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Classes">
+		SELECT 
+			<include refid="classesColumns"/>
+		FROM sys_classes a
+		<include refid="classesJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO sys_classes(
+			id,
+			name,
+			opendate,
+			closedate,
+			monitor,
+			studentamount,
+			other,
+			type_id,
+			classroom_id,
+			teacher_id,
+			pm_id,
+			subarea_id,
+			qq,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			del_flag
+		) VALUES (
+			#{id},
+			#{name},
+			#{opendate},
+			#{closedate},
+			#{monitor},
+			#{studentamount},
+			#{other},
+			#{typeId},
+			#{classroomId},
+			#{teacherId},
+			#{pmId},
+			#{subareaId},
+			#{qq},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE sys_classes SET 	
+			name = #{name},
+			opendate = #{opendate},
+			closedate = #{closedate},
+			monitor = #{monitor},
+			studentamount = #{studentamount},
+			other = #{other},
+			type_id = #{typeId},
+			classroom_id = #{classroomId},
+			teacher_id = #{teacherId},
+			pm_id = #{pmId},
+			subarea_id = #{subareaId},
+			qq = #{qq},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE sys_classes SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

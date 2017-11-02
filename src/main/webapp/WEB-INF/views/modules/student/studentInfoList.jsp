@@ -24,21 +24,8 @@
 		<li class="active"><a href="${ctx}/student/studentInfo/">学生列表</a></li>
 		<shiro:hasPermission name="student:studentInfo:edit"><li><a href="${ctx}/student/studentInfo/form">学生添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="studentInfo" action="${ctx}/student/studentInfo/" method="post" class="breadcrumb form-search">
-		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
-		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			<li><label>学生名字：</label>
-				<form:input path="name" htmlEscape="false" maxlength="25" class="input-medium"/>
-			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
-		</ul>
-	</form:form>
-
-		<li class="active"><a href="${ctx}/student/studentInfo/">档案列表</a></li>
-		<shiro:hasPermission name="student:studentInfo:edit"><li><a href="${ctx}/student/studentInfo/form">档案添加</a></li></shiro:hasPermission>
-	</ul>
+	
+		<%--@elvariable id="studentInfo" type=""--%>
 		<form:form id="searchForm" modelAttribute="studentInfo" action="${ctx}/student/studentInfo/" method="post" class="breadcrumb form-search">
 		<div>
 			<label>班级：&nbsp;</label>
@@ -62,11 +49,6 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-
-				<th>学生名字</th>
-				<th>备注</th>
-				<th>修改时间</th>
-
 				<th>序号</th>
 				<th>学员名称 </th>
 				<th>学号</th>
@@ -75,7 +57,10 @@
 				<th>学历 </th>
 				<th>入学时联系电话 </th>
 				<th>毕业时联系电话</th>
-
+				<th>创建人</th>
+				<th>创建时间</th>
+				<th>修改人</th>
+				<th>修改时间</th>
 				<shiro:hasPermission name="student:studentInfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -83,31 +68,20 @@
 		<c:forEach items="${page.list}" var="studentInfo" varStatus="stauts">
 			<tr>
 
-
+				<td></td>
 				<td><a href="${ctx}/student/studentInfo/form?id=${studentInfo.id}">
-					${studentInfo.name}
+						${studentInfo.name}
 				</a></td>
-				<td>
-					${studentInfo.remarks}
-				</td>
-				<td>
-					<fmt:formatDate value="${studentInfo.updatedate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<shiro:hasPermission name="student:studentInfo:edit"><td>
-    				<a href="${ctx}/student/studentInfo/form?id=${studentInfo.id}">修改</a>
-					<a href="${ctx}/student/studentInfo/delete?id=${studentInfo.id}" onclick="return confirmx('确认要删除该学生吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
-
-				<td></td>
-
-				<td>${studentInfo.name}</td>
-				<td>${studentInfo.studentid}</td>
-				<td></td>
+				<td>${studentInfo.studentnumber}</td>
+				<td>${studentInfo.classes.name}</td>
 				<td>${studentInfo.sex}</td>
 				<td>${studentInfo.schoolrecord}</td>
+				<td>${studentInfo.sex}</td>
 				<td>${studentInfo.telephone}</td>
+				<td>${studentInfo.gtelephone}</td>
+				<td><fmt:formatDate value="${studentInfo.updatedate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				<td>${studentInfo.guardianphone}</td>
-				<td></td>
+				<td><fmt:formatDate value="${studentInfo.updatedate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 
 			</tr>
 		</c:forEach>
