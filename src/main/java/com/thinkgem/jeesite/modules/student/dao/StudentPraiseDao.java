@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.student.entity.StudentPraise;
 /**
  * 学员表扬DAO接口
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-02
  */
 @MyBatisDao
 public interface StudentPraiseDao extends CrudDao<StudentPraise> {

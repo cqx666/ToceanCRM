@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 学员表扬Entity
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-02
  */
 public class StudentPraise extends DataEntity<StudentPraise> {
 	
@@ -28,7 +28,7 @@ public class StudentPraise extends DataEntity<StudentPraise> {
 	private String confirmer;		// 证实者
 	private Date confirmdate;		// 证实时间
 	private String approve;		// 赞成
-	private String status;		// 状态
+	private Integer status;		// 状态
 	private String headship;		// 职务
 	private String opinion;		// 意见
 	
@@ -138,12 +138,11 @@ public class StudentPraise extends DataEntity<StudentPraise> {
 		this.approve = approve;
 	}
 	
-	@Length(min=0, max=11, message="状态长度必须介于 0 和 11 之间")
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	
