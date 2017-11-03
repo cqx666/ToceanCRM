@@ -22,7 +22,6 @@ public class StudentHomeworkItem extends DataEntity<StudentHomeworkItem> {
 	private String status;		// 状态
 	private Long studentId;		// 学生外键
 	private Long homeworkId;		// 作业外键
-	private Long classesId;		// 班级
 	
 	public StudentHomeworkItem() {
 		super();
@@ -90,14 +89,6 @@ public class StudentHomeworkItem extends DataEntity<StudentHomeworkItem> {
 
 	public void setHomeworkId(Long homeworkId) {
 		this.homeworkId = homeworkId;
-	}
-	
-	public Long getClassesId() {
-		return classesId;
-	}
-
-	public void setClassesId(Long classesId) {
-		this.classesId = classesId;
 	}
 	
 }

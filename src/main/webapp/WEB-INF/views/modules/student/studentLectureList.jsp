@@ -30,6 +30,7 @@
 				<form:input path="content" htmlEscape="false" maxlength="100" class="input-medium"/>
 				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
+
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
@@ -79,6 +80,11 @@
 				<td>
 					${studentLecture.score}
 				</td>
+
+
+
+
+
 			</tr>
         </c:forEach>
 		</tbody>

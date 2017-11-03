@@ -24,7 +24,9 @@ public class StudentIntroduce extends DataEntity<StudentIntroduce> {
 	private Long employeeId;		// 经手人
 	private Long studentId;		// 学员外键
 
-	
+	private String employeename;  //经手人名字
+	private String introducestudent;//介绍同学
+	private String introduceclass;//介绍学员班级
 	public StudentIntroduce() {
 		super();
 	}
@@ -42,8 +44,33 @@ public class StudentIntroduce extends DataEntity<StudentIntroduce> {
 	public void setStudent(String student) {
 		this.student = student;
 	}
-	
+
+	public String getEmployeename() {
+		return employeename;
+	}
+
+	public String getIntroducestudent() {
+		return introducestudent;
+	}
+
+	public void setIntroducestudent(String introducestudent) {
+		this.introducestudent = introducestudent;
+	}
+
+	public String getIntroduceclass() {
+		return introduceclass;
+	}
+
+	public void setIntroduceclass(String introduceclass) {
+		this.introduceclass = introduceclass;
+	}
+
+	public void setEmployeename(String employeename) {
+		this.employeename = employeename;
+	}
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
 	public Date getIntrodate() {
 		return introdate;
 	}

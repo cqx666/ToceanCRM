@@ -15,8 +15,7 @@
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
-		a.del_flag AS "delFlag",
-		a.classes_id AS "classesId"
+		a.del_flag AS "delFlag"
 	</sql>
 	
 	<sql id="studentHomeworkItemJoins">
@@ -80,8 +79,7 @@
 			create_date,
 			update_by,
 			update_date,
-			del_flag,
-			classes_id
+			del_flag
 		) VALUES (
 			#{id},
 			#{source},
@@ -95,8 +93,7 @@
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
-			#{delFlag},
-			#{classesId}
+			#{delFlag}
 		)
 	</insert>
 	
@@ -110,8 +107,7 @@
 			student_id = #{studentId},
 			homework_id = #{homeworkId},
 			update_by = #{updateBy.id},
-			update_date = #{updateDate},
-			classes_id = #{classesId}
+			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
 	

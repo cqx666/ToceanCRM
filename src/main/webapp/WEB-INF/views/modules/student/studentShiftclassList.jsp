@@ -16,45 +16,81 @@
 			$("#searchForm").submit();
         	return false;
         }
+        function deletelecture(){
+            var ids=[];
+            $('input[name="chose1"]:checked').each(function(){
+                ids.push("id="+$(this).val());
+            });
+            var param = ids.join("&")
+            window.location.href="${ctx}/student/studentShiftclass/delete?"+param;
+        }
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
 
-		<li class="active"><a href="${ctx}/student/studentShiftclass/">转班列表</a></li>
-		<shiro:hasPermission name="student:studentShiftclass:edit"><li><a href="${ctx}/student/studentShiftclass/form">转班添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/student/studentShiftclass/">当前功能：转班列表</a></li>
 
 	</ul>
 	<form:form id="searchForm" modelAttribute="studentShiftclass" action="${ctx}/student/studentShiftclass/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns">
+
+
+			<shiro:hasPermission name="student:studentShiftclass:edit">
+				<a href="${ctx}/student/studentShiftclass/form">
+					<input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
+				</a></shiro:hasPermission>
+			<input id="btndelete" class="btn btn-primary" type="button" onclick="deletelecture()" value="删除"/></li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
+		<tr>
+			<th colspan="9">学籍变更信息列表</th>
+		</tr>
 			<tr>
+				<th><input type="checkbox"/></th>
+				<th>序号</th>
+				<th>学员</th>
+				<th>转班时间</th>
+				<th>原班级</th>
+				<th>转入班级</th>
+				<th>转班原因</th>
 
-				<th>修改时间</th>
-
-				<shiro:hasPermission name="student:studentShiftclass:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentShiftclass">
 			<tr>
+				<td>
+					<input type="checkbox" value="${studentShiftclass.id}" name="chose1"/>
+				</td>
+				<td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"></c:out>
+				</td>
 
-				<td><a href="${ctx}/student/studentShiftclass/form?id=${studentShiftclass.id}">
-					<fmt:formatDate value="${studentShiftclass.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
-				<shiro:hasPermission name="student:studentShiftclass:edit"><td>
-    				<a href="${ctx}/student/studentShiftclass/form?id=${studentShiftclass.id}">修改</a>
-					<a href="${ctx}/student/studentShiftclass/delete?id=${studentShiftclass.id}" onclick="return confirmx('确认要删除该转班吗？', this.href)">删除</a>
+				<td>
+						${studentShiftclass.studentname}
+				</td>
+				<td>
+					<fmt:formatDate value="${studentShiftclass.shiftdate}" pattern="yyyy-MM-dd"/>
+				</td>
+				<td>
+						${studentShiftclass.classfromname}
+				</td>
+				<td>
+						${studentShiftclass.classtoname}
+				</td>
+				<td>
+						${studentShiftclass.reason}
+				</td>
 
-				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>
