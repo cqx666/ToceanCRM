@@ -14,20 +14,35 @@
 			$("#searchForm").submit();
         	return false;
         }
+        function deletedire(){
+		    var ids=[];
+		    $("input[name='number']:checked").each(function(){
+		        ids.push("id="+$(this).val());
+			});
+		    var param=ids.join("&");
+            var message=confirm("是否删除所选的推荐内容?");
+            if(message==true){
+                window.location.href="${ctx}/student/studentEmploymentDire/delete?"+param;
+            }
+		}
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/student/studentEmploymentDire/">当前功能>>>就业列表</a></li>
-		<shiro:hasPermission name="student:studentEmploymentDire:edit"><li><a href="${ctx}/student/studentEmploymentDire/form">就业添加</a></li></shiro:hasPermission>
 	</ul>
 	<%--@elvariable id="studentEmploymentDire" type="act"--%>
 	<form:form id="searchForm" modelAttribute="studentEmploymentDire" action="${ctx}/student/studentEmploymentDire/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li class="btns"><input id="btnadd" class="btn btn-primary" type="submit" value="新增"/></li>
-			<li class="btns"><input id="btndelete" class="btn btn-primary" type="submit" value="删除"/></li>
+			<li class="btns">
+				<shiro:hasPermission name="student:studentEmploymentDire:edit">
+				<a href="${ctx}/student/studentEmploymentDire/form">
+					<input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
+				</a></shiro:hasPermission>
+				<input id="btndelete" class="btn btn-primary" type="button" value="删除" onclick="deletedire()"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -35,24 +50,29 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>修改时间</th>
-				<shiro:hasPermission name="student:studentEmploymentDire:edit"><th>操作</th></shiro:hasPermission>
+				<td colspan="4">就业推荐方向列表</td>
+			</tr>
+			<tr>
+				<th><input type="checkbox"></th>
+				<th>序号</th>
+				<th>就业推荐方向</th>
 			</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${page.list}" var="studentEmploymentDire">
 			<tr>
-				<td><a href="${ctx}/student/studentEmploymentDire/form?id=${studentEmploymentDire.id}">
-					<fmt:formatDate value="${studentEmploymentDire.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</a></td>
-				<shiro:hasPermission name="student:studentEmploymentDire:edit"><td>
-    				<a href="${ctx}/student/studentEmploymentDire/form?id=${studentEmploymentDire.id}">修改</a>
-					<a href="${ctx}/student/studentEmploymentDire/delete?id=${studentEmploymentDire.id}" onclick="return confirmx('确认要删除该就业吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				<td><input type="checkbox" value="${studentEmploymentDire.id}" name="number"/></td>
+				<td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"/>
+				</td>
+				<td>${studentEmploymentDire.direName}</td>
 			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div class="pagination">
+			${page}
+	</div>
 </body>
 </html>

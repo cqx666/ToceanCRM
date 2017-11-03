@@ -32,7 +32,19 @@
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="studentPraise" action="${ctx}/student/studentPraise/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
+		<sys:message content="${message}"/>
+		<div class="control-group">
+			<label class="control-label">班级：</label>
+			<div class="controls">
+				<form:input path="classes" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">学员：</label>
+			<div class="controls">
+				<form:input path="student" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">表扬时间：</label>
 			<div class="controls">
@@ -58,18 +70,6 @@
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">班级：</label>
-			<div class="controls">
-				<form:input path="classes" htmlEscape="false" maxlength="64" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">学员：</label>
-			<div class="controls">
-				<form:input path="student" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -109,7 +109,7 @@
 		<div class="control-group">
 			<label class="control-label">状态：</label>
 			<div class="controls">
-				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge "/>
+				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
