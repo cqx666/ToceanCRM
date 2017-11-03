@@ -36,6 +36,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>序号</th>
 				<th>学员</th>
 				<th>班级</th>
 				<th>作业标题</th>
@@ -46,8 +47,11 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentHomeworkItem">
+		<c:forEach items="${page.list}" var="studentHomeworkItem" varStatus="status">
 			<tr>
+				<td>
+						${status.index+1}
+					</a></td>
 				<td><a href="${ctx}/student/studentHomeworkItem/form?id=${studentHomeworkItem.id}">
 					${studentHomeworkItem.studentId}
 				</a></td>

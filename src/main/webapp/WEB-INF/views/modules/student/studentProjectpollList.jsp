@@ -36,6 +36,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>序号</th>
 				<th>项目名称</th>
 				<th>班级</th>
 				<th>小组</th>
@@ -47,8 +48,11 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentProjectpoll">
+		<c:forEach items="${page.list}" var="studentProjectpoll" varStatus="status">
 			<tr>
+				<td>
+						${status.index+1}
+					</a></td>
 				<td><a href="${ctx}/student/studentProjectpoll/form?id=${studentProjectpoll.id}">
 					${studentProjectpoll.projectname}
 				</a></td>
