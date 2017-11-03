@@ -13,7 +13,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 项目考核Entity
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-03
  */
 public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
 	

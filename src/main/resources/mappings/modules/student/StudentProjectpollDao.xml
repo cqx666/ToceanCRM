@@ -1,47 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentProjectpollDao">
-
+    
 	<sql id="studentProjectpollColumns">
 		a.id AS "id",
-		a.polldate AS "polldate",
-		a.team AS "team",
-		a.score AS "score",
 		a.projectname AS "projectname",
-		a.location AS "location",
-		a.polltype AS "polltype",
 		a.classes_id AS "classesId",
+		a.team AS "team",
+		a.polldate AS "polldate",
+		a.location AS "location",
+		a.score AS "score",
+		a.polltype AS "polltype",
 		a.source AS "source",
-
 		a.filename AS "filename",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
-
 	</sql>
-
+	
 	<sql id="studentProjectpollJoins">
 	</sql>
-
+    
 	<select id="get" resultType="StudentProjectpoll">
-		SELECT
+		SELECT 
 			<include refid="studentProjectpollColumns"/>
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		WHERE a.id = #{id}
 	</select>
-
+	
 	<select id="findList" resultType="StudentProjectpoll">
-		SELECT
+		SELECT 
 			<include refid="studentProjectpollColumns"/>
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
+			<if test="projectname != null and projectname != ''">
+				AND a.projectname = #{projectname}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -49,41 +48,38 @@
 			</when>
 			<otherwise>
 				ORDER BY a.update_date DESC
-
 			</otherwise>
 		</choose>
 	</select>
-
+	
 	<select id="findAllList" resultType="StudentProjectpoll">
-		SELECT
+		SELECT 
 			<include refid="studentProjectpollColumns"/>
 		FROM student_projectpoll a
 		<include refid="studentProjectpollJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
-		</where>
+		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
 				ORDER BY a.update_date DESC
-
 			</otherwise>
 		</choose>
 	</select>
-
+	
 	<insert id="insert">
 		INSERT INTO student_projectpoll(
 			id,
-			polldate,
-			team,
-			score,
 			projectname,
-			location,
-			polltype,
 			classes_id,
+			team,
+			polldate,
+			location,
+			score,
+			polltype,
 			source,
 			filename,
 			create_by,
@@ -91,18 +87,16 @@
 			update_by,
 			update_date,
 			del_flag
-
 		) VALUES (
 			#{id},
-			#{polldate},
-			#{team},
-			#{score},
 			#{projectname},
-			#{location},
-			#{polltype},
 			#{classesId},
+			#{team},
+			#{polldate},
+			#{location},
+			#{score},
+			#{polltype},
 			#{source},
-
 			#{filename},
 			#{createBy.id},
 			#{createDate},
@@ -111,29 +105,24 @@
 			#{delFlag}
 		)
 	</insert>
-
+	
 	<update id="update">
-		UPDATE student_projectpoll SET
-			polldate = #{polldate},
-			team = #{team},
-			score = #{score},
+		UPDATE student_projectpoll SET 	
 			projectname = #{projectname},
-			location = #{location},
-			polltype = #{polltype},
 			classes_id = #{classesId},
-			source = #{source},
-			filename = #{filename},
+			team = #{team},
+			polldate = #{polldate},
+			score = #{score},
+			polltype = #{polltype},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
-
 		WHERE id = #{id}
 	</update>
-
+	
 	<update id="delete">
-		UPDATE student_projectpoll SET
+		UPDATE student_projectpoll SET 
 			del_flag = #{DEL_FLAG_DELETE}
-
 		WHERE id = #{id}
 	</update>
-
+	
 </mapper>

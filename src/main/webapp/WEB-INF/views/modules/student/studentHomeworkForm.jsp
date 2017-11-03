@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>作业布置管理</title>
+	<title>作业管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,8 +27,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/student/studentHomework/">作业布置列表</a></li>
-		<li class="active"><a href="${ctx}/student/studentHomework/form?id=${studentHomework.id}">作业布置<shiro:hasPermission name="student:studentHomework:edit">${not empty studentHomework.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentHomework:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/student/studentHomework/">作业列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentHomework/form?id=${studentHomework.id}">作业<shiro:hasPermission name="student:studentHomework:edit">${not empty studentHomework.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentHomework:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="studentHomework" action="${ctx}/student/studentHomework/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -41,41 +41,46 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">班级：</label>
+			<div class="controls">
+				<form:input path="classesId" htmlEscape="false" maxlength="20" class="input-xlarge required digits"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">布置日期：</label>
 			<div class="controls">
-				<input name="makedate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+				<input name="makedate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate required"
 					value="<fmt:formatDate value="${studentHomework.makedate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">老师：</label>
 			<div class="controls">
-				<form:input path="teacher" htmlEscape="false" maxlength="10" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">状态：</label>
-			<div class="controls">
-				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">说明：</label>
-			<div class="controls">
-				<form:input path="other" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:input path="teacher" htmlEscape="false" maxlength="10" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">课程：</label>
 			<div class="controls">
-				<form:input path="courseId" htmlEscape="false" maxlength="20" class="input-xlarge "/>
+				<form:input path="courseId" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">班级：</label>
+			<label class="control-label">说明：</label>
 			<div class="controls">
-				<form:input path="classesId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
+				<form:textarea path="other" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">状态：</label>
+			<div class="controls">
+				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="form-actions">

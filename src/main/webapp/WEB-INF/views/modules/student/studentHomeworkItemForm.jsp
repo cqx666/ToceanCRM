@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>作业布置管理</title>
+	<title>作业管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,20 +27,35 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/student/studentHomeworkItem/">作业布置列表</a></li>
-		<li class="active"><a href="${ctx}/student/studentHomeworkItem/form?id=${studentHomeworkItem.id}">作业布置<shiro:hasPermission name="student:studentHomeworkItem:edit">${not empty studentHomeworkItem.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentHomeworkItem:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/student/studentHomeworkItem/">作业列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentHomeworkItem/form?id=${studentHomeworkItem.id}">作业<shiro:hasPermission name="student:studentHomeworkItem:edit">${not empty studentHomeworkItem.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentHomeworkItem:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="studentHomeworkItem" action="${ctx}/student/studentHomeworkItem/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">原因：</label>
+			<label class="control-label">学员：</label>
 			<div class="controls">
-				<form:input path="source" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">文件名：</label>
+			<label class="control-label">作业标题：</label>
+			<div class="controls">
+				<form:input path="homeworkId" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">课程：</label>
+			<div class="controls">
+				<form:input path="courseId" htmlEscape="false" maxlength="20" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">源代码和文档：</label>
 			<div class="controls">
 				<form:input path="filename" htmlEscape="false" maxlength="64" class="input-xlarge "/>
 			</div>
@@ -48,38 +63,13 @@
 		<div class="control-group">
 			<label class="control-label">分数：</label>
 			<div class="controls">
-				<form:input path="score" htmlEscape="false" class="input-xlarge required"/>
-				<span class="help-inline"><font color="red">*</font> </span>
+				<form:input path="score" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">评论：</label>
+			<label class="control-label">评语：</label>
 			<div class="controls">
-				<form:input path="comment" htmlEscape="false" maxlength="255" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">状态：</label>
-			<div class="controls">
-				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">学生外键：</label>
-			<div class="controls">
-				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">作业外键：</label>
-			<div class="controls">
-				<form:input path="homeworkId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">班级：</label>
-			<div class="controls">
-				<form:input path="classesId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
+				<form:textarea path="comment" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

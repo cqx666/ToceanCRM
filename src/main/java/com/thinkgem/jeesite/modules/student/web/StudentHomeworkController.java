@@ -23,63 +23,61 @@ import com.thinkgem.jeesite.modules.student.entity.StudentHomework;
 import com.thinkgem.jeesite.modules.student.service.StudentHomeworkService;
 
 /**
- * 学员作业Controller
+ * 学员作业布置Controller
  * @author cqx
-
- * @version 2017-11-01
-
+ * @version 2017-11-03
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentHomework")
 public class StudentHomeworkController extends BaseController {
 
-    @Autowired
-    private StudentHomeworkService studentHomeworkService;
+	@Autowired
+	private StudentHomeworkService studentHomeworkService;
+	
+	@ModelAttribute
+	public StudentHomework get(@RequestParam(required=false) String id) {
+		StudentHomework entity = null;
+		if (StringUtils.isNotBlank(id)){
+			entity = studentHomeworkService.get(id);
+		}
+		if (entity == null){
+			entity = new StudentHomework();
+		}
+		return entity;
+	}
+	
+	@RequiresPermissions("student:studentHomework:view")
+	@RequestMapping(value = {"list", ""})
+	public String list(StudentHomework studentHomework, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<StudentHomework> page = studentHomeworkService.findPage(new Page<StudentHomework>(request, response), studentHomework); 
+		model.addAttribute("page", page);
+		return "modules/student/studentHomeworkList";
+	}
 
-    @ModelAttribute
-    public StudentHomework get(@RequestParam(required=false) String id) {
-        StudentHomework entity = null;
-        if (StringUtils.isNotBlank(id)){
-            entity = studentHomeworkService.get(id);
-        }
-        if (entity == null){
-            entity = new StudentHomework();
-        }
-        return entity;
-    }
+	@RequiresPermissions("student:studentHomework:view")
+	@RequestMapping(value = "form")
+	public String form(StudentHomework studentHomework, Model model) {
+		model.addAttribute("studentHomework", studentHomework);
+		return "modules/student/studentHomeworkForm";
+	}
 
-    @RequiresPermissions("student:studentHomework:view")
-    @RequestMapping(value = {"list", ""})
-    public String list(StudentHomework studentHomework, HttpServletRequest request, HttpServletResponse response, Model model) {
-        Page<StudentHomework> page = studentHomeworkService.findPage(new Page<StudentHomework>(request, response), studentHomework);
-        model.addAttribute("page", page);
-        return "modules/student/studentHomeworkList";
-    }
-
-    @RequiresPermissions("student:studentHomework:view")
-    @RequestMapping(value = "form")
-    public String form(StudentHomework studentHomework, Model model) {
-        model.addAttribute("studentHomework", studentHomework);
-        return "modules/student/studentHomeworkForm";
-    }
-
-    @RequiresPermissions("student:studentHomework:edit")
-    @RequestMapping(value = "save")
-    public String save(StudentHomework studentHomework, Model model, RedirectAttributes redirectAttributes) {
-        if (!beanValidator(model, studentHomework)){
-            return form(studentHomework, model);
-        }
-        studentHomeworkService.save(studentHomework);
-        addMessage(redirectAttributes, "保存作业成功");
-        return "redirect:"+Global.getAdminPath()+"/student/studentHomework/?repage";
-    }
-
-    @RequiresPermissions("student:studentHomework:edit")
-    @RequestMapping(value = "delete")
-    public String delete(StudentHomework studentHomework, RedirectAttributes redirectAttributes) {
-        studentHomeworkService.delete(studentHomework);
-        addMessage(redirectAttributes, "删除作业成功");
-        return "redirect:"+Global.getAdminPath()+"/student/studentHomework/?repage";
-    }
+	@RequiresPermissions("student:studentHomework:edit")
+	@RequestMapping(value = "save")
+	public String save(StudentHomework studentHomework, Model model, RedirectAttributes redirectAttributes) {
+		if (!beanValidator(model, studentHomework)){
+			return form(studentHomework, model);
+		}
+		studentHomeworkService.save(studentHomework);
+		addMessage(redirectAttributes, "保存作业成功");
+		return "redirect:"+Global.getAdminPath()+"/student/studentHomework/?repage";
+	}
+	
+	@RequiresPermissions("student:studentHomework:edit")
+	@RequestMapping(value = "delete")
+	public String delete(StudentHomework studentHomework, RedirectAttributes redirectAttributes) {
+		studentHomeworkService.delete(studentHomework);
+		addMessage(redirectAttributes, "删除作业成功");
+		return "redirect:"+Global.getAdminPath()+"/student/studentHomework/?repage";
+	}
 
 }

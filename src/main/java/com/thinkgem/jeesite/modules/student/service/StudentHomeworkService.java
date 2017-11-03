@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.student.dao.StudentHomeworkDao;
 /**
  * 学员作业布置Service
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-03
  */
 @Service
 @Transactional(readOnly = true)

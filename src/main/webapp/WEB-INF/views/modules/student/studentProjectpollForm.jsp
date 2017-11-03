@@ -63,12 +63,6 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">位置：</label>
-			<div class="controls">
-				<form:input path="location" htmlEscape="false" maxlength="50" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
 			<label class="control-label">总分：</label>
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" maxlength="11" class="input-xlarge "/>
@@ -79,18 +73,6 @@
 			<div class="controls">
 				<form:input path="polltype" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">源头：</label>
-			<div class="controls">
-				<form:input path="source" htmlEscape="false" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">文件名：</label>
-			<div class="controls">
-				<form:input path="filename" htmlEscape="false" maxlength="50" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

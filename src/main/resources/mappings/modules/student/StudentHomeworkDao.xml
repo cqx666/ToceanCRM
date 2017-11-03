@@ -5,18 +5,17 @@
 	<sql id="studentHomeworkColumns">
 		a.id AS "id",
 		a.title AS "title",
+		a.classes_id AS "classesId",
 		a.makedate AS "makedate",
 		a.teacher AS "teacher",
-		a.status AS "status",
-		a.other AS "other",
-
 		a.course_id AS "courseId",
+		a.other AS "other",
+		a.status AS "status",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
-
 	</sql>
 	
 	<sql id="studentHomeworkJoins">
@@ -36,9 +35,7 @@
 		FROM student_homework a
 		<include refid="studentHomeworkJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
 			<if test="title != null and title != ''">
 				AND a.title LIKE 
 					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
@@ -51,9 +48,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-
 				ORDER BY a.update_date DESC
-
 			</otherwise>
 		</choose>
 	</select>
@@ -64,18 +59,14 @@
 		FROM student_homework a
 		<include refid="studentHomeworkJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-
 				ORDER BY a.update_date DESC
-
 			</otherwise>
 		</choose>
 	</select>
@@ -84,55 +75,51 @@
 		INSERT INTO student_homework(
 			id,
 			title,
+			classes_id,
 			makedate,
 			teacher,
-			status,
-			other,
-
 			course_id,
+			other,
+			status,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
-
 		) VALUES (
 			#{id},
 			#{title},
+			#{classesId},
 			#{makedate},
 			#{teacher},
-			#{status},
-			#{other},
-
 			#{courseId},
+			#{other},
+			#{status},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
-
 		)
 	</insert>
 	
 	<update id="update">
 		UPDATE student_homework SET 	
 			title = #{title},
+			classes_id = #{classesId},
 			makedate = #{makedate},
 			teacher = #{teacher},
-			status = #{status},
-			other = #{other},
 			course_id = #{courseId},
+			other = #{other},
+			status = #{status},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
-
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
-
 		UPDATE student_homework SET 
 			del_flag = #{DEL_FLAG_DELETE}
-
 		WHERE id = #{id}
 	</update>
 	
