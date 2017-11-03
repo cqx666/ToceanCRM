@@ -27,7 +27,7 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 	private String score;		// 评分
 	private String advice;		// 建议
 
-	private Long employee;		// 项目经理id
+	private Long pmId;		// 项目经理id
 	private Long studentId;		// 学员id
 	private String studentname; //学员名字
 	private String classname; //班级
@@ -93,8 +93,13 @@ public class StudentLecture extends DataEntity<StudentLecture> {
 		this.advice = advice;
 	}
 
+	public Long getPmId() {
+		return pmId;
+	}
 
-
+	public void setPmId(Long pmId) {
+		this.pmId = pmId;
+	}
 
 	public Long getStudentId() {
 		return studentId;

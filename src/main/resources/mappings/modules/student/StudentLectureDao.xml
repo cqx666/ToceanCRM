@@ -120,7 +120,7 @@
         #{evaluation},
         #{score},
         #{advice},
-        #{pmId},
+        #{createrid},
         #{studentId},
         #{createBy.id},
         #{createDate},

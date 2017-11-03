@@ -6,7 +6,6 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -14,6 +13,14 @@
 			$("#searchForm").submit();
         	return false;
         }
+        function deletelecture(){
+		    var ids=[];
+		    $('input[name="chose1"]:checked').each(function(){
+		        ids.push("id="+$(this).val());
+			});
+		    var param = ids.join("&")
+		    window.location.href="${ctx}/student/studentLecture/delete?"+param;
+		}
 	</script>
 </head>
 <body>
@@ -33,7 +40,11 @@
 					<a href="${ctx}/student/studentLecture/form">
 						<input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
 					</a></shiro:hasPermission>
-				<input id="btndelete" class="btn btn-primary" type="submit" value="删除"/></li>
+				<input id="btndelete" class="btn btn-primary" type="button" onclick="deletelecture()" value="删除"/>
+
+
+			</li>
+
 			<li class="clearfix"></li>
 
 		</ul>
@@ -61,7 +72,7 @@
         <c:forEach items="${page.list}" var="studentLecture">
 			<tr>
                 <td>
-                   <input type="checkbox" value="${studentLecture.id}"/>
+                   <input type="checkbox" value="${studentLecture.id}" name="chose1"/>
                 </td>
                 <td>
 					<c:set var="i" value="${i+1}"></c:set>
