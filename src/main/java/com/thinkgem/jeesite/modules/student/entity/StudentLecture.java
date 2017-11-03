@@ -18,118 +18,118 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
  */
 public class StudentLecture extends DataEntity<StudentLecture> {
 
-	private static final long serialVersionUID = 1L;
-	private Long createrid;		// 序号
-	private String content;		//演讲内容
+    private static final long serialVersionUID = 1L;
+    private Long createrid;		// 序号
+    private String content;		//演讲内容
 
-	private Date date;		// 演讲日期
-	private String evaluation;		// 评价
-	private String score;		// 评分
-	private String advice;		// 建议
+    private Date date;		// 演讲日期
+    private String evaluation;		// 评价
+    private String score;		// 评分
+    private String advice;		// 建议
 
-	private Long pmId;		// 项目经理id
-	private Long studentId;		// 学员id
-	private String studentname; //学员名字
-	private String classname; //班级
-	private String systemname;//项目经理
-
-
-	public StudentLecture() {
-		super();
-	}
-
-	public StudentLecture(String id){
-		super(id);
-	}
-
-	public Long getCreaterid() {
-		return createrid;
-	}
-
-	public void setCreaterid(Long createrid) {
-		this.createrid = createrid;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getEvaluation() {
-		return evaluation;
-	}
-
-	public void setEvaluation(String evaluation) {
-		this.evaluation = evaluation;
-	}
+    private Long pmId;		// 项目经理id
+    private Long studentId;		// 学员id
+    private String studentname; //学员名字
+    private String classname; //班级
+    private String systemname;//项目经理
 
 
-	@Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
-	public String getScore() {
-		return score;
-	}
+    public StudentLecture() {
+        super();
+    }
 
-	public void setScore(String score) {
-		this.score = score;
-	}
+    public StudentLecture(String id){
+        super(id);
+    }
 
-	public String getAdvice() {
-		return advice;
-	}
+    public Long getCreaterid() {
+        return createrid;
+    }
 
-	public void setAdvice(String advice) {
-		this.advice = advice;
-	}
+    public void setCreaterid(Long createrid) {
+        this.createrid = createrid;
+    }
 
-	public Long getPmId() {
-		return pmId;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setPmId(Long pmId) {
-		this.pmId = pmId;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public Long getStudentId() {
-		return studentId;
-	}
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public Date getDate() {
+        return date;
+    }
 
-	public void setStudentId(Long studentId) {
-		this.studentId = studentId;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public String getStudentname() {
-		return studentname;
-	}
+    public String getEvaluation() {
+        return evaluation;
+    }
 
-	public void setStudentname(String studentname) {
-		this.studentname = studentname;
-	}
+    public void setEvaluation(String evaluation) {
+        this.evaluation = evaluation;
+    }
 
-	public String getClassname() {
-		return classname;
-	}
 
-	public void setClassname(String classname) {
-		this.classname = classname;
-	}
+    @Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
+    public String getScore() {
+        return score;
+    }
 
-	public String getSystemname() {
-		return systemname;
-	}
+    public void setScore(String score) {
+        this.score = score;
+    }
 
-	public void setSystemname(String systemname) {
-		this.systemname = systemname;
-	}
+    public String getAdvice() {
+        return advice;
+    }
+
+    public void setAdvice(String advice) {
+        this.advice = advice;
+    }
+
+    public Long getPmId() {
+        return pmId;
+    }
+
+    public void setPmId(Long pmId) {
+        this.pmId = pmId;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentname() {
+        return studentname;
+    }
+
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
+
+    public String getSystemname() {
+        return systemname;
+    }
+
+    public void setSystemname(String systemname) {
+        this.systemname = systemname;
+    }
 }
