@@ -18,8 +18,11 @@
             $('input[name="chose1"]:checked').each(function(){
                 ids.push("id="+$(this).val());
             });
-            var param = ids.join("&")
-            window.location.href="${ctx}/student/studentLecture/delete?"+param;
+            var param = ids.join("&");
+            var message=confirm("是否删除所选的演讲?");
+            if(message==true){
+                window.location.href="${ctx}/student/studentLecture/delete?"+param;
+            }
         }
     </script>
 </head>
@@ -41,8 +44,6 @@
                     <input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
                 </a></shiro:hasPermission>
             <input id="btndelete" class="btn btn-primary" type="button" onclick="deletelecture()" value="删除"/>
-
-
         </li>
 
         <li class="clearfix"></li>

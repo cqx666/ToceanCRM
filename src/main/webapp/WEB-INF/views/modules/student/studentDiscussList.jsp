@@ -18,8 +18,7 @@
 </head>
 <body>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="${ctx}/student/studentDiscuss/">讨论管理</a></li>
-    <shiro:hasPermission name="student:studentDiscuss:edit"><li><a href="${ctx}/student/studentDiscuss/form">讨论添加</a></li></shiro:hasPermission>
+    <li class="active"><a href="${ctx}/student/studentDiscuss/">当前功能 >>讨论管理</a></li>
 </ul>
 <%--@elvariable id="studentDiscuss" type="act"--%>
 <form:form id="searchForm" modelAttribute="studentDiscuss" action="${ctx}/student/studentDiscuss/" method="post" class="breadcrumb form-search">
@@ -28,7 +27,10 @@
     <ul class="ul-form">
         <li class="btns">
             <input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
-            <input id="btnadd" class="btn btn-primary" type="submit" value="新增"/>
+            <shiro:hasPermission name="student:studentDiscuss:edit">
+                <a href="${ctx}/student/studentDiscuss/form">
+                    <input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
+                </a></shiro:hasPermission>
             <input id="btndelete" class="btn btn-primary" type="submit" value="删除"/>
         </li>
         <li class="clearfix"></li>

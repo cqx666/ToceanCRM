@@ -14,12 +14,22 @@
 			$("#searchForm").submit();
         	return false;
         }
+        function deletelocal(){
+		    var ids=[];
+		    $("input[name='localid']:checked").each(function(){
+		        ids.push("id="+$(this).val());
+			});
+            var param=ids.join("&");
+            var message=confirm("是否删除所选的推荐内容?");
+            if(message==true){
+                window.location.href="${ctx}/student/studentEmploymentLoca/delete?"+param;
+            }
+		}
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/student/studentEmploymentLoca/">就业地点列表</a></li>
-		<shiro:hasPermission name="student:studentEmploymentLoca:edit"><li><a href="${ctx}/student/studentEmploymentLoca/form">就业地点添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/student/studentEmploymentLoca/">当前功能>>就业地点列表</a></li>
 	</ul>
 	<%--@elvariable id="studentEmploymentLoca" type="act"--%>
 	<form:form id="searchForm" modelAttribute="studentEmploymentLoca" action="${ctx}/student/studentEmploymentLoca/" method="post" class="breadcrumb form-search">
@@ -27,9 +37,11 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li class="btns">
-				<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
-				<input id="btnadd" class="btn btn-primary" type="submit" value="新增"/>
-				<input id="btndelete" class="btn btn-primary" type="submit" value="删除"/>
+				<shiro:hasPermission name="student:studentEmploymentLoca:edit">
+					<a href="${ctx}/student/studentEmploymentLoca/form">
+						<input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
+					</a></shiro:hasPermission>
+				<input id="btndelete" class="btn btn-primary" type="button" value="删除" onclick="deletelocal()"/>
 			</li>
 			<li class="clearfix"></li>
 		</ul>
@@ -49,7 +61,7 @@
 		<tbody>
 		<c:forEach items="${page.list}" var="studentEmploymentLoca">
 			<tr>
-				<td><input type="checkbox" value="${studentEmploymentLoca.id}"/></td>
+				<td><input type="checkbox" value="${studentEmploymentLoca.id}" name="localid"/></td>
 				<td>
 					<c:set var="i" value="${i+1}"></c:set>
 					<c:out value="${i}"></c:out>
