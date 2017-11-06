@@ -56,30 +56,32 @@
     <c:forEach items="${page.list}" var="studentDiscuss">
         <tr>
             <td>
-
+                <input type="checkbox" value="studentDiscuss.id" name="choose1"/>
             </td>
             <td>
+                <c:set var="i" value="${i+1}"></c:set>
+                <c:out value="${i}"></c:out>
             </td>
             <td>
-                ...
+                ${studentDiscuss.classname}
             </td>
             <td>
-                ...
+                ${studentDiscuss.groupname}
             </td>
             <td>
-                ...
+                <fmt:formatDate value="${studentDiscuss.date}" pattern="yyyy-MM-dd"/>
             </td>
             <td>
-                ...
+                 ${studentDiscuss.content}
             </td>
             <td>
-                ...
+                ${studentDiscuss.managername}
             </td>
             <td>
-                ...
+                ${studentDiscuss.evaluation}
             </td>
             <td>
-                ...
+                ${studentDiscuss.score}
             </td>
         </tr>
     </c:forEach>
