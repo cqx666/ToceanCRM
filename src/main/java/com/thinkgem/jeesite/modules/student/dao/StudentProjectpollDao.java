@@ -14,5 +14,5 @@ import com.thinkgem.jeesite.modules.student.entity.StudentProjectpoll;
  */
 @MyBatisDao
 public interface StudentProjectpollDao extends CrudDao<StudentProjectpoll> {
-	
+
 }

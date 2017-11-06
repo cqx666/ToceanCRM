@@ -22,26 +22,26 @@ import com.thinkgem.jeesite.modules.student.dao.StudentHomeworkDao;
 @Transactional(readOnly = true)
 public class StudentHomeworkService extends CrudService<StudentHomeworkDao, StudentHomework> {
 
-	public StudentHomework get(String id) {
-		return super.get(id);
-	}
-	
-	public List<StudentHomework> findList(StudentHomework studentHomework) {
-		return super.findList(studentHomework);
-	}
-	
-	public Page<StudentHomework> findPage(Page<StudentHomework> page, StudentHomework studentHomework) {
-		return super.findPage(page, studentHomework);
-	}
-	
-	@Transactional(readOnly = false)
-	public void save(StudentHomework studentHomework) {
-		super.save(studentHomework);
-	}
-	
-	@Transactional(readOnly = false)
-	public void delete(StudentHomework studentHomework) {
-		super.delete(studentHomework);
-	}
-	
+    public StudentHomework get(String id) {
+        return super.get(id);
+    }
+
+    public List<StudentHomework> findList(StudentHomework studentHomework) {
+        return super.findList(studentHomework);
+    }
+
+    public Page<StudentHomework> findPage(Page<StudentHomework> page, StudentHomework studentHomework) {
+        return super.findPage(page, studentHomework);
+    }
+
+    @Transactional(readOnly = false)
+    public void save(StudentHomework studentHomework) {
+        super.save(studentHomework);
+    }
+
+    @Transactional(readOnly = false)
+    public void delete(StudentHomework studentHomework) {
+        super.delete(studentHomework);
+    }
+
 }
