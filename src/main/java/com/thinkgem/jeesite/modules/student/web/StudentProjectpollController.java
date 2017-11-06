@@ -1,119 +1,89 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.modules.student.entity;
+package com.thinkgem.jeesite.modules.student.web;
 
-import org.hibernate.validator.constraints.Length;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import com.thinkgem.jeesite.common.persistence.DataEntity;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.thinkgem.jeesite.common.config.Global;
+import com.thinkgem.jeesite.common.persistence.Page;
+import com.thinkgem.jeesite.common.web.BaseController;
+import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.student.entity.StudentProjectpoll;
+import com.thinkgem.jeesite.modules.student.service.StudentProjectpollService;
 
 /**
- * 项目考核Entity
+ * 项目考核Controller
  * @author cqx
- * @version 2017-11-03
+
+ * @version 2017-11-01
+
  */
-public class StudentProjectpoll extends DataEntity<StudentProjectpoll> {
+@Controller
+@RequestMapping(value = "${adminPath}/student/studentProjectpoll")
+public class StudentProjectpollController extends BaseController {
 
-    private static final long serialVersionUID = 1L;
-    private String projectname;		// 项目名称
-    private Long classesId;		// 班级
-    private String team;		// 小组
-    private Date polldate;		// 考核日期
-    private String location;		// 位置
-    private String score;		// 总分
-    private String polltype;		// 考核类型
-    private String source;		// 源头
-    private String filename;		// 文件名
+    @Autowired
+    private StudentProjectpollService studentProjectpollService;
 
-    public StudentProjectpoll() {
-        super();
+    @ModelAttribute
+    public StudentProjectpoll get(@RequestParam(required=false) String id) {
+        StudentProjectpoll entity = null;
+        if (StringUtils.isNotBlank(id)){
+            entity = studentProjectpollService.get(id);
+        }
+        if (entity == null){
+            entity = new StudentProjectpoll();
+        }
+        return entity;
     }
 
-    public StudentProjectpoll(String id){
-        super(id);
+    @RequiresPermissions("student:studentProjectpoll:view")
+    @RequestMapping(value = {"list", ""})
+    public String list(StudentProjectpoll studentProjectpoll, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<StudentProjectpoll> page = studentProjectpollService.findPage(new Page<StudentProjectpoll>(request, response), studentProjectpoll);
+        model.addAttribute("page", page);
+        return "modules/student/studentProjectpollList";
     }
 
-    @Length(min=1, max=50, message="项目名称长度必须介于 1 和 50 之间")
-    public String getProjectname() {
-        return projectname;
+    @RequiresPermissions("student:studentProjectpoll:view")
+    @RequestMapping(value = "form")
+    public String form(StudentProjectpoll studentProjectpoll, Model model) {
+        model.addAttribute("studentProjectpoll", studentProjectpoll);
+        return "modules/student/studentProjectpollForm";
     }
 
-    public void setProjectname(String projectname) {
-        this.projectname = projectname;
+    @RequiresPermissions("student:studentProjectpoll:edit")
+    @RequestMapping(value = "save")
+    public String save(StudentProjectpoll studentProjectpoll, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, studentProjectpoll)){
+            return form(studentProjectpoll, model);
+        }
+        studentProjectpollService.save(studentProjectpoll);
+
+        addMessage(redirectAttributes, "保存项目考核成功");
+
+        return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
     }
 
-    @NotNull(message="班级不能为空")
-    public Long getClassesId() {
-        return classesId;
-    }
+    @RequiresPermissions("student:studentProjectpoll:edit")
+    @RequestMapping(value = "delete")
+    public String delete(StudentProjectpoll studentProjectpoll, RedirectAttributes redirectAttributes) {
+        studentProjectpollService.delete(studentProjectpoll);
 
-    public void setClassesId(Long classesId) {
-        this.classesId = classesId;
-    }
+        addMessage(redirectAttributes, "删除项目考核成功");
 
-    @Length(min=1, max=10, message="小组长度必须介于 1 和 10 之间")
-    public String getTeam() {
-        return team;
-    }
-
-    public void setTeam(String team) {
-        this.team = team;
-    }
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    public Date getPolldate() {
-        return polldate;
-    }
-
-    public void setPolldate(Date polldate) {
-        this.polldate = polldate;
-    }
-
-    @Length(min=0, max=50, message="位置长度必须介于 0 和 50 之间")
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    @Length(min=0, max=11, message="总分长度必须介于 0 和 11 之间")
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
-
-    @Length(min=1, max=11, message="考核类型长度必须介于 1 和 11 之间")
-    public String getPolltype() {
-        return polltype;
-    }
-
-    public void setPolltype(String polltype) {
-        this.polltype = polltype;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    @Length(min=0, max=50, message="文件名长度必须介于 0 和 50 之间")
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
+        return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
     }
 
 }
