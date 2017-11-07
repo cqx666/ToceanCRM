@@ -17,12 +17,24 @@
         	return false;
         }
         function deletelecture(){
-            var ids=[];
-            $('input[name="chose1"]:checked').each(function(){
-                ids.push("id="+$(this).val());
-            });
-            var param = ids.join("&")
-            window.location.href="${ctx}/student/studentShiftclass/delete?"+param;
+            var idObjs=document.getElementsByName("chose1");
+            var cgid=[];
+            for(var i=0;i<idObjs.length;i++){
+                if(idObjs[i].checked==true){
+                    cgid.push(idObjs[i].value);
+                }
+            }
+            if(cgid.length==0){
+                alert("请选择记录");
+                return;
+            }
+            var isSure=confirm("是否删除所选的内容?");
+            if(!isSure){
+                return;
+            }
+            var url="${ctx}/student/studentShiftclass/delete?id="+cgid.join(",");
+            window.location.href=url;
+
         }
 	</script>
 </head>

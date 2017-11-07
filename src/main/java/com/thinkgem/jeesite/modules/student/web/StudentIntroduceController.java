@@ -78,11 +78,14 @@ public class StudentIntroduceController extends BaseController {
 
     @RequiresPermissions("student:studentIntroduce:edit")
     @RequestMapping(value = "delete")
-    public String delete(StudentIntroduce studentIntroduce, RedirectAttributes redirectAttributes) {
-        studentIntroduceService.delete(studentIntroduce);
-
-        addMessage(redirectAttributes, "删除介绍成功");
-
+    public String delete(StudentIntroduce studentIntroduce, RedirectAttributes redirectAttributes,String id) {
+        StudentIntroduce si=new StudentIntroduce();
+        String[] ids=id.split(",");
+        for(int i=0;i<ids.length;i++){
+            si.setId(ids[i]);
+            studentIntroduceService.delete(si);
+        }
+        addMessage(redirectAttributes,"删除介绍成功");
         return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
     }
 
