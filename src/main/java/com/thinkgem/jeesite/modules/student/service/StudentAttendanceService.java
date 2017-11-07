@@ -14,9 +14,11 @@ import com.thinkgem.jeesite.modules.student.entity.StudentAttendance;
 import com.thinkgem.jeesite.modules.student.dao.StudentAttendanceDao;
 
 /**
- * 系统用户Service
+ * 学员考勤Service
  * @author cqx
- * @version 2017-11-06
+
+ * @version 2017-11-01
+
  */
 @Service
 @Transactional(readOnly = true)

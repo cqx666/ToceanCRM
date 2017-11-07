@@ -29,11 +29,7 @@ public class ClassesService extends CrudService<ClassesDao, Classes> {
 	public List<Classes> findList(Classes classes) {
 		return super.findList(classes);
 	}
-
-	public List<Classes> findAll(){
-
-		return  dao.findAllList(new Classes());
-	}
+	
 	public Page<Classes> findPage(Page<Classes> page, Classes classes) {
 		return super.findPage(page, classes);
 	}

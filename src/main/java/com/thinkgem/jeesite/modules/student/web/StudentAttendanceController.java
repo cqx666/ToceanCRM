@@ -23,9 +23,11 @@ import com.thinkgem.jeesite.modules.student.entity.StudentAttendance;
 import com.thinkgem.jeesite.modules.student.service.StudentAttendanceService;
 
 /**
- * 系统用户Controller
+ * 学员考勤Controller
  * @author cqx
- * @version 2017-11-06
+
+ * @version 2017-11-01
+
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentAttendance")
@@ -68,7 +70,7 @@ public class StudentAttendanceController extends BaseController {
 			return form(studentAttendance, model);
 		}
 		studentAttendanceService.save(studentAttendance);
-		addMessage(redirectAttributes, "保存用户成功");
+		addMessage(redirectAttributes, "保存考勤成功");
 		return "redirect:"+Global.getAdminPath()+"/student/studentAttendance/?repage";
 	}
 	
@@ -76,7 +78,7 @@ public class StudentAttendanceController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(StudentAttendance studentAttendance, RedirectAttributes redirectAttributes) {
 		studentAttendanceService.delete(studentAttendance);
-		addMessage(redirectAttributes, "删除用户成功");
+		addMessage(redirectAttributes, "删除考勤成功");
 		return "redirect:"+Global.getAdminPath()+"/student/studentAttendance/?repage";
 	}
 
