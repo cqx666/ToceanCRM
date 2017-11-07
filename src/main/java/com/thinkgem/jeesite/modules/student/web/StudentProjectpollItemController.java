@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.student.service.StudentProjectpollItemServic
 /**
  * 项目详情管理Controller
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-02
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentProjectpollItem")

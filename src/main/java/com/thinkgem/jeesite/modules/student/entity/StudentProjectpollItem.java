@@ -10,14 +10,14 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 项目详情管理Entity
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-02
  */
 public class StudentProjectpollItem extends DataEntity<StudentProjectpollItem> {
 	
 	private static final long serialVersionUID = 1L;
 	private String weighscore;		// 高分
 	private String pollscore;		// 考核分数
-	private String other;		// other
+	private String other;		// 说明
 	private Long pollId;		// 考核
 	private Long studentId;		// 学员
 	
@@ -47,7 +47,7 @@ public class StudentProjectpollItem extends DataEntity<StudentProjectpollItem> {
 		this.pollscore = pollscore;
 	}
 	
-	@Length(min=0, max=255, message="other长度必须介于 0 和 255 之间")
+	@Length(min=0, max=255, message="说明长度必须介于 0 和 255 之间")
 	public String getOther() {
 		return other;
 	}

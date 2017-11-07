@@ -17,97 +17,119 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 
  */
 public class StudentLecture extends DataEntity<StudentLecture> {
-	
-	private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
+    private Long createrid;		// 序号
+    private String content;		//演讲内容
+
+    private Date date;		// 演讲日期
+    private String evaluation;		// 评价
+    private String score;		// 评分
+    private String advice;		// 建议
+
+    private Long pmId;		// 项目经理id
+    private Long studentId;		// 学员id
+    private String studentname; //学员名字
+    private String classname; //班级
+    private String systemname;//项目经理
 
 
-	private Long createrid;		// 学员
-	private String content;		// 演讲内容
+    public StudentLecture() {
+        super();
+    }
 
-	private Date date;		// 演讲日期
-	private String evaluation;		// 评价
-	private String score;		// 评分
-	private String advice;		// 建议
+    public StudentLecture(String id){
+        super(id);
+    }
 
-	private Long pmId;		// 项目经理
-	private Long studentId;		// 学员
+    public Long getCreaterid() {
+        return createrid;
+    }
+
+    public void setCreaterid(Long createrid) {
+        this.createrid = createrid;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(String evaluation) {
+        this.evaluation = evaluation;
+    }
 
 
-	public StudentLecture() {
-		super();
-	}
+    @Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
+    public String getScore() {
+        return score;
+    }
 
-	public StudentLecture(String id){
-		super(id);
-	}
+    public void setScore(String score) {
+        this.score = score;
+    }
 
-	public Long getCreaterid() {
-		return createrid;
-	}
+    public String getAdvice() {
+        return advice;
+    }
 
-	public void setCreaterid(Long createrid) {
-		this.createrid = createrid;
-	}
-	
-	public String getContent() {
-		return content;
-	}
+    public void setAdvice(String advice) {
+        this.advice = advice;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getDate() {
-		return date;
-	}
+    public Long getPmId() {
+        return pmId;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
-	public String getEvaluation() {
-		return evaluation;
-	}
+    public void setPmId(Long pmId) {
+        this.pmId = pmId;
+    }
 
-	public void setEvaluation(String evaluation) {
-		this.evaluation = evaluation;
-	}
-	
+    public Long getStudentId() {
+        return studentId;
+    }
 
-	@Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
-	public String getScore() {
-		return score;
-	}
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
 
-	public void setScore(String score) {
-		this.score = score;
-	}
-	
-	public String getAdvice() {
-		return advice;
-	}
+    public String getStudentname() {
+        return studentname;
+    }
 
-	public void setAdvice(String advice) {
-		this.advice = advice;
-	}
-	
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
+    }
 
-	public Long getPmId() {
-		return pmId;
-	}
+    public String getClassname() {
+        return classname;
+    }
 
-	public void setPmId(Long pmId) {
-		this.pmId = pmId;
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
 
-	}
-	
-	public Long getStudentId() {
-		return studentId;
-	}
+    public String getSystemname() {
+        return systemname;
+    }
 
-	public void setStudentId(Long studentId) {
-		this.studentId = studentId;
-	}
-
+    public void setSystemname(String systemname) {
+        this.systemname = systemname;
+    }
 }

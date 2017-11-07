@@ -33,57 +33,57 @@ import com.thinkgem.jeesite.modules.student.service.StudentProjectpollService;
 @RequestMapping(value = "${adminPath}/student/studentProjectpoll")
 public class StudentProjectpollController extends BaseController {
 
-	@Autowired
-	private StudentProjectpollService studentProjectpollService;
-	
-	@ModelAttribute
-	public StudentProjectpoll get(@RequestParam(required=false) String id) {
-		StudentProjectpoll entity = null;
-		if (StringUtils.isNotBlank(id)){
-			entity = studentProjectpollService.get(id);
-		}
-		if (entity == null){
-			entity = new StudentProjectpoll();
-		}
-		return entity;
-	}
-	
-	@RequiresPermissions("student:studentProjectpoll:view")
-	@RequestMapping(value = {"list", ""})
-	public String list(StudentProjectpoll studentProjectpoll, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<StudentProjectpoll> page = studentProjectpollService.findPage(new Page<StudentProjectpoll>(request, response), studentProjectpoll); 
-		model.addAttribute("page", page);
-		return "modules/student/studentProjectpollList";
-	}
+    @Autowired
+    private StudentProjectpollService studentProjectpollService;
 
-	@RequiresPermissions("student:studentProjectpoll:view")
-	@RequestMapping(value = "form")
-	public String form(StudentProjectpoll studentProjectpoll, Model model) {
-		model.addAttribute("studentProjectpoll", studentProjectpoll);
-		return "modules/student/studentProjectpollForm";
-	}
+    @ModelAttribute
+    public StudentProjectpoll get(@RequestParam(required=false) String id) {
+        StudentProjectpoll entity = null;
+        if (StringUtils.isNotBlank(id)){
+            entity = studentProjectpollService.get(id);
+        }
+        if (entity == null){
+            entity = new StudentProjectpoll();
+        }
+        return entity;
+    }
 
-	@RequiresPermissions("student:studentProjectpoll:edit")
-	@RequestMapping(value = "save")
-	public String save(StudentProjectpoll studentProjectpoll, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, studentProjectpoll)){
-			return form(studentProjectpoll, model);
-		}
-		studentProjectpollService.save(studentProjectpoll);
+    @RequiresPermissions("student:studentProjectpoll:view")
+    @RequestMapping(value = {"list", ""})
+    public String list(StudentProjectpoll studentProjectpoll, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<StudentProjectpoll> page = studentProjectpollService.findPage(new Page<StudentProjectpoll>(request, response), studentProjectpoll);
+        model.addAttribute("page", page);
+        return "modules/student/studentProjectpollList";
+    }
 
-		addMessage(redirectAttributes, "保存项目考核成功");
+    @RequiresPermissions("student:studentProjectpoll:view")
+    @RequestMapping(value = "form")
+    public String form(StudentProjectpoll studentProjectpoll, Model model) {
+        model.addAttribute("studentProjectpoll", studentProjectpoll);
+        return "modules/student/studentProjectpollForm";
+    }
 
-		return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
-	}
-	
-	@RequiresPermissions("student:studentProjectpoll:edit")
-	@RequestMapping(value = "delete")
-	public String delete(StudentProjectpoll studentProjectpoll, RedirectAttributes redirectAttributes) {
-		studentProjectpollService.delete(studentProjectpoll);
+    @RequiresPermissions("student:studentProjectpoll:edit")
+    @RequestMapping(value = "save")
+    public String save(StudentProjectpoll studentProjectpoll, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, studentProjectpoll)){
+            return form(studentProjectpoll, model);
+        }
+        studentProjectpollService.save(studentProjectpoll);
 
-		addMessage(redirectAttributes, "删除项目考核成功");
+        addMessage(redirectAttributes, "保存项目考核成功");
 
-		return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
-	}
+        return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
+    }
+
+    @RequiresPermissions("student:studentProjectpoll:edit")
+    @RequestMapping(value = "delete")
+    public String delete(StudentProjectpoll studentProjectpoll, RedirectAttributes redirectAttributes) {
+        studentProjectpollService.delete(studentProjectpoll);
+
+        addMessage(redirectAttributes, "删除项目考核成功");
+
+        return "redirect:"+Global.getAdminPath()+"/student/studentProjectpoll/?repage";
+    }
 
 }
