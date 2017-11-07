@@ -29,7 +29,6 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	private static final long serialVersionUID = 1L;
 
 	private String name;		// 学生名字
-	private String password; //学生密码
 	private String studentnumber;		// 学号
 	private String statuschange;		// 学业状态
 	private String studenttype;		// 学生类型
@@ -84,8 +83,8 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	private String headship;		// 就业职位
 	private String salary;		// 就业薪水
 	private String returnvist;		// 回访记录
-	//private String classesId;		// 班级外键
-	private String subareaId;		// 子范围
+	private Long classesId;		// 班级外键
+	private Long subareaId;		// 子范围
 	private String attendanceno;		// 考勤号
 	private String teacherevaluation;		// 班主任评价
 	private String pmevaluation;		// 项目经理评价
@@ -96,8 +95,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	private String firstpoll;		// 第一次项目考核成绩
 	private String secondpoll;		// 第二次项目考核成绩
 	private String thirdpoll;		// 第三次项目考核成绩
-	//private String fileId;		// 文件关联外键
-	private StudentFile studentfile;//文件
+	private Long fileId;		// 文件关联外键
 	private Office office;		// 归属校区
 	private Area area;		// 归属区域
 	private User createby;		// 创建人
@@ -106,15 +104,6 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	private Date updatedate;		// 修改时间
 	private String delflag;		// 删除标识
 	private Classes classes;//班级
-
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public Classes getClasses() {
 		return classes;
@@ -198,7 +187,7 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 		return birthday;
 	}
 
-	public void setBirthday(Date date) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -664,15 +653,26 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setReturnvist(String returnvist) {
 		this.returnvist = returnvist;
 	}
+	
 
+	
 
-	public String getSubareaId() {
+	public Long getClassesId() {
+		return classesId;
+	}
+
+	public void setClassesId(Long classesId) {
+		this.classesId = classesId;
+	}
+	
+	public Long getSubareaId() {
 		return subareaId;
 	}
 
-	public void setSubareaId(String subareaId) {
+	public void setSubareaId(Long subareaId) {
 		this.subareaId = subareaId;
 	}
+	
 
 	@Length(min=0, max=10, message="考勤号长度必须介于 0 和 10 之间")
 	public String getAttendanceno() {
@@ -754,8 +754,15 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setThirdpoll(String thirdpoll) {
 		this.thirdpoll = thirdpoll;
 	}
+	
+	public Long getFileId() {
+		return fileId;
+	}
 
-
+	public void setFileId(Long fileId) {
+		this.fileId = fileId;
+	}
+	
 
 	public Office getOffice() {
 		return office;
@@ -815,12 +822,6 @@ public class StudentInfo extends DataEntity<StudentInfo> {
 	public void setDelflag(String delflag) {
 		this.delflag = delflag;
 	}
+	
 
-	public StudentFile getStudentfile() {
-		return studentfile;
-	}
-
-	public void setStudentfile(StudentFile studentfile) {
-		this.studentfile = studentfile;
-	}
 }

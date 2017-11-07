@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>用户管理</title>
+	<title>考勤管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,14 +27,16 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/student/studentAttendance/">用户列表</a></li>
-		<li class="active"><a href="${ctx}/student/studentAttendance/form?id=${studentAttendance.id}">用户<shiro:hasPermission name="student:studentAttendance:edit">${not empty studentAttendance.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentAttendance:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/student/studentAttendance/">考勤列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentAttendance/form?id=${studentAttendance.id}">考勤<shiro:hasPermission name="student:studentAttendance:edit">${not empty studentAttendance.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentAttendance:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="studentAttendance" action="${ctx}/student/studentAttendance/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
+
 			<label class="control-label">开始时间：</label>
+
 			<div class="controls">
 				<input name="startdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentAttendance.startdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -42,7 +44,9 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">结束时间：</label>
+
 			<div class="controls">
 				<input name="enddate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${studentAttendance.enddate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
@@ -50,16 +54,20 @@
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">状态：</label>
+
 			<div class="controls">
 				<form:input path="status" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">学生表外键：</label>
 			<div class="controls">
 				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
+
 			</div>
 		</div>
 		<div class="form-actions">

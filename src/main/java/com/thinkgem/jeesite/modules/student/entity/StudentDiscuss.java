@@ -17,14 +17,17 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 public class StudentDiscuss extends DataEntity<StudentDiscuss> {
 	
 	private static final long serialVersionUID = 1L;
-	private Long createrid;		// createrid
-	private String content;		// content
-	private Date date;		// date
-	private String evaluation;		// evaluation
-	private String score;		// score
-	private String advice;		// advice
-	private Long pmId;		// pm_id
-	private Long group;		// group_id
+	private Long createrid;		// 创建时间
+	private String content;		// 讨论内容
+	private Date date;		// 讨论日期
+	private String evaluation;		// 评价
+	private String score;		// 评分
+	private String advice;		// 建议
+	private Long pmId;		// 项目经理id
+	private Long divgroup;		// 小组id
+	private String classname; // 班级名称
+	private String groupname; //小组名称
+	private String managername; //经理名称
 	
 	public StudentDiscuss() {
 		super();
@@ -91,13 +94,36 @@ public class StudentDiscuss extends DataEntity<StudentDiscuss> {
 	public void setPmId(Long pmId) {
 		this.pmId = pmId;
 	}
-	
-	public Long getGroup() {
-		return group;
+
+	public Long getDivgroup() {
+		return divgroup;
 	}
 
-	public void setGroup(Long group) {
-		this.group = group;
+	public void setDivgroup(Long divgroup) {
+		this.divgroup = divgroup;
 	}
-	
+
+	public String getClassname() {
+		return classname;
+	}
+
+	public void setClassname(String classname) {
+		this.classname = classname;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+	public String getManagername() {
+		return managername;
+	}
+
+	public void setManagername(String mangername) {
+		this.managername = managername;
+	}
 }

@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.student.dao.StudentProjectpollItemDao;
 /**
  * 项目详情管理Service
  * @author cqx
- * @version 2017-11-01
+ * @version 2017-11-02
  */
 @Service
 @Transactional(readOnly = true)

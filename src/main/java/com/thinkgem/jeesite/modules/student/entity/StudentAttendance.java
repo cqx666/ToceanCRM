@@ -10,17 +10,21 @@ import org.hibernate.validator.constraints.Length;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
- * 系统用户Entity
+ * 学员考勤Entity
  * @author cqx
- * @version 2017-11-06
+
+ * @version 2017-11-01
+
  */
 public class StudentAttendance extends DataEntity<StudentAttendance> {
 	
 	private static final long serialVersionUID = 1L;
+
 	private Date startdate;		// 开始时间
 	private Date enddate;		// 结束时间
 	private String status;		// 状态
 	private Long studentId;		// 学生表外键
+
 	
 	public StudentAttendance() {
 		super();
@@ -48,7 +52,9 @@ public class StudentAttendance extends DataEntity<StudentAttendance> {
 		this.enddate = enddate;
 	}
 	
+
 	@Length(min=1, max=11, message="状态长度必须介于 1 和 11 之间")
+
 	public String getStatus() {
 		return status;
 	}
@@ -57,6 +63,7 @@ public class StudentAttendance extends DataEntity<StudentAttendance> {
 		this.status = status;
 	}
 	
+
 	public Long getStudentId() {
 		return studentId;
 	}
@@ -64,5 +71,6 @@ public class StudentAttendance extends DataEntity<StudentAttendance> {
 	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
 	}
+
 	
 }

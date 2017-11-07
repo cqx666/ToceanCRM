@@ -7,12 +7,14 @@
 		a.startdate AS "startdate",
 		a.enddate AS "enddate",
 		a.status AS "status",
+
 		a.student_id AS "studentId",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
+
 	</sql>
 	
 	<sql id="studentAttendanceJoins">
@@ -32,14 +34,18 @@
 		FROM student_attendance a
 		<include refid="studentAttendanceJoins"/>
 		<where>
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
+
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+
 				ORDER BY a.update_date DESC
+
 			</otherwise>
 		</choose>
 	</select>
@@ -50,14 +56,18 @@
 		FROM student_attendance a
 		<include refid="studentAttendanceJoins"/>
 		<where>
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
+
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+
 				ORDER BY a.update_date DESC
+
 			</otherwise>
 		</choose>
 	</select>
@@ -68,23 +78,27 @@
 			startdate,
 			enddate,
 			status,
+
 			student_id,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
+
 		) VALUES (
 			#{id},
 			#{startdate},
 			#{enddate},
 			#{status},
+
 			#{studentId},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
+
 		)
 	</insert>
 	
@@ -93,15 +107,19 @@
 			startdate = #{startdate},
 			enddate = #{enddate},
 			status = #{status},
+
 			student_id = #{studentId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
+
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
+
 		UPDATE student_attendance SET 
 			del_flag = #{DEL_FLAG_DELETE}
+
 		WHERE id = #{id}
 	</update>
 	

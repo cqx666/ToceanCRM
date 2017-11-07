@@ -8,7 +8,8 @@
 		a.praiseway AS "praiseway",
 		a.reason AS "reason",
 		a.score AS "score",
-		a.student_id AS "studentId",
+		a.class AS "classes",
+		a.student AS "student",
 		a.booker AS "booker",
 		a.bookdate AS "bookdate",
 		a.confirmer AS "confirmer",
@@ -16,14 +17,12 @@
 		a.approve AS "approve",
 		a.status AS "status",
 		a.headship AS "headship",
-
 		a.opinion AS "opinion",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
-
 	</sql>
 	
 	<sql id="studentPraiseJoins">
@@ -43,18 +42,20 @@
 		FROM student_praise a
 		<include refid="studentPraiseJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
+			<if test="classes != null and classes != ''">
+				AND a.class = #{classes}
+			</if>
+			<if test="student != null and student != ''">
+				AND a.student = #{student}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-
 				ORDER BY a.update_date DESC
-
 			</otherwise>
 		</choose>
 	</select>
@@ -65,18 +66,14 @@
 		FROM student_praise a
 		<include refid="studentPraiseJoins"/>
 		<where>
-
 			a.del_flag = #{DEL_FLAG_NORMAL}
-
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-
 				ORDER BY a.update_date DESC
-
 			</otherwise>
 		</choose>
 	</select>
@@ -88,7 +85,8 @@
 			praiseway,
 			reason,
 			score,
-			student_id,
+			class,
+			student,
 			booker,
 			bookdate,
 			confirmer,
@@ -96,21 +94,20 @@
 			approve,
 			status,
 			headship,
-
 			opinion,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
-
 		) VALUES (
 			#{id},
 			#{praisedate},
 			#{praiseway},
 			#{reason},
 			#{score},
-			#{studentId},
+			#{classes},
+			#{student},
 			#{booker},
 			#{bookdate},
 			#{confirmer},
@@ -118,14 +115,12 @@
 			#{approve},
 			#{status},
 			#{headship},
-
 			#{opinion},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
-
 		)
 	</insert>
 	
@@ -135,7 +130,8 @@
 			praiseway = #{praiseway},
 			reason = #{reason},
 			score = #{score},
-			student_id = #{studentId},
+			class = #{classes},
+			student = #{student},
 			booker = #{booker},
 			bookdate = #{bookdate},
 			confirmer = #{confirmer},
@@ -143,19 +139,15 @@
 			approve = #{approve},
 			status = #{status},
 			headship = #{headship},
-
 			opinion = #{opinion},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
-
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
-
 		UPDATE student_praise SET 
 			del_flag = #{DEL_FLAG_DELETE}
-
 		WHERE id = #{id}
 	</update>
 	

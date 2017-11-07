@@ -10,6 +10,9 @@
 		a.classfrom_id AS "classfromId",
 		a.oldclass_userid AS "oldclassUserid",
 
+		si.name AS "studentname",
+		sc.name AS "classfromname",
+		sc.name AS"classtoname",
 		a.newclass_userid AS "newclassUserid",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -17,9 +20,12 @@
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
 
+
 	</sql>
 	
 	<sql id="studentShiftclassJoins">
+	INNER JOIN student_info si ON a.oldclass_userid=si.id
+	INNER JOIN sys_classes sc ON a.classfrom_id=sc.id
 	</sql>
     
 	<select id="get" resultType="StudentShiftclass">
@@ -73,6 +79,7 @@
 			</otherwise>
 		</choose>
 	</select>
+
 	
 	<insert id="insert">
 		INSERT INTO student_shiftclass(

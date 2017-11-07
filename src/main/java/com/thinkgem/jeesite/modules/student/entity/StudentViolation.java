@@ -12,15 +12,12 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 学员违纪Entity
  * @author cqx
-
- * @version 2017-11-01
-
+ * @version 2017-11-02
  */
 public class StudentViolation extends DataEntity<StudentViolation> {
 	
 	private static final long serialVersionUID = 1L;
-
-	private String violationdesc;		// 违纪细节
+	private String violationdesc;		// 违纪情况
 	private String handleway;		// 处理方式
 	private Date viloationdate;		// 违纪时间
 	private String studentattitude;		// 学员态度
@@ -30,12 +27,10 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 	private Date confirmdate;		// 证实时间
 	private String status;		// 状态
 	private String score;		// 分数
-	private String other;		// other
-	private Long studentId;		// 学生
-	private String approve;		// 表扬
-	private String headship;		// 职位
+	private String student;		// 学生
+	private String classes;		// 班级
 	private String opinion;		// 意见
-
+	
 	public StudentViolation() {
 		super();
 	}
@@ -44,9 +39,7 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 		super(id);
 	}
 
-
-	@Length(min=0, max=255, message="违纪细节长度必须介于 0 和 255 之间")
-
+	@Length(min=0, max=255, message="违纪情况长度必须介于 0 和 255 之间")
 	public String getViolationdesc() {
 		return violationdesc;
 	}
@@ -54,7 +47,7 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 	public void setViolationdesc(String violationdesc) {
 		this.violationdesc = violationdesc;
 	}
-
+	
 	@Length(min=0, max=20, message="处理方式长度必须介于 0 和 20 之间")
 	public String getHandleway() {
 		return handleway;
@@ -73,7 +66,6 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 		this.viloationdate = viloationdate;
 	}
 	
-
 	@Length(min=0, max=20, message="学员态度长度必须介于 0 和 20 之间")
 	public String getStudentattitude() {
 		return studentattitude;
@@ -83,7 +75,6 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 		this.studentattitude = studentattitude;
 	}
 	
-
 	@Length(min=0, max=10, message="登记人长度必须介于 0 和 10 之间")
 	public String getBooker() {
 		return booker;
@@ -102,7 +93,6 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 		this.bookdate = bookdate;
 	}
 	
-
 	@Length(min=0, max=10, message="证实人长度必须介于 0 和 10 之间")
 	public String getConfirmer() {
 		return confirmer;
@@ -121,8 +111,7 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 		this.confirmdate = confirmdate;
 	}
 	
-
-	@Length(min=1, max=11, message="状态长度必须介于 1 和 11 之间")
+	@Length(min=0, max=11, message="状态长度必须介于 0 和 11 之间")
 	public String getStatus() {
 		return status;
 	}
@@ -139,41 +128,22 @@ public class StudentViolation extends DataEntity<StudentViolation> {
 		this.score = score;
 	}
 	
-	@Length(min=0, max=255, message="other长度必须介于 0 和 255 之间")
-	public String getOther() {
-		return other;
+	@Length(min=0, max=64, message="学生长度必须介于 0 和 64 之间")
+	public String getStudent() {
+		return student;
 	}
 
-	public void setOther(String other) {
-		this.other = other;
+	public void setStudent(String student) {
+		this.student = student;
 	}
 	
-	public Long getStudentId() {
-		return studentId;
+	@Length(min=0, max=64, message="班级长度必须介于 0 和 64 之间")
+	public String getClasses() {
+		return classes;
 	}
 
-	public void setStudentId(Long studentId) {
-		this.studentId = studentId;
-	}
-	
-
-	@Length(min=0, max=10, message="表扬长度必须介于 0 和 10 之间")
-	public String getApprove() {
-		return approve;
-	}
-
-	public void setApprove(String approve) {
-		this.approve = approve;
-	}
-	
-
-	@Length(min=0, max=255, message="职位长度必须介于 0 和 255 之间")
-	public String getHeadship() {
-		return headship;
-	}
-
-	public void setHeadship(String headship) {
-		this.headship = headship;
+	public void setClasses(String classes) {
+		this.classes = classes;
 	}
 	
 	public String getOpinion() {
