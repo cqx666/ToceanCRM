@@ -124,7 +124,6 @@
 	</update>
 	
 	<update id="delete">
-
 		UPDATE student_shiftclass SET 
 			del_flag = #{DEL_FLAG_DELETE}
 

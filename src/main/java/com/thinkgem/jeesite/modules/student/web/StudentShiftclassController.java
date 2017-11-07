@@ -33,57 +33,61 @@ import com.thinkgem.jeesite.modules.student.service.StudentShiftclassService;
 @RequestMapping(value = "${adminPath}/student/studentShiftclass")
 public class StudentShiftclassController extends BaseController {
 
-	@Autowired
-	private StudentShiftclassService studentShiftclassService;
-	
-	@ModelAttribute
-	public StudentShiftclass get(@RequestParam(required=false) String id) {
-		StudentShiftclass entity = null;
-		if (StringUtils.isNotBlank(id)){
-			entity = studentShiftclassService.get(id);
-		}
-		if (entity == null){
-			entity = new StudentShiftclass();
-		}
-		return entity;
-	}
-	
-	@RequiresPermissions("student:studentShiftclass:view")
-	@RequestMapping(value = {"list", ""})
-	public String list(StudentShiftclass studentShiftclass, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<StudentShiftclass> page = studentShiftclassService.findPage(new Page<StudentShiftclass>(request, response), studentShiftclass); 
-		model.addAttribute("page", page);
-		return "modules/student/studentShiftclassList";
-	}
+    @Autowired
+    private StudentShiftclassService studentShiftclassService;
 
-	@RequiresPermissions("student:studentShiftclass:view")
-	@RequestMapping(value = "form")
-	public String form(StudentShiftclass studentShiftclass, Model model) {
-		model.addAttribute("studentShiftclass", studentShiftclass);
-		return "modules/student/studentShiftclassForm";
-	}
+    @ModelAttribute
+    public StudentShiftclass get(@RequestParam(required=false) String id) {
+        StudentShiftclass entity = null;
+        if (StringUtils.isNotBlank(id)){
+            entity = studentShiftclassService.get(id);
+        }
+        if (entity == null){
+            entity = new StudentShiftclass();
+        }
+        return entity;
+    }
 
-	@RequiresPermissions("student:studentShiftclass:edit")
-	@RequestMapping(value = "save")
-	public String save(StudentShiftclass studentShiftclass, Model model, RedirectAttributes redirectAttributes) {
-		if (!beanValidator(model, studentShiftclass)){
-			return form(studentShiftclass, model);
-		}
-		studentShiftclassService.save(studentShiftclass);
+    @RequiresPermissions("student:studentShiftclass:view")
+    @RequestMapping(value = {"list", ""})
+    public String list(StudentShiftclass studentShiftclass, HttpServletRequest request, HttpServletResponse response, Model model) {
+        Page<StudentShiftclass> page = studentShiftclassService.findPage(new Page<StudentShiftclass>(request, response), studentShiftclass);
+        model.addAttribute("page", page);
+        return "modules/student/studentShiftclassList";
+    }
 
-		addMessage(redirectAttributes, "保存转班成功");
+    @RequiresPermissions("student:studentShiftclass:view")
+    @RequestMapping(value = "form")
+    public String form(StudentShiftclass studentShiftclass, Model model) {
+        model.addAttribute("studentShiftclass", studentShiftclass);
+        return "modules/student/studentShiftclassForm";
+    }
 
-		return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
-	}
-	
-	@RequiresPermissions("student:studentShiftclass:edit")
-	@RequestMapping(value = "delete")
-	public String delete(StudentShiftclass studentShiftclass, RedirectAttributes redirectAttributes) {
-		studentShiftclassService.delete(studentShiftclass);
+    @RequiresPermissions("student:studentShiftclass:edit")
+    @RequestMapping(value = "save")
+    public String save(StudentShiftclass studentShiftclass, Model model, RedirectAttributes redirectAttributes) {
+        if (!beanValidator(model, studentShiftclass)){
+            return form(studentShiftclass, model);
+        }
+        studentShiftclassService.save(studentShiftclass);
 
-		addMessage(redirectAttributes, "删除转班成功");
+        addMessage(redirectAttributes, "保存转班成功");
 
-		return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
-	}
+        return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
+    }
+
+    @RequiresPermissions("student:studentShiftclass:edit")
+    @RequestMapping(value = "delete")
+    public String delete(StudentShiftclass studentShiftclass, RedirectAttributes redirectAttributes,String id) {
+        StudentShiftclass si=new StudentShiftclass();
+        String[] ids=id.split(",");
+        for(int i=0;i<ids.length;i++){
+            si.setId(ids[i]);
+            studentShiftclassService.delete(si);
+        }
+        addMessage(redirectAttributes, "删除转班成功");
+
+        return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
+    }
 
 }

@@ -116,10 +116,8 @@
 	</update>
 	
 	<update id="delete">
-
 		UPDATE student_introduce SET 
 			del_flag = #{DEL_FLAG_DELETE}
-
 		WHERE id = #{id}
 	</update>
 	
