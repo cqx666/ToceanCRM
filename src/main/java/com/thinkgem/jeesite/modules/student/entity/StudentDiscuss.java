@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
-import sun.security.util.BigInt;
+
 
 /**
  * 分组讨论Entity
