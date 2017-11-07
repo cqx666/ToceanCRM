@@ -78,9 +78,13 @@ public class StudentShiftclassController extends BaseController {
 
     @RequiresPermissions("student:studentShiftclass:edit")
     @RequestMapping(value = "delete")
-    public String delete(StudentShiftclass studentShiftclass, RedirectAttributes redirectAttributes) {
-        studentShiftclassService.delete(studentShiftclass);
-
+    public String delete(StudentShiftclass studentShiftclass, RedirectAttributes redirectAttributes,String id) {
+        StudentShiftclass si=new StudentShiftclass();
+        String[] ids=id.split(",");
+        for(int i=0;i<ids.length;i++){
+            si.setId(ids[i]);
+            studentShiftclassService.delete(si);
+        }
         addMessage(redirectAttributes, "删除转班成功");
 
         return "redirect:"+Global.getAdminPath()+"/student/studentShiftclass/?repage";
