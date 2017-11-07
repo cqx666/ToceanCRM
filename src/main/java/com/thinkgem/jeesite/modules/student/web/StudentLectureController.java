@@ -25,7 +25,9 @@ import com.thinkgem.jeesite.modules.student.service.StudentLectureService;
 /**
  * 学员演讲Controller
  * @author cqx
+
  * @version 2017-11-01
+
  */
 @Controller
 @RequestMapping(value = "${adminPath}/student/studentLecture")
@@ -79,4 +81,5 @@ public class StudentLectureController extends BaseController {
 		addMessage(redirectAttributes, "删除演讲成功");
 		return "redirect:"+Global.getAdminPath()+"/student/studentLecture/?repage";
 	}
+
 }

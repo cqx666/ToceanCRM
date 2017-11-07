@@ -33,57 +33,57 @@ import com.thinkgem.jeesite.modules.student.service.StudentIntroduceService;
 @RequestMapping(value = "${adminPath}/student/studentIntroduce")
 public class StudentIntroduceController extends BaseController {
 
-    @Autowired
-    private StudentIntroduceService studentIntroduceService;
+	@Autowired
+	private StudentIntroduceService studentIntroduceService;
+	
+	@ModelAttribute
+	public StudentIntroduce get(@RequestParam(required=false) String id) {
+		StudentIntroduce entity = null;
+		if (StringUtils.isNotBlank(id)){
+			entity = studentIntroduceService.get(id);
+		}
+		if (entity == null){
+			entity = new StudentIntroduce();
+		}
+		return entity;
+	}
+	
+	@RequiresPermissions("student:studentIntroduce:view")
+	@RequestMapping(value = {"list", ""})
+	public String list(StudentIntroduce studentIntroduce, HttpServletRequest request, HttpServletResponse response, Model model) {
+		Page<StudentIntroduce> page = studentIntroduceService.findPage(new Page<StudentIntroduce>(request, response), studentIntroduce); 
+		model.addAttribute("page", page);
+		return "modules/student/studentIntroduceList";
+	}
 
-    @ModelAttribute
-    public StudentIntroduce get(@RequestParam(required=false) String id) {
-        StudentIntroduce entity = null;
-        if (StringUtils.isNotBlank(id)){
-            entity = studentIntroduceService.get(id);
-        }
-        if (entity == null){
-            entity = new StudentIntroduce();
-        }
-        return entity;
-    }
+	@RequiresPermissions("student:studentIntroduce:view")
+	@RequestMapping(value = "form")
+	public String form(StudentIntroduce studentIntroduce, Model model) {
+		model.addAttribute("studentIntroduce", studentIntroduce);
+		return "modules/student/studentIntroduceForm";
+	}
 
-    @RequiresPermissions("student:studentIntroduce:view")
-    @RequestMapping(value = {"list", ""})
-    public String list(StudentIntroduce studentIntroduce, HttpServletRequest request, HttpServletResponse response, Model model) {
-        Page<StudentIntroduce> page = studentIntroduceService.findPage(new Page<StudentIntroduce>(request, response), studentIntroduce);
-        model.addAttribute("page", page);
-        return "modules/student/studentIntroduceList";
-    }
+	@RequiresPermissions("student:studentIntroduce:edit")
+	@RequestMapping(value = "save")
+	public String save(StudentIntroduce studentIntroduce, Model model, RedirectAttributes redirectAttributes) {
+		if (!beanValidator(model, studentIntroduce)){
+			return form(studentIntroduce, model);
+		}
+		studentIntroduceService.save(studentIntroduce);
 
-    @RequiresPermissions("student:studentIntroduce:view")
-    @RequestMapping(value = "form")
-    public String form(StudentIntroduce studentIntroduce, Model model) {
-        model.addAttribute("studentIntroduce", studentIntroduce);
-        return "modules/student/studentIntroduceForm";
-    }
+		addMessage(redirectAttributes, "保存介绍成功");
 
-    @RequiresPermissions("student:studentIntroduce:edit")
-    @RequestMapping(value = "save")
-    public String save(StudentIntroduce studentIntroduce, Model model, RedirectAttributes redirectAttributes) {
-        if (!beanValidator(model, studentIntroduce)){
-            return form(studentIntroduce, model);
-        }
-        studentIntroduceService.save(studentIntroduce);
+		return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
+	}
+	
+	@RequiresPermissions("student:studentIntroduce:edit")
+	@RequestMapping(value = "delete")
+	public String delete(StudentIntroduce studentIntroduce, RedirectAttributes redirectAttributes) {
+		studentIntroduceService.delete(studentIntroduce);
 
-        addMessage(redirectAttributes, "保存介绍成功");
+		addMessage(redirectAttributes, "删除介绍成功");
 
-        return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
-    }
-
-    @RequiresPermissions("student:studentIntroduce:edit")
-    @RequestMapping(value = "delete")
-    public String delete(StudentIntroduce studentIntroduce, RedirectAttributes redirectAttributes) {
-        studentIntroduceService.delete(studentIntroduce);
-
-        addMessage(redirectAttributes, "删除介绍成功");
-
-        return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
-    }
+		return "redirect:"+Global.getAdminPath()+"/student/studentIntroduce/?repage";
+	}
 
 }

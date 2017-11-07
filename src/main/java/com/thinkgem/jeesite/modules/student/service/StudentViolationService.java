@@ -16,7 +16,9 @@ import com.thinkgem.jeesite.modules.student.dao.StudentViolationDao;
 /**
  * 学员违纪Service
  * @author cqx
- * @version 2017-11-02
+
+ * @version 2017-11-01
+
  */
 @Service
 @Transactional(readOnly = true)

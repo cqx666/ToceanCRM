@@ -1,152 +1,146 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thinkgem.jeesite.modules.student.dao.StudentLectureDao">
+    
+	<sql id="studentLectureColumns">
+		a.id AS "id",
+		a.createrid AS "createrid",
+		a.content AS "content",
+		a.date AS "date",
+		a.evaluation AS "evaluation",
+		a.score AS "score",
+		a.advice AS "advice",
 
-    <sql id="studentLectureColumns">
-        a.id AS "id",
-        a.createrid AS "createrid",
-        a.content AS "content",
-        a.date AS "date",
-        a.evaluation AS "evaluation",
-        a.score AS "score",
-        a.advice AS "advice",
-        a.pm_id AS "pmId",
-        a.student_id AS "studentId",
-        a.create_by AS "createBy.id",
-        a.create_date AS "createDate",
-        a.update_by AS "updateBy.id",
-        a.update_date AS "updateDate",
-        a.del_flag AS "delFlag",
-        si.id AS "infoid",
-        si.name AS "studentname",
-        su.id AS "systemid",
-        su.name AS "systemname",
-        sc.name AS "classname",
-        sc.pm_id AS "classid",
-        sc.openDate AS "classopen",
-        sc.closeDate AS "classclose"
-    </sql>
-    <sql id="studentLectureJoins">
-        LEFT JOIN student_info si ON si.id=a.student_id
-        LEFT JOIN sys_classes sc ON a.createrid=sc.pm_id AND a.date  BETWEEN sc.openDate AND sc.closeDate
-        LEFT  JOIN  sys_user su ON su.id=a.pm_id
-    </sql>
-    <select id="get" resultType="StudentLecture">
-        SELECT
-        <include refid="studentLectureColumns"/>
-        FROM student_lecture a
-        <include refid="studentLectureJoins"/>
-        WHERE a.id = #{id}
-    </select>
-    <select id="findList" resultType="StudentLecture">
-        SELECT
-        <include refid="studentLectureColumns"/>
-        FROM student_lecture a
-        <include refid="studentLectureJoins"/>
-        <where>
-            a.del_flag = #{DEL_FLAG_NORMAL}
-            <if test="content != null and content != ''">
-                AND a.content LIKE
-                <if test="dbName == 'oracle'">'%'||#{content}||'%'</if>
-                <if test="dbName == 'mssql'">'%'+#{content}+'%'</if>
-                <if test="dbName == 'mysql'">concat('%',#{content},'%')</if>
-            </if>
-        </where>
-        <choose>
-            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
-                ORDER BY ${page.orderBy}
-            </when>
-            <otherwise>
-                ORDER BY a.update_date DESC
-            </otherwise>
-        </choose>
-    </select>
-    <select id="findAllList" resultType="StudentLecture">
-        SELECT
-        <include refid="studentLectureColumns"/>
-        FROM student_lecture a
-        <include refid="studentLectureJoins"/>
-        <where>
-            a.del_flag = #{DEL_FLAG_NORMAL}
-        </where>
-        <choose>
-            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
-                ORDER BY ${page.orderBy}
-            </when>
-            <otherwise>
-                ORDER BY a.update_date DESC
-            </otherwise>
-        </choose>
-    </select>
-    <select id="findName" resultType="StudentLecture">
-        SELECT
-        <include refid="studentLectureColumns"/>
-        FROM student_lecture a
-        <include refid="studentLectureJoins"/>
-        <where>
-            a.del_flag = #{DEL_FLAG_NORMAL}
-            AND a.content LIKE ${a.content}%
-        </where>
-        <choose>
-            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
-                ORDER BY ${page.orderBy}
-            </when>
-            <otherwise>
-                ORDER BY a.update_date DESC
-            </otherwise>
-        </choose>
-    </select>
-    <insert id="insert">
-        INSERT INTO student_lecture(
-        id,
-        createrid,
-        content,
-        date,
-        evaluation,
-        score,
-        advice,
-        pm_id,
-        student_id,
-        create_by,
-        create_date,
-        update_by,
-        update_date,
-        del_flag
-        ) VALUES (
-        #{id},
-        #{createrid},
-        #{content},
-        #{date},
-        #{evaluation},
-        #{score},
-        #{advice},
-        #{createrid},
-        #{studentId},
-        #{createBy.id},
-        #{createDate},
-        #{updateBy.id},
-        #{updateDate},
-        #{delFlag}
-        )
-    </insert>
+		a.pm_id AS "pmId",
+		a.student_id AS "studentId",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.del_flag AS "delFlag"
 
-    <update id="update">
-        UPDATE student_lecture SET
-        createrid = #{createrid},
-        content = #{content},
-        date = #{date},
-        evaluation = #{evaluation},
-        score = #{score},
-        advice = #{advice},
-        pm_id = #{pmId},
-        student_id = #{studentId},
-        update_by = #{updateBy.id},
-        update_date = #{updateDate}
-        WHERE id = #{id}
-    </update>
-    <update id="delete">
-        UPDATE student_lecture SET
-        del_flag = #{DEL_FLAG_DELETE}
-        WHERE id = #{id}
-    </update>
+		a.pm_id AS "employee.Id",
+		a.student_id AS "studentId"
+
+	</sql>
+
+	
+	<sql id="studentLectureJoins">
+
+	</sql>
+	<select id="get" resultType="StudentLecture">
+		SELECT 
+			<include refid="studentLectureColumns"/>
+		FROM student_lecture a
+		<include refid="studentLectureJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="StudentLecture">
+		SELECT 
+			<include refid="studentLectureColumns"/>
+		FROM student_lecture a
+		<include refid="studentLectureJoins"/>
+		<where>
+
+			a.del_flag = #{DEL_FLAG_NORMAL}
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+
+				ORDER BY a.update_date DESC
+
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="StudentLecture">
+		SELECT 
+			<include refid="studentLectureColumns"/>
+		FROM student_lecture a
+		<include refid="studentLectureJoins"/>
+		<where>
+
+			a.del_flag = #{DEL_FLAG_NORMAL}
+
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+
+				ORDER BY a.update_date DESC
+
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO student_lecture(
+			id,
+			createrid,
+			content,
+			date,
+			evaluation,
+			score,
+			advice,
+			pm_id,
+
+			student_id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			del_flag
+
+		) VALUES (
+			#{id},
+			#{createrid},
+			#{content},
+			#{date},
+			#{evaluation},
+			#{score},
+			#{advice},
+
+			#{pmId},
+			#{studentId},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{delFlag}
+
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE student_lecture SET 	
+			createrid = #{createrid},
+			content = #{content},
+			date = #{date},
+			evaluation = #{evaluation},
+			score = #{score},
+			advice = #{advice},
+
+			pm_id = #{pmId},
+			student_id = #{studentId},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+
+		UPDATE student_lecture SET 
+			del_flag = #{DEL_FLAG_DELETE}
+
+		WHERE id = #{id}
+	</update>
+	
 </mapper>

@@ -4,14 +4,13 @@
     
 	<sql id="studentHomeworkItemColumns">
 		a.id AS "id",
-		a.student_id AS "studentId",
-		a.classes_id AS "classesId",
-		a.homework_id AS "homeworkId",
-		a.course_id AS "courseId",
+		a.source AS "source",
 		a.filename AS "filename",
 		a.score AS "score",
 		a.comment AS "comment",
 		a.status AS "status",
+		a.student_id AS "studentId",
+		a.homework_id AS "homeworkId",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -37,9 +36,6 @@
 		<include refid="studentHomeworkItemJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="homeworkId != null and homeworkId != ''">
-				AND a.homework_id = #{homeworkId}
-			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -72,14 +68,13 @@
 	<insert id="insert">
 		INSERT INTO student_homework_item(
 			id,
-			student_id,
-			classes_id,
-			homework_id,
-			course_id,
+			source,
 			filename,
 			score,
 			comment,
 			status,
+			student_id,
+			homework_id,
 			create_by,
 			create_date,
 			update_by,
@@ -87,14 +82,13 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{studentId},
-			#{classesId},
-			#{homeworkId},
-			#{courseId},
+			#{source},
 			#{filename},
 			#{score},
 			#{comment},
 			#{status},
+			#{studentId},
+			#{homeworkId},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -105,12 +99,13 @@
 	
 	<update id="update">
 		UPDATE student_homework_item SET 	
-			student_id = #{studentId},
-			homework_id = #{homeworkId},
-			course_id = #{courseId},
+			source = #{source},
 			filename = #{filename},
 			score = #{score},
 			comment = #{comment},
+			status = #{status},
+			student_id = #{studentId},
+			homework_id = #{homeworkId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

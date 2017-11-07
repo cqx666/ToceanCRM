@@ -14,14 +14,18 @@
 		a.confirmdate AS "confirmdate",
 		a.status AS "status",
 		a.score AS "score",
-		a.student AS "student",
-		a.class AS "classes",
+		a.other AS "other",
+		a.student_id AS "studentId",
+		a.approve AS "approve",
+		a.headship AS "headship",
+
 		a.opinion AS "opinion",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.del_flag AS "delFlag"
+
 	</sql>
 	
 	<sql id="studentViolationJoins">
@@ -41,20 +45,18 @@
 		FROM student_violation a
 		<include refid="studentViolationJoins"/>
 		<where>
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="student != null and student != ''">
-				AND a.student = #{student}
-			</if>
-			<if test="classes != null and classes != ''">
-				AND a.class = #{classes}
-			</if>
+
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+
 				ORDER BY a.update_date DESC
+
 			</otherwise>
 		</choose>
 	</select>
@@ -65,14 +67,18 @@
 		FROM student_violation a
 		<include refid="studentViolationJoins"/>
 		<where>
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
+
 		</where>		
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
+
 				ORDER BY a.update_date DESC
+
 			</otherwise>
 		</choose>
 	</select>
@@ -90,14 +96,18 @@
 			confirmdate,
 			status,
 			score,
-			student,
-			class,
+			other,
+			student_id,
+			approve,
+			headship,
+
 			opinion,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			del_flag
+
 		) VALUES (
 			#{id},
 			#{violationdesc},
@@ -110,14 +120,18 @@
 			#{confirmdate},
 			#{status},
 			#{score},
-			#{student},
-			#{classes},
+			#{other},
+			#{studentId},
+			#{approve},
+			#{headship},
+
 			#{opinion},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{delFlag}
+
 		)
 	</insert>
 	
@@ -133,17 +147,23 @@
 			confirmdate = #{confirmdate},
 			status = #{status},
 			score = #{score},
-			student = #{student},
-			class = #{classes},
+			other = #{other},
+			student_id = #{studentId},
+			approve = #{approve},
+			headship = #{headship},
+
 			opinion = #{opinion},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
+
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
+
 		UPDATE student_violation SET 
 			del_flag = #{DEL_FLAG_DELETE}
+
 		WHERE id = #{id}
 	</update>
 	

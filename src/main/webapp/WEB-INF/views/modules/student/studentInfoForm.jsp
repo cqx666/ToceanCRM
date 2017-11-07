@@ -63,12 +63,9 @@
 					<label>班级：</label>
 				</td>
 				<td>
-					<%--<form:select path="classes.name" class="input-medium">
+					<form:select path="classes.name" class="input-medium">
 						<form:option value="" label=""/>
-					</form:select>--%>
-				<sys:treeselect id="classes" name="classes.id" value="${studentInfo.classes.name}" labelName="classes.name" labelValue="${studentInfo.classes.name}"
-								title="班级" url="/student/classes/listalljson" cssClass="input-small" allowClear="true" notAllowSelectParent="true"/>
-
+					</form:select>
 				</td>
 				<td><label>班级编号：</label></td>
 				<td><form:input path="classes.id" htmlEscape="false" maxlength="20" class="input-xlarge "/></td>

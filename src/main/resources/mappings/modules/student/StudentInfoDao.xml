@@ -8,7 +8,6 @@
 		a.name AS "name",
 		a.password AS "password",
 		a.studentnumber AS "studentnumber",
-
 		a.statuschange AS "statuschange",
 		a.studenttype AS "studenttype",
 		a.sex AS "sex",
@@ -75,43 +74,27 @@
 		a.firstpoll AS "firstpoll",
 		a.secondpoll AS "secondpoll",
 		a.thirdpoll AS "thirdpoll",
-<<<<<<< HEAD
-
 		sf.id as "studentfile.id",
 		sf.picFileName as "studentfile.picfilename",
 		sf.resumeFileName as "studentfile.resumefilename",
 		a.office_id AS "officeid",
 		a.area_id AS "areaid",
 		a.create_by AS "createbyid",
-=======
-		a.file_id AS "fileId",
-		a.office_id AS "office.id",
-		a.area_id AS "area.id",
-		a.create_by AS "createby.id",
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 		a.create_date AS "createdate",
-		a.update_by AS "updateby.id",
+		a.update_by AS "updatebyid",
 		a.update_date AS "updatedate",
 		a.del_flag AS "delflag",
-<<<<<<< HEAD
 		o71.name AS "officename",
 		a72.name AS "areaname",
 		sc.id as "classes.id",
 		sc.name as "classes.name"
-=======
-		o71.name AS "office.name",
-		a72.name AS "area.name"
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 	</sql>
 	
 	<sql id="studentInfoJoins">
 		LEFT JOIN sys_office o71 ON o71.id = a.office_id
 		LEFT JOIN sys_area a72 ON a72.id = a.area_id
-<<<<<<< HEAD
 		LEFT JOIN sys_classes sc ON sc.id = a.classes_id
 		LEFT JOIN  student_file sf ON sf.id=a.file_id
-=======
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 	</sql>
     
 	<select id="get" resultType="StudentInfo">
@@ -128,6 +111,7 @@
 		FROM student_info a
 		<include refid="studentInfoJoins"/>
 		<where>
+
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
@@ -178,10 +162,12 @@
 	
 	<insert id="insert">
 		INSERT INTO student_info(
+
 			id,
 			name,
 			password,
 			studentnumber,
+
 			statuschange,
 			studenttype,
 			sex,
@@ -250,6 +236,7 @@
 			firstpoll,
 			secondpoll,
 			thirdpoll,
+
 			file_id,
 			office_id,
 			area_id,
@@ -263,6 +250,7 @@
 			#{name},
 			#{password},
 			#{studentnumber},
+
 			#{statuschange},
 			#{studenttype},
 			#{sex},
@@ -316,13 +304,10 @@
 			#{headship},
 			#{salary},
 			#{returnvist},
+
 			#{remarks},
-<<<<<<< HEAD
 
 			#{classes.id},
-=======
-			#{classesId},
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 			#{subareaId},
 			#{attendanceno},
 			#{teacherevaluation},
@@ -334,12 +319,8 @@
 			#{firstpoll},
 			#{secondpoll},
 			#{thirdpoll},
-<<<<<<< HEAD
 
 			#{studentfile.id},
-=======
-			#{fileId},
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 			#{office.id},
 			#{area.id},
 			#{createby.id},
@@ -347,14 +328,17 @@
 			#{updateby.id},
 			#{updatedate},
 			#{delflag}
+
 		)
 	</insert>
 	
 	<update id="update">
-		UPDATE student_info SET
+		UPDATE student_info SET 	
+
 			name = #{name},
 			password = #{password},
 			studentnumber = #{studentnumber},
+
 			statuschange = #{statuschange},
 			studenttype = #{studenttype},
 			sex = #{sex},
@@ -408,13 +392,10 @@
 			headship = #{headship},
 			salary = #{salary},
 			returnvist = #{returnvist},
+
 			remarks = #{remarks},
-<<<<<<< HEAD
 
 			classes_id = #{classes.id},
-=======
-			classes_id = #{classesId},
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 			subarea_id = #{subareaId},
 			attendanceno = #{attendanceno},
 			teacherevaluation = #{teacherevaluation},
@@ -426,12 +407,8 @@
 			firstpoll = #{firstpoll},
 			secondpoll = #{secondpoll},
 			thirdpoll = #{thirdpoll},
-<<<<<<< HEAD
 
 			file_id = #{studentfile.id},
-=======
-			file_id = #{fileId},
->>>>>>> dd8b0090120909ee9c35fad482a0c8f4f1875a73
 			office_id = #{office.id},
 			area_id = #{area.id},
 			update_by = #{updateby.id},

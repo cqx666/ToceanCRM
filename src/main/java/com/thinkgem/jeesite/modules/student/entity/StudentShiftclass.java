@@ -26,9 +26,7 @@ public class StudentShiftclass extends DataEntity<StudentShiftclass> {
 	private Long oldclassUserid;		// 原班级
 	private Long newclassUserid;		// 转入班级
 
-	private String studentname;//学员名字
-	private String classfromname;//原班级的名字
-	private String classtoname;//转后班级的名字
+	
 	public StudentShiftclass() {
 		super();
 	}
@@ -60,14 +58,6 @@ public class StudentShiftclass extends DataEntity<StudentShiftclass> {
 		return classtoId;
 	}
 
-	public String getStudentname() {
-		return studentname;
-	}
-
-	public void setStudentname(String studentname) {
-		this.studentname = studentname;
-	}
-
 	public void setClasstoId(Long classtoId) {
 		this.classtoId = classtoId;
 	}
@@ -95,20 +85,5 @@ public class StudentShiftclass extends DataEntity<StudentShiftclass> {
 	public void setNewclassUserid(Long newclassUserid) {
 		this.newclassUserid = newclassUserid;
 	}
-
-	public String getClassfromname() {
-		return classfromname;
-	}
-
-	public void setClassfromname(String classfromname) {
-		this.classfromname = classfromname;
-	}
-
-	public String getClasstoname() {
-		return classtoname;
-	}
-
-	public void setClasstoname(String classtoname) {
-		this.classtoname = classtoname;
-	}
+	
 }

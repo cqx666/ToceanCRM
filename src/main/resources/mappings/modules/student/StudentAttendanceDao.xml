@@ -79,7 +79,6 @@
 			#{startdate},
 			#{enddate},
 			#{status},
-
 			#{studentId},
 			#{createBy.id},
 			#{createDate},

@@ -25,12 +25,6 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>学生：</label>
-				<form:input path="student" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
-			<li><label>班级：</label>
-				<form:input path="classes" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -39,36 +33,20 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>主键</th>
-				<th>学生</th>
-				<th>班级</th>
-				<th>违纪时间</th>
-				<th>违纪情况</th>
-				<th>学员态度</th>
+
+				<th>修改时间</th>
+
 				<shiro:hasPermission name="student:studentViolation:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentViolation" varStatus="status">
+		<c:forEach items="${page.list}" var="studentViolation">
 			<tr>
-				<td>
-						${status.index+1}
+
+				<td><a href="${ctx}/student/studentViolation/form?id=${studentViolation.id}">
+					<fmt:formatDate value="${studentViolation.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</a></td>
-				<td>
-						${studentViolation.student}
-				</td>
-				<td>
-						${studentViolation.classes}
-				</td>
-				<td>
-					<fmt:formatDate value="${studentViolation.viloationdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
-				</td>
-				<td>
-						${studentViolation.violationdesc}
-				</td>
-				<td>
-					${studentViolation.studentattitude}
-				</td>
+
 				<shiro:hasPermission name="student:studentViolation:edit"><td>
     				<a href="${ctx}/student/studentViolation/form?id=${studentViolation.id}">修改</a>
 					<a href="${ctx}/student/studentViolation/delete?id=${studentViolation.id}" onclick="return confirmx('确认要删除该违纪吗？', this.href)">删除</a>

@@ -27,54 +27,73 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/student/studentLecture/">当前功能>>>演讲添加</a></li>
-
+		<li><a href="${ctx}/student/studentLecture/">演讲列表</a></li>
+		<li class="active"><a href="${ctx}/student/studentLecture/form?id=${studentLecture.id}">演讲<shiro:hasPermission name="student:studentLecture:edit">${not empty studentLecture.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="student:studentLecture:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<%--@elvariable id="studentLecture" type="act"--%>
 	<form:form id="inputForm" modelAttribute="studentLecture" action="${ctx}/student/studentLecture/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">班级创建人ID：</label>
+
+			<label class="control-label">学员：</label>
+
 			<div class="controls">
 				<form:input path="createrid" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">演讲内容：</label>
+
 			<div class="controls">
 				<form:textarea path="content" htmlEscape="false" rows="4" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">演讲日期：</label>
+
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${studentLecture.date}" pattern="yyyy-MM-dd"/>"
+					value="<fmt:formatDate value="${studentLecture.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">评价：</label>
+
 			<div class="controls">
 				<form:input path="evaluation" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">评分：</label>
+
 			<div class="controls">
 				<form:input path="score" htmlEscape="false" maxlength="11" class="input-xlarge required"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
+
 			<label class="control-label">建议：</label>
+
 			<div class="controls">
 				<form:input path="advice" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">学员ID：</label>
+
+			<label class="control-label">项目经理：</label>
+			<div class="controls">
+				<form:input path="pmId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">学员：</label>
+
 			<div class="controls">
 				<form:input path="studentId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>

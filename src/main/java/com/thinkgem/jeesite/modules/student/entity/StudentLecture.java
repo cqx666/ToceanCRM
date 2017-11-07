@@ -17,119 +17,97 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 
  */
 public class StudentLecture extends DataEntity<StudentLecture> {
-
-    private static final long serialVersionUID = 1L;
-    private Long createrid;		// 序号
-    private String content;		//演讲内容
-
-    private Date date;		// 演讲日期
-    private String evaluation;		// 评价
-    private String score;		// 评分
-    private String advice;		// 建议
-
-    private Long pmId;		// 项目经理id
-    private Long studentId;		// 学员id
-    private String studentname; //学员名字
-    private String classname; //班级
-    private String systemname;//项目经理
+	
+	private static final long serialVersionUID = 1L;
 
 
-    public StudentLecture() {
-        super();
-    }
+	private Long createrid;		// 学员
+	private String content;		// 演讲内容
 
-    public StudentLecture(String id){
-        super(id);
-    }
+	private Date date;		// 演讲日期
+	private String evaluation;		// 评价
+	private String score;		// 评分
+	private String advice;		// 建议
 
-    public Long getCreaterid() {
-        return createrid;
-    }
-
-    public void setCreaterid(Long createrid) {
-        this.createrid = createrid;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getEvaluation() {
-        return evaluation;
-    }
-
-    public void setEvaluation(String evaluation) {
-        this.evaluation = evaluation;
-    }
+	private Long pmId;		// 项目经理
+	private Long studentId;		// 学员
 
 
-    @Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
-    public String getScore() {
-        return score;
-    }
+	public StudentLecture() {
+		super();
+	}
 
-    public void setScore(String score) {
-        this.score = score;
-    }
+	public StudentLecture(String id){
+		super(id);
+	}
 
-    public String getAdvice() {
-        return advice;
-    }
+	public Long getCreaterid() {
+		return createrid;
+	}
 
-    public void setAdvice(String advice) {
-        this.advice = advice;
-    }
+	public void setCreaterid(Long createrid) {
+		this.createrid = createrid;
+	}
+	
+	public String getContent() {
+		return content;
+	}
 
-    public Long getPmId() {
-        return pmId;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getDate() {
+		return date;
+	}
 
-    public void setPmId(Long pmId) {
-        this.pmId = pmId;
-    }
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public String getEvaluation() {
+		return evaluation;
+	}
 
-    public Long getStudentId() {
-        return studentId;
-    }
+	public void setEvaluation(String evaluation) {
+		this.evaluation = evaluation;
+	}
+	
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
+	@Length(min=1, max=11, message="评分长度必须介于 1 和 11 之间")
+	public String getScore() {
+		return score;
+	}
 
-    public String getStudentname() {
-        return studentname;
-    }
+	public void setScore(String score) {
+		this.score = score;
+	}
+	
+	public String getAdvice() {
+		return advice;
+	}
 
-    public void setStudentname(String studentname) {
-        this.studentname = studentname;
-    }
+	public void setAdvice(String advice) {
+		this.advice = advice;
+	}
+	
 
-    public String getClassname() {
-        return classname;
-    }
+	public Long getPmId() {
+		return pmId;
+	}
 
-    public void setClassname(String classname) {
-        this.classname = classname;
-    }
+	public void setPmId(Long pmId) {
+		this.pmId = pmId;
 
-    public String getSystemname() {
-        return systemname;
-    }
+	}
+	
+	public Long getStudentId() {
+		return studentId;
+	}
 
-    public void setSystemname(String systemname) {
-        this.systemname = systemname;
-    }
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
+	}
+
 }
