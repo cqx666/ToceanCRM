@@ -21,6 +21,7 @@
 		<li class="active"><a href="${ctx}/book/product/">产品列表</a></li>
 		<shiro:hasPermission name="book:product:edit"><li><a href="${ctx}/book/product/form">产品添加</a></li></shiro:hasPermission>
 	</ul>
+	<%--@elvariable id="product" type=""--%>
 	<form:form id="searchForm" modelAttribute="product" action="${ctx}/book/product/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>

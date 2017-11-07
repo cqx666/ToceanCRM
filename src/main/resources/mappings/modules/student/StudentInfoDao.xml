@@ -6,6 +6,7 @@
 
 		a.id AS "id",
 		a.name AS "name",
+		a.password AS "password",
 		a.studentnumber AS "studentnumber",
 		a.statuschange AS "statuschange",
 		a.studenttype AS "studenttype",
@@ -61,7 +62,7 @@
 		a.salary AS "salary",
 		a.returnvist AS "returnvist",
 		a.remarks AS "remarks",
-		a.classes_id AS "classesId",
+
 		a.subarea_id AS "subareaId",
 		a.attendanceno AS "attendanceno",
 		a.teacherevaluation AS "teacherevaluation",
@@ -74,7 +75,9 @@
 		a.secondpoll AS "secondpoll",
 		a.thirdpoll AS "thirdpoll",
 
-		a.file_id AS "fileId",
+		sf.id as "studentfile.id",
+		sf.picFileName as "studentfile.picfilename",
+		sf.resumeFileName as "studentfile.resumefilename",
 		a.office_id AS "officeid",
 		a.area_id AS "areaid",
 		a.create_by AS "createbyid",
@@ -84,14 +87,15 @@
 		a.del_flag AS "delflag",
 		o71.name AS "officename",
 		a72.name AS "areaname",
-		sc.id as "cid",
-		sc.name as "name"
+		sc.id as "classes.id",
+		sc.name as "classes.name"
 	</sql>
 	
 	<sql id="studentInfoJoins">
 		LEFT JOIN sys_office o71 ON o71.id = a.office_id
 		LEFT JOIN sys_area a72 ON a72.id = a.area_id
-		LEFT  JOIN sys_classes sc ON sc.id=a.classes_id
+		LEFT JOIN sys_classes sc ON sc.id = a.classes_id
+		LEFT JOIN  student_file sf ON sf.id=a.file_id
 	</sql>
     
 	<select id="get" resultType="StudentInfo">
@@ -115,8 +119,13 @@
 					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
-			</if>
 
+			</if>
+			<if test="classes !=null and classes.name!=null and classes.name!=''">
+				AND sc.name LIKE
+				<if test="dbName == 'mssql'">'%'+#{classes.name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{classes.name},'%')</if>
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -157,6 +166,7 @@
 
 			id,
 			name,
+			password,
 			studentnumber,
 
 			statuschange,
@@ -239,6 +249,7 @@
 		) VALUES (
 			#{id},
 			#{name},
+			#{password},
 			#{studentnumber},
 
 			#{statuschange},
@@ -297,7 +308,7 @@
 
 			#{remarks},
 
-			#{classesId},
+			#{classes.id},
 			#{subareaId},
 			#{attendanceno},
 			#{teacherevaluation},
@@ -310,7 +321,7 @@
 			#{secondpoll},
 			#{thirdpoll},
 
-			#{fileId},
+			#{studentfile.id},
 			#{office.id},
 			#{area.id},
 			#{createby.id},
@@ -326,6 +337,7 @@
 		UPDATE student_info SET 	
 
 			name = #{name},
+			password = #{password},
 			studentnumber = #{studentnumber},
 
 			statuschange = #{statuschange},
@@ -384,7 +396,7 @@
 
 			remarks = #{remarks},
 
-			classes_id = #{classesId},
+			classes_id = #{classes.id},
 			subarea_id = #{subareaId},
 			attendanceno = #{attendanceno},
 			teacherevaluation = #{teacherevaluation},
@@ -397,7 +409,7 @@
 			secondpoll = #{secondpoll},
 			thirdpoll = #{thirdpoll},
 
-			file_id = #{fileId},
+			file_id = #{studentfile.id},
 			office_id = #{office.id},
 			area_id = #{area.id},
 			update_by = #{updateby.id},

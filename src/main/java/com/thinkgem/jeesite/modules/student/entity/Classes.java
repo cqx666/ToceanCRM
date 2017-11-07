@@ -29,7 +29,7 @@ public class Classes extends DataEntity<Classes> {
 	private Long pmId;		// 经理
 	private Long subareaId;		// 子范围
 	private String qq;		// QQ
-	
+
 	public Classes() {
 		super();
 	}
@@ -38,15 +38,14 @@ public class Classes extends DataEntity<Classes> {
 		super(id);
 	}
 
-	@Length(min=0, max=20, message="班级名称长度必须介于 0 和 20 之间")
 	public String getName() {
 		return name;
 	}
-
+	@Length(min=0, max=20, message="班级名称长度必须介于 0 和 20 之间")
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getOpendate() {
 		return opendate;

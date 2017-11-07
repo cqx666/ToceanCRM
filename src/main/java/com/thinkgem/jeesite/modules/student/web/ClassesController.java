@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.student.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thinkgem.jeesite.modules.book.entity.Sort;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.thinkgem.jeesite.common.config.Global;
@@ -21,6 +23,8 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.student.entity.Classes;
 import com.thinkgem.jeesite.modules.student.service.ClassesService;
+
+import java.util.List;
 
 /**
  * 班级管理Controller
@@ -49,11 +53,18 @@ public class ClassesController extends BaseController {
 	@RequiresPermissions("student:classes:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(Classes classes, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<Classes> page = classesService.findPage(new Page<Classes>(request, response), classes); 
+		Page<Classes> page = classesService.findPage(new Page<Classes>(request, response), classes);
 		model.addAttribute("page", page);
 		return "modules/student/classesList";
 	}
-
+	@RequiresPermissions("student:classes:view")
+	@ResponseBody
+	@RequestMapping(value = {"listalljson"})
+	public List<Classes> listalljson(Classes classes, HttpServletRequest request, HttpServletResponse response, Model model) {
+		List<Classes> list=classesService.findAll();
+		//System.out.print(list.get(0).getName()+"**********************--------------+++++++++++++");
+		return list;
+	}
 	@RequiresPermissions("student:classes:view")
 	@RequestMapping(value = "form")
 	public String form(Classes classes, Model model) {
