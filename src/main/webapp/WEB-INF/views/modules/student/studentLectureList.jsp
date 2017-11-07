@@ -83,7 +83,7 @@
                     ${studentLecture.classname}
             </td>
             <td>
-                    ${studentLecture.studentname}
+                <a href="${ctx}/student/studentLecture/form?id=${studentLecture.id}">${studentLecture.studentname}</a>
             </td>
             <td>
                 <fmt:formatDate value="${studentLecture.date}" pattern="yyyy-MM-dd"/>

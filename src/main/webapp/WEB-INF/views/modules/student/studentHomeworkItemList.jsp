@@ -14,6 +14,17 @@
 			$("#searchForm").submit();
         	return false;
         }
+        function deleteHomeworkItem(){
+            var ids=[];
+            $('input[name="chose1"]:checked').each(function(){
+                ids.push("id="+$(this).val());
+            });
+            var param = ids.join("&");
+            var message=confirm("是否删除所选的作业吗?");
+            if(message==true){
+                window.location.href="${ctx}/student/studentHomeworkItem/delete?"+param;
+            }
+        }
 	</script>
 </head>
 <body>
@@ -21,6 +32,7 @@
 		<li class="active"><a href="${ctx}/student/studentHomeworkItem/">作业列表</a></li>
 		<shiro:hasPermission name="student:studentHomeworkItem:edit"><li><a href="${ctx}/student/studentHomeworkItem/form">作业添加</a></li></shiro:hasPermission>
 	</ul>
+	<%--@elvariable id="studentHomeworkItem" type="act"--%>
 	<form:form id="searchForm" modelAttribute="studentHomeworkItem" action="${ctx}/student/studentHomeworkItem/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
@@ -28,7 +40,13 @@
 			<li><label>作业标题：</label>
 				<form:input path="homeworkId" htmlEscape="false" maxlength="20" class="input-medium"/>
 			</li>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
+			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
+			<shiro:hasPermission name="student:studentHomeworkItem:edit">
+				<a href="${ctx}/student/studentHomeworkItem/form">
+					<input id="btnadd" class="btn btn-primary" type="button" value="新增"/>
+				</a></shiro:hasPermission>
+			<input id="btndelete" class="btn btn-primary" type="button" onclick="deleteHomeworkItem()" value="删除"/>
+			</li>
 			<li class="clearfix"></li>
 		</ul>
 	</form:form>
@@ -36,6 +54,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th><input type="checkbox"/></th>
 				<th>序号</th>
 				<th>学员</th>
 				<th>班级</th>
@@ -47,11 +66,15 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${page.list}" var="studentHomeworkItem" varStatus="status">
+		<c:forEach items="${page.list}" var="studentHomeworkItem">
 			<tr>
 				<td>
-						${status.index+1}
-					</a></td>
+					<input type="checkbox" value="${studentHomeworkItem.id}" name="chose1"/>
+				</td>
+				<td>
+					<c:set var="i" value="${i+1}"></c:set>
+					<c:out value="${i}"></c:out>
+				</td>
 				<td><a href="${ctx}/student/studentHomeworkItem/form?id=${studentHomeworkItem.id}">
 					${studentHomeworkItem.studentId}
 				</a></td>

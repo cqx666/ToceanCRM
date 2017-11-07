@@ -28,7 +28,7 @@
     </sql>
     <sql id="studentLectureJoins">
         LEFT JOIN student_info si ON si.id=a.student_id
-        INNER JOIN sys_classes sc ON a.createrid=sc.pm_id AND a.date  BETWEEN sc.openDate AND sc.closeDate
+        LEFT JOIN sys_classes sc ON a.createrid=sc.pm_id AND a.date  BETWEEN sc.openDate AND sc.closeDate
         LEFT  JOIN  sys_user su ON su.id=a.pm_id
     </sql>
     <select id="get" resultType="StudentLecture">
@@ -127,7 +127,6 @@
         #{updateBy.id},
         #{updateDate},
         #{delFlag}
-
         )
     </insert>
 

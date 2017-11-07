@@ -79,5 +79,4 @@ public class StudentLectureController extends BaseController {
 		addMessage(redirectAttributes, "删除演讲成功");
 		return "redirect:"+Global.getAdminPath()+"/student/studentLecture/?repage";
 	}
-
 }

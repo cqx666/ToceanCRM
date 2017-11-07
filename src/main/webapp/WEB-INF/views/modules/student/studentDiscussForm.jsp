@@ -79,6 +79,12 @@
 				<form:input path="pmId" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
 			</div>
 		</div>
+		<div class="control-group">
+			<label class="control-label">小组ID：</label>
+			<div class="controls">
+				<form:input path="divgroup" htmlEscape="false" maxlength="20" class="input-xlarge  digits"/>
+			</div>
+		</div>
 
 		<div class="form-actions">
 			<shiro:hasPermission name="student:studentDiscuss:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>

@@ -11,13 +11,20 @@
         a.score AS "score",
         a.advice AS "advice",
         a.pm_id AS "pmId",
-        a.group_id AS "group.Id"
+        a.group_id AS "divgroup",
+        sc.pm_id AS "managerid",
+        sc.name AS "classname",
+        sg.id AS "groupid",
+        sg.name AS "groupname",
+        su.id AS "sysid",
+        su.name AS "managername"
     </sql>
 
     <sql id="studentDiscussJoins">
-
+        LEFT JOIN sys_classes sc ON sc.pm_id=a.createrid AND a.date BETWEEN sc.openDate AND sc.closeDate
+        LEFT  JOIN  sys_group sg ON  sg.id=a.group_id
+        LEFT  JOIN  sys_user su ON su.id=a.pm_id
     </sql>
-
     <select id="get" resultType="StudentDiscuss">
         SELECT
         <include refid="studentDiscussColumns"/>
@@ -80,7 +87,7 @@
         #{score},
         #{advice},
         #{pmId},
-        #{group.Id}
+        #{divgroup}
         )
     </insert>
 
@@ -93,7 +100,7 @@
         score = #{score},
         advice = #{advice},
         pm_id = #{pmId},
-        group_id = #{group.Id}
+        group_id = #{divgroup}
         WHERE id = #{id}
     </update>
 
